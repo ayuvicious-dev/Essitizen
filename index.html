@@ -250,6 +250,21 @@ input[type=range]{width:100%;accent-color:var(--blue);height:32px}
 @media (min-width:1280px){.cols{column-gap:48px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (max-width:370px){.hero{grid-template-columns:1fr;justify-items:center}.hero>div:last-child{width:100%}}
+.jp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+.jp-k{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px;border-radius:16px;background:var(--field);border:1px solid var(--line);color:var(--ink,inherit)}
+.jp-k b{font-size:30px;font-weight:600;line-height:1.1}.jp-k span{font-size:13px;color:var(--mut)}
+.jp-k.on{border-color:var(--blue);background:var(--sky)}
+.jp-ph{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.jp-ph:last-child{border-bottom:0}.jp-ph b{font-size:18px;font-weight:600}
+.jp-pad{position:relative;width:100%;max-width:320px;aspect-ratio:1;margin:14px auto;border-radius:20px;background:var(--field);border:1px dashed var(--line);overflow:hidden}
+.jp-guide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:200px;color:var(--mut);opacity:.28;pointer-events:none;user-select:none}
+.jp-nog .jp-guide{display:none}
+.jp-pad canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.jp-q{font-size:56px;font-weight:600;text-align:center;margin:8px 0 16px}.jp-q.sm{font-size:26px}
+.jp-opt{display:block;width:100%;text-align:left;min-height:48px;padding:10px 16px;margin-top:8px;border-radius:14px;background:var(--field);border:1px solid var(--line);font-weight:600;color:inherit}
+.jp-opt.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);border-color:var(--ok)}
+.jp-opt.bad{background:color-mix(in srgb,var(--bad) 16%,transparent);border-color:var(--bad)}
+.jp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 </style>
 </head>
 <body>
@@ -322,7 +337,7 @@ const defaultData = () => ({
   prep: {
     lang: {
       country: '', target: '', test: 'IELTS', currentScore: '', targetScore: '', testDate: '', hoursWeek: 5,
-      skills: { listening: 0, speaking: 0, reading: 0, writing: 0 }, log: [],
+      skills: { listening: 0, speaking: 0, reading: 0, writing: 0 }, log: [], jp: { done: {} },
       tasks: mk(['Cek syarat bahasa & tes resmi negara tujuan', 'Ambil tes diagnostik untuk tahu level awal', 'Pilih kursus atau rutinitas belajar', 'Daftar jadwal tes resmi', 'Capai skor minimum', 'Simpan sertifikat tes (asli dan salinan)'])
     },
     fin: {
@@ -342,7 +357,7 @@ const CATALOG = [
   { k: 'ca', lg: 'Inggris', ts: 'IELTS', f: '🇨🇦', n: 'Kanada', y: '3 dari 5 tahun terakhir (1.095 hari) sebagai penduduk tetap (PR)', l: 'Inggris/Prancis (CLB 4) + tes pengetahuan', d: 'Kewarganegaraan ganda diizinkan; Kanada tidak mewajibkan melepas kewarganegaraan asal' },
   { k: 'de', lg: 'Jerman', ts: 'Goethe-Zertifikat', f: '🇩🇪', n: 'Jerman', y: '5 tahun tinggal sah (jalur cepat 3 tahun sudah dihapus sejak Okt 2025)', l: 'Jerman B1 + tes naturalisasi', d: 'Kewarganegaraan ganda diizinkan sejak Juni 2024; tidak wajib melepas kewarganegaraan asal' },
   { k: 'nl', lg: 'Belanda', ts: 'Inburgering (NT2)', f: '🇳🇱', n: 'Belanda', y: '5 tahun tinggal sah', l: 'Belanda A2 + ujian integrasi', d: 'Umumnya wajib melepas kewarganegaraan asal; ada pengecualian (mis. menikah dengan warga Belanda, lahir di Belanda)' },
-  { k: 'jp', lg: 'Jepang', ts: 'JLPT', f: '🇯🇵', n: 'Jepang', y: 'Sekitar 5 tahun tinggal terus-menerus', l: 'Bahasa Jepang sehari-hari (baca-tulis)', d: 'Jepang umumnya tidak mengizinkan ganda' },
+  { k: 'jp', lg: 'Jepang', ts: 'JLPT', f: '🇯🇵', n: 'Jepang', y: 'Sekitar 5 tahun tinggal terus-menerus', l: '', d: 'Jepang umumnya tidak mengizinkan ganda' },
   { k: 'sg', lg: 'Inggris', ts: 'IELTS', g: 'asean', f: '🇸🇬', n: 'Singapura', y: 'Jadi penduduk tetap (PR) dulu, umumnya min. 2 tahun sebagai PR', l: 'Tidak ada tes formal tetap; dinilai integrasi', d: 'Singapura tidak mengizinkan ganda' },
   { k: 'gb', lg: 'Inggris', ts: 'IELTS', f: '🇬🇧', n: 'Inggris', y: '5 tahun + 12 bulan setelah mendapat ILR', l: 'Inggris B1 + Life in the UK Test', d: 'Inggris mengizinkan kewarganegaraan ganda' },
   { k: 'us', lg: 'Inggris', ts: 'Lainnya', f: '🇺🇸', n: 'Amerika Serikat', y: '5 tahun sebagai pemegang green card', l: 'Tes bahasa Inggris + tes civics', d: 'AS mengizinkan kewarganegaraan ganda' },
@@ -541,11 +556,134 @@ function langPicker(L) {
   </select></label>
   ${sel && !m ? field('Nama bahasa', 'prep.lang.target', 'text', 'placeholder="Mis. Arab, Turki" maxlength="40"') : ''}`;
 }
+/* ============================================================
+   BELAJAR BAHASA JEPANG (huruf -> percakapan)
+   ============================================================ */
+const KANA_ROWS = [['Vokal', 'あいうえお', 'a i u e o'], ['K', 'かきくけこ', 'ka ki ku ke ko'], ['S', 'さしすせそ', 'sa shi su se so'], ['T', 'たちつてと', 'ta chi tsu te to'], ['N', 'なにぬねの', 'na ni nu ne no'], ['H', 'はひふへほ', 'ha hi fu he ho'], ['M', 'まみむめも', 'ma mi mu me mo'], ['Y', 'やゆよ', 'ya yu yo'], ['R', 'らりるれろ', 'ra ri ru re ro'], ['W & N', 'わをん', 'wa wo n']];
+const toKata = (h) => [...h].map((c) => String.fromCharCode(c.charCodeAt(0) + 0x60)).join('');
+const PHRASE_SETS = [
+  ['p-salam', 'Salam sehari-hari', `おはようございます|ohayō gozaimasu|Selamat pagi
+こんにちは|konnichiwa|Selamat siang / halo
+こんばんは|konbanwa|Selamat malam
+さようなら|sayōnara|Selamat tinggal
+ありがとうございます|arigatō gozaimasu|Terima kasih
+すみません|sumimasen|Permisi / maaf
+はい|hai|Ya
+いいえ|iie|Tidak
+おねがいします|onegaishimasu|Tolong / mohon`],
+  ['p-kenal', 'Perkenalan diri', `はじめまして|hajimemashite|Salam kenal
+わたしは ___ です|watashi wa ___ desu|Nama saya ___
+インドネシアから きました|Indoneshia kara kimashita|Saya berasal dari Indonesia
+おなまえは なんですか|onamae wa nan desu ka|Siapa nama Anda?
+おげんきですか|ogenki desu ka|Apa kabar?
+げんきです|genki desu|Saya baik
+よろしくおねがいします|yoroshiku onegaishimasu|Mohon bantuannya`],
+  ['p-angka', 'Angka', `いち|ichi|1
+に|ni|2
+さん|san|3
+よん|yon|4
+ご|go|5
+ろく|roku|6
+なな|nana|7
+はち|hachi|8
+きゅう|kyū|9
+じゅう|jū|10
+ひゃく|hyaku|100
+せん|sen|1.000`],
+  ['p-belanja', 'Belanja & makan', `いくらですか|ikura desu ka|Berapa harganya?
+これをください|kore o kudasai|Tolong beri saya ini
+みずをください|mizu o kudasai|Tolong air putih
+カードはつかえますか|kādo wa tsukaemasu ka|Bisa pakai kartu?
+いただきます|itadakimasu|Selamat makan
+ごちそうさまでした|gochisōsama deshita|Terima kasih atas makanannya`],
+  ['p-tanya', 'Bertanya & minta bantuan', `トイレはどこですか|toire wa doko desu ka|Toilet di mana?
+えきはどこですか|eki wa doko desu ka|Stasiun di mana?
+わかりません|wakarimasen|Saya tidak mengerti
+もういちどおねがいします|mō ichido onegaishimasu|Tolong ulangi sekali lagi
+ゆっくりおねがいします|yukkuri onegaishimasu|Tolong pelan-pelan
+えいごがはなせますか|eigo ga hanasemasu ka|Bisa berbahasa Inggris?
+たすけてください|tasukete kudasai|Tolong saya`],
+  ['p-dialog', 'Percakapan: bertemu orang baru', `A: こんにちは。はじめまして。|A: konnichiwa. hajimemashite.|A: Halo. Salam kenal.
+B: はじめまして。わたしはタナカです。|B: hajimemashite. watashi wa Tanaka desu.|B: Salam kenal. Saya Tanaka.
+A: わたしはアニです。インドネシアからきました。|A: watashi wa Ani desu. Indoneshia kara kimashita.|A: Saya Ani. Saya dari Indonesia.
+B: そうですか。おげんきですか。|B: sō desu ka. ogenki desu ka.|B: Oh begitu. Apa kabar?
+A: げんきです。よろしくおねがいします。|A: genki desu. yoroshiku onegaishimasu.|A: Baik. Mohon bantuannya.
+B: こちらこそ、よろしくおねがいします。|B: kochira koso, yoroshiku onegaishimasu.|B: Saya juga, mohon bantuannya.`]
+];
+const JP_LESSONS = [];
+KANA_ROWS.forEach(([n, h, r]) => JP_LESSONS.push({ id: 'h-' + n, g: 'Hiragana', t: n, kana: true, items: [...h].map((c, i) => ({ jp: c, r: r.split(' ')[i], s: c })) }));
+KANA_ROWS.forEach(([n, h, r]) => JP_LESSONS.push({ id: 'k-' + n, g: 'Katakana', t: n, kana: true, items: [...toKata(h)].map((c, i) => ({ jp: c, r: r.split(' ')[i], s: c })) }));
+PHRASE_SETS.forEach(([id, t, body]) => JP_LESSONS.push({ id, g: 'Kata & percakapan', t, kana: false, items: body.split('\n').map((l) => { const [jp, r, a] = l.split('|'); return { jp, r, a, s: jp.replace(/^[AB]: /, '').replace('___', '') }; }) }));
+let jpv = null, padDraw = false;
+const jpL = (id) => JP_LESSONS.find((x) => x.id === id);
+const shuf = (a) => [...a].sort(() => Math.random() - 0.5);
+function jpSay(t) {
+  if (!('speechSynthesis' in window)) return toast('Perangkat ini belum mendukung suara.');
+  const u = new SpeechSynthesisUtterance(t); u.lang = 'ja-JP'; u.rate = 0.8; speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+function jpQuizStart() {
+  const Ls = jpL(jpv.id), key = Ls.kana ? 'r' : 'a';
+  const pool = [...new Set(JP_LESSONS.filter((x) => x.kana === Ls.kana).flatMap((x) => x.items.map((i) => i[key])))];
+  jpv.q = { i: 0, s: 0, pick: null, qs: shuf(Ls.items).slice(0, 10).map((it) => ({ it, c: it[key], o: shuf([it[key], ...shuf(pool.filter((v) => v !== it[key])).slice(0, 3)]) })) };
+}
+function vJpHome() {
+  const done = data.prep.lang.jp.done, n = Object.keys(done).filter((k) => done[k]).length, groups = [...new Set(JP_LESSONS.map((x) => x.g))];
+  return `<div class="sec">Belajar Bahasa Jepang <small>${n} / ${JP_LESSONS.length} pelajaran</small></div><div class="card">
+    ${progress(pct(n, JP_LESSONS.length), n === JP_LESSONS.length)}
+    <p class="small muted" style="margin:10px 0 0">Mulai dari huruf (hiragana, katakana), lanjut ke kata dan percakapan. Tiap pelajaran punya materi, latihan menulis (huruf), dan kuis.</p>
+    ${groups.map((g) => `<div class="small" style="margin-top:14px;font-weight:600">${g}</div><div class="jp-chips">${JP_LESSONS.filter((x) => x.g === g).map((x) => `<button class="btn ghost sm" data-act="jp-open" data-id="${x.id}">${done[x.id] ? '✓ ' : ''}${esc(x.t)}</button>`).join('')}</div>`).join('')}
+  </div>`;
+}
+function vJp() {
+  const Ls = jpL(jpv.id), done = data.prep.lang.jp.done[Ls.id], ci = jpv.ci || 0, q = jpv.q;
+  const tabs = [['belajar', 'Belajar'], ...(Ls.kana ? [['tulis', 'Tulis']] : []), ['kuis', 'Kuis']];
+  let body = '';
+  if (jpv.tab === 'belajar') {
+    body = Ls.kana
+      ? `<div class="jp-grid">${Ls.items.map((it, i) => `<button class="jp-k" data-act="jp-say" data-ix="${i}"><b>${it.jp}</b><span>${it.r}</span></button>`).join('')}</div><p class="small muted">Ketuk huruf untuk mendengar bunyinya.</p>`
+      : Ls.items.map((it, i) => `<div class="jp-ph"><div><b>${esc(it.jp)}</b><div class="small">${esc(it.r)}</div><div class="small muted">${esc(it.a)}</div></div><button class="btn ghost sm" data-act="jp-say" data-ix="${i}" aria-label="Dengarkan">🔊</button></div>`).join('');
+  } else if (jpv.tab === 'tulis') {
+    body = `<div class="jp-grid">${Ls.items.map((it, i) => `<button class="jp-k ${i === ci ? 'on' : ''}" data-act="jp-char" data-ix="${i}"><b>${it.jp}</b><span>${it.r}</span></button>`).join('')}</div>
+    <div class="jp-pad ${jpv.guide === false ? 'jp-nog' : ''}"><div class="jp-guide">${Ls.items[ci].jp}</div><canvas id="jp-pad" width="320" height="320"></canvas></div>
+    <div class="addrow" style="flex-wrap:wrap"><button class="btn ghost sm" data-act="jp-clear">Hapus coretan</button><button class="btn ghost sm" data-act="jp-guide">${jpv.guide === false ? 'Tampilkan' : 'Sembunyikan'} panduan</button><button class="btn ghost sm" data-act="jp-say" data-ix="${ci}">🔊 Dengar</button></div>
+    <p class="small muted">Telusuri huruf samar, lalu sembunyikan panduan dan tulis dari ingatan.</p>`;
+  } else if (!q) {
+    body = `<p class="small muted" style="margin:0 0 12px">10 soal pilihan ganda. Nilai 80% ke atas menandai pelajaran selesai.</p><button class="btn block" data-act="jp-qstart">Mulai kuis</button>`;
+  } else if (q.i >= q.qs.length) {
+    body = `<div class="jp-q sm">Skor ${q.s} / ${q.qs.length}</div><button class="btn block" data-act="jp-qstart">Ulangi kuis</button>`;
+  } else {
+    const cur = q.qs[q.i];
+    body = `<p class="small muted" style="margin:0">Soal ${q.i + 1} / ${q.qs.length}</p><div class="jp-q ${Ls.kana ? '' : 'sm'}">${esc(cur.it.jp)}</div>
+    ${cur.o.map((o, i) => `<button class="jp-opt ${q.pick !== null ? (o === cur.c ? 'ok' : i === q.pick ? 'bad' : '') : ''}" data-act="jp-ans" data-ix="${i}">${esc(o)}</button>`).join('')}
+    ${q.pick !== null ? `<button class="btn block" style="margin-top:12px" data-act="jp-next">${q.i + 1 === q.qs.length ? 'Lihat skor' : 'Lanjut'}</button>` : ''}`;
+  }
+  return `<button class="link" data-act="jp-close">← Kembali ke Bahasa</button>
+  <div class="sec">${esc(Ls.g)}: ${esc(Ls.t)} <small>${done ? '✓ Selesai' : ''}</small></div>
+  <div class="addrow" style="margin:0 0 12px;flex-wrap:wrap">${tabs.map(([k, t]) => `<button class="btn sm ${jpv.tab === k ? '' : 'ghost'}" data-act="jp-tab" data-v="${k}">${t}</button>`).join('')}</div>
+  <div class="card">${body}</div>
+  <button class="btn ghost block" style="margin-top:12px" data-act="jp-done" data-id="${Ls.id}">${done ? 'Batalkan tanda selesai' : 'Tandai selesai'}</button>`;
+}
+document.addEventListener('pointerdown', (e) => {
+  if (e.target.id !== 'jp-pad') return;
+  const c = e.target, x = c.getContext('2d'), r = c.getBoundingClientRect(); padDraw = true;
+  x.lineWidth = 10; x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--blue').trim() || '#0B4FB3';
+  x.beginPath(); x.moveTo((e.clientX - r.left) * c.width / r.width, (e.clientY - r.top) * c.height / r.height); x.lineTo((e.clientX - r.left) * c.width / r.width + 0.1, (e.clientY - r.top) * c.height / r.height); x.stroke();
+  c.setPointerCapture(e.pointerId);
+});
+document.addEventListener('pointermove', (e) => {
+  if (!padDraw || e.target.id !== 'jp-pad') return;
+  const c = e.target, x = c.getContext('2d'), r = c.getBoundingClientRect();
+  x.lineTo((e.clientX - r.left) * c.width / r.width, (e.clientY - r.top) * c.height / r.height); x.stroke();
+});
+['pointerup', 'pointercancel'].forEach((t) => document.addEventListener(t, () => { padDraw = false; }));
+
 function vLang() {
+  if (jpv) return vJp();
   const L = data.prep.lang;
   const sk = [['listening', 'Mendengar'], ['speaking', 'Berbicara'], ['reading', 'Membaca'], ['writing', 'Menulis']];
   const mins = weekMinutes(), goal = L.hoursWeek * 60, dd = daysUntil(L.testDate);
-  return `<div class="sec">Target tes</div><div class="card">
+  const selC = data.countries.find((c) => c.id === L.country), isJp = selC && catOf(selC) && catOf(selC).k === 'jp';
+  return `${isJp ? vJpHome() : ''}<div class="sec">Target tes</div><div class="card">
     ${langPicker(L)}
     ${select('Jenis tes', 'prep.lang.test', TESTS)}
     <div class="grid2">${field('Skor saat ini', 'prep.lang.currentScore', 'text', 'maxlength="12"')}${field('Skor target', 'prep.lang.targetScore', 'text', 'maxlength="12"')}</div>
@@ -980,6 +1118,17 @@ document.addEventListener('click', async (e) => {
     case 'task': { const x = data.prep[cat].tasks.find((a) => a.id === id); x.done = !x.done; save(); render(); break; }
     case 'del-task': data.prep[cat].tasks = data.prep[cat].tasks.filter((a) => a.id !== id); save(); render(); break;
     case 'add-task': { const i = $('#new-' + cat), s = i.value.trim(); if (!s) return i.focus(); data.prep[cat].tasks.push({ id: rid(), text: s, done: false }); save(); render(); break; }
+    case 'jp-open': jpv = { id, tab: 'belajar', ci: 0, guide: true, q: null }; render(true); break;
+    case 'jp-close': jpv = null; render(true); break;
+    case 'jp-tab': jpv.tab = v; render(); break;
+    case 'jp-say': jpSay(jpL(jpv.id).items[+ix].s); break;
+    case 'jp-char': jpv.ci = +ix; render(); break;
+    case 'jp-guide': jpv.guide = jpv.guide === false; render(); break;
+    case 'jp-clear': { const c = $('#jp-pad'); c.getContext('2d').clearRect(0, 0, c.width, c.height); break; }
+    case 'jp-qstart': jpQuizStart(); render(); break;
+    case 'jp-ans': { const q = jpv.q; if (q.pick !== null) return; q.pick = +ix; if (q.qs[q.i].o[q.pick] === q.qs[q.i].c) q.s++; render(); break; }
+    case 'jp-next': { const q = jpv.q; q.i++; q.pick = null; if (q.i >= q.qs.length && q.s / q.qs.length >= 0.8) { data.prep.lang.jp.done[jpv.id] = true; save(); } render(); break; }
+    case 'jp-done': { const D = data.prep.lang.jp.done; D[id] = !D[id]; save(); render(); break; }
     case 'log': {
       const L = data.prep.lang, d = today(), mm = +m; let e2 = L.log.find((l) => l.d === d);
       if (!e2) { e2 = { d, m: 0 }; L.log.push(e2); }

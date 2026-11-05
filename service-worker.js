@@ -1,6 +1,6 @@
 // Esitizen service worker – app shell offline + cache runtime untuk SDK Firebase & font.
 // Naikkan VERSION setiap kali Anda mengubah file aplikasi agar cache diperbarui.
-const VERSION = 'v2';
+const VERSION = 'v3';
 const SHELL = `esitizen-shell-${VERSION}`;
 const RUNTIME = `esitizen-runtime-${VERSION}`;
 

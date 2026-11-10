@@ -85,8 +85,8 @@ h1,h2,h3{font-family:var(--head);margin:0;letter-spacing:-.01em;line-height:1.15
 
 /* bottom bar */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
-.bar nav{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-.bar button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;color:var(--mut);font-size:12.5px;font-weight:500;border-radius:14px}
+.bar nav{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+.bar button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;color:var(--mut);font-size:11.5px;font-weight:500;border-radius:14px}
 .bar button svg{width:26px;height:26px;padding:3px 14px;box-sizing:content-box;border-radius:14px;transition:background .2s}
 .bar button[aria-current="page"]{color:var(--blue);font-weight:600}
 .bar button[aria-current="page"] svg{background:var(--sky)}
@@ -265,6 +265,77 @@ input[type=range]{width:100%;accent-color:var(--blue);height:32px}
 .jp-opt.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);border-color:var(--ok)}
 .jp-opt.bad{background:color-mix(in srgb,var(--bad) 16%,transparent);border-color:var(--bad)}
 .jp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+/* Perbandingan */
+.cpt .ftbl{border-collapse:collapse;width:100%;min-width:330px;font-size:12.5px;line-height:1.35;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.cpt .ftbl td{padding:6px 8px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);background:transparent!important;vertical-align:top}
+.cpt .ftbl td:last-child{border-right:0;text-align:right;white-space:nowrap}
+.cpt .ftbl td:nth-child(2){white-space:nowrap}
+.cpt .ftbl td small{display:block;color:var(--mut);font-size:11px}
+.cpt .ftbl tr.hd td{font-weight:700;color:var(--mut);background:var(--sky)!important;text-align:left}
+.cpt .ftbl tr.tt td{font-weight:700;border-top:2px solid var(--line)}
+.cpt .ftbl tr.pc td{font-weight:700;color:var(--blue)}
+.cpt .ftbl tr:last-child td{border-bottom:0}
+.cpt .ftbl td.tl{text-align:left}
+.cpt .ftbl .tgs{margin-top:0;flex-wrap:nowrap}
+.cpt .ftbl .tg{min-height:28px;padding:0 9px}
+.cpt .ftbl tr.fok td{background:color-mix(in srgb,var(--ok) 13%,var(--card))!important}
+.cpt .ftbl tr.fno td{background:color-mix(in srgb,var(--bad) 11%,var(--card))!important}
+.cpt .ftbl tr.sh td{background:var(--sky)!important;color:var(--ink);font-size:12.5px;line-height:1.4;white-space:normal;text-align:left}
+.cpt th.jobh.seah,.cpt td.jobc.seac{width:340px;min-width:340px;max-width:340px}
+.cpt td.seac .ftbl td:last-child{text-align:left}
+.cpt .ftbl tr.zero td{color:var(--mut)}
+.cpt .ftbl td small{white-space:normal}
+.cpt .ftn{margin:6px 0 0;font-size:11.5px;color:var(--mut)}
+.cpw{overflow:auto;max-height:calc(100vh - 230px);max-height:calc(100dvh - 230px);overscroll-behavior:contain;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:20px;background:var(--card)}
+.cpt{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:13.5px;line-height:1.4}
+.cpt th,.cpt td{padding:8px;vertical-align:top;border-bottom:1px solid var(--line);border-right:1px solid var(--line);background:var(--card)}
+.cpt tr:last-child th,.cpt tr:last-child td{border-bottom:0}
+.cpt th:last-child,.cpt td:last-child{border-right:0}
+.cpt thead th{position:sticky;top:0;z-index:3;vertical-align:middle;box-shadow:0 1px 0 var(--line);font-size:12.5px;color:var(--mut);font-weight:600;text-align:left;white-space:nowrap;min-width:220px}
+.cpt thead th .hx{min-height:30px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.cpt thead th:first-child,.cpt tbody th{position:sticky;left:0;z-index:2;min-width:132px;max-width:132px;box-shadow:1px 0 0 var(--line)}
+.cpt tbody th{text-align:left;font-weight:600;z-index:1}
+.cpt thead th:first-child{z-index:4;box-shadow:1px 0 0 var(--line),0 1px 0 var(--line)}
+.cpt .cn{display:flex;align-items:center;gap:8px}
+.cpt .cn .flag{flex:none}
+.cpt .exitb{display:inline-flex;align-items:center;margin-top:10px;min-height:30px;padding:0 14px;border-radius:99px;border:1px solid color-mix(in srgb,var(--bad) 45%,var(--line));background:var(--card);color:var(--bad);font-size:12.5px;font-weight:600}
+.cpt .exitb:active{background:color-mix(in srgb,var(--bad) 12%,var(--card))}
+.cpt .cn small{display:block;font-weight:400;font-size:11.5px;color:var(--mut)}
+.cpt tr.homer th,.cpt tr.homer td:not(.okc):not(.noc){background:color-mix(in srgb,var(--blue) 7%,var(--card))}
+.cpt textarea{display:block;width:100%;min-height:104px;resize:vertical;border:1px solid var(--line);background:var(--field);border-radius:10px;padding:8px;font-size:13.5px;line-height:1.4}
+.cpt td.okc{background:color-mix(in srgb,var(--ok) 13%,var(--card))}
+.cpt td.okc textarea{background:color-mix(in srgb,var(--ok) 8%,var(--field));border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.cpt .tgs{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.cpt .tg{margin-top:0;display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:0 10px;border-radius:99px;border:1px solid var(--line);color:var(--mut);font-size:12.5px;font-weight:600;background:var(--card)}
+.cpt .tg[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.cpt .tg.no[aria-pressed="true"]{background:var(--bad);border-color:var(--bad)}
+.cpt td.noc{background:color-mix(in srgb,var(--bad) 11%,var(--card))}
+.cpt td.noc textarea{background:color-mix(in srgb,var(--bad) 7%,var(--field));border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.cpt .sumc{white-space:nowrap;font-weight:600;min-width:96px;text-align:center}
+.cpt th.jobh,.cpt td.jobc{width:220px;min-width:220px;max-width:220px}
+.cpt th.jobh .hx{min-height:30px}
+.cpt td.okc .jobbox{background:color-mix(in srgb,var(--ok) 8%,var(--field));border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.cpt td.noc .jobbox{background:color-mix(in srgb,var(--bad) 7%,var(--field));border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.cpt .jobbox{min-height:104px;box-sizing:border-box;border:1px solid var(--line);background:var(--field);border-radius:10px;padding:8px}
+.cpt .jobi{display:flex;align-items:center;gap:6px}
+.cpt .jobi input{width:76px;font-weight:700;font-size:22px;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:4px 8px}
+.cpt .jobi span{font-size:18px;font-weight:700;color:var(--mut)}
+.cpt .jbar{height:6px;border-radius:99px;background:var(--line);margin:10px 0 8px;overflow:hidden}
+.cpt .jbar i{display:block;height:100%;border-radius:99px;background:var(--ok)}
+.cpt textarea.rentt{min-height:240px}
+.cpt th.jobh.wrkh,.cpt td.jobc.wrkc{width:340px;min-width:340px;max-width:340px}
+.cpt textarea.natp{margin-top:8px;min-height:84px;background:var(--card);font-size:13px}
+.cpt .jwhy{margin-top:8px;font-size:12.5px;line-height:1.4}
+.cpt .jwhy summary{cursor:pointer;color:var(--blue);font-weight:600;list-style:revert}
+.cpt .jwhy p{margin:6px 0 0;white-space:normal;color:var(--ink,inherit)}
+.cpt .jwhy .jsrc{color:var(--mut);font-size:11.5px}
+.cpt .jobbox small{display:block;color:var(--mut);font-size:12.5px;line-height:1.4}
+.cpt thead th span.hn{display:block;font-size:12.5px;font-weight:600;color:var(--mut);padding:4px 2px}
+.cpt .sumc small{display:block;white-space:normal;color:var(--mut);font-weight:400;font-size:12px}
+.cpt thead th input.hn{flex:1;min-width:0;border:0;background:transparent;font-size:12.5px;font-weight:600;color:var(--mut);padding:4px 2px;border-radius:6px}
+.cpt thead th input.hn:focus{background:var(--field);color:var(--ink,inherit);outline:0}
+.cpt .hx .x{font-size:18px;line-height:1;padding:0 4px;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -334,6 +405,7 @@ const mk = (arr) => arr.map((text) => ({ id: rid(), text, done: false }));
 const defaultData = () => ({
   name: '', theme: 'light', currency: 'IDR',
   countries: [],
+  compare: { aspects: ['Biaya hidup', 'UMR (≈ Rp/bulan)', 'Lama proses', 'Syarat bahasa', 'Iklim / cuaca', 'Alam & lingkungan', 'Peluang kerja', 'Keamanan', 'Layanan kesehatan', 'Pajak', 'Kewarganegaraan ganda'].map((name) => (name.startsWith('UMR') ? { id: rid(), name: 'UMR setelah pajak (≈ Rp/bulan)', key: 'umr' } : { id: rid(), name })), cells: {} },
   prep: {
     lang: {
       country: '', target: '', test: 'IELTS', currentScore: '', targetScore: '', testDate: '', hoursWeek: 5,
@@ -364,6 +436,23 @@ const CATALOG = [
   { k: 'nz', lg: 'Inggris', ts: 'IELTS', f: '🇳🇿', n: 'Selandia Baru', y: '5 tahun sebagai penduduk tetap', l: 'Inggris memadai + pengetahuan dasar NZ', d: 'Selandia Baru mengizinkan ganda' },
   { k: 'ie', lg: 'Inggris', ts: 'IELTS', f: '🇮🇪', n: 'Irlandia', y: '5 dari 9 tahun terakhir', l: 'Tidak ada tes bahasa formal umum', d: 'Irlandia mengizinkan kewarganegaraan ganda' },
   { k: 'kr', lg: 'Korea', ts: 'TOPIK', f: '🇰🇷', n: 'Korea Selatan', y: 'Sekitar 5 tahun tinggal sah', l: 'Bahasa Korea + program integrasi KIIP', d: 'Kewarganegaraan ganda dibatasi' },
+  /* Alam & pegunungan: ringkasan kasar, aturan (terutama negara Nordik) sering berubah. Wajib dicek ke imigrasi/kedutaan. */
+  { k: 'ch', g: 'alam', lg: 'Jerman/Prancis/Italia', ts: 'Goethe-Zertifikat', f: '🇨🇭', n: 'Swiss', y: 'Sekitar 10 tahun tinggal; umumnya harus berstatus izin tinggal tetap (Permit C); kanton bisa menambah syarat', l: 'Bahasa daerah: lisan B1, tulisan A2 + pengetahuan tentang Swiss', d: 'Swiss mengizinkan kewarganegaraan ganda' },
+  { k: 'no', g: 'alam', lg: 'Norwegia', ts: 'Lainnya', f: '🇳🇴', n: 'Norwegia', y: 'Sekitar 8 tahun dari 11 tahun terakhir', l: 'Bahasa Norwegia (lisan A2 atau kursus resmi) + tes pengetahuan masyarakat', d: 'Norwegia mengizinkan kewarganegaraan ganda sejak 2020' },
+  { k: 'se', g: 'alam', lg: 'Swedia', ts: 'Lainnya', f: '🇸🇪', n: 'Swedia', y: 'Sekitar 8 tahun tinggal (naik dari 5 tahun sejak 6 Juni 2026)', l: 'Tes bahasa Swedia + pengetahuan masyarakat (baru), syarat penghasilan mandiri', d: 'Swedia mengizinkan kewarganegaraan ganda' },
+  { k: 'fi', g: 'alam', lg: 'Finlandia/Swedia', ts: 'Lainnya', f: '🇫🇮', n: 'Finlandia', y: '8 tahun tinggal; 5 tahun jika lulus syarat bahasa (hanya masa dengan izin tinggal yang dihitung)', l: 'Bahasa Finlandia/Swedia + tes kewarganegaraan (mulai 2027)', d: 'Finlandia mengizinkan kewarganegaraan ganda' },
+  { k: 'is', g: 'alam', lg: 'Islandia', ts: 'Lainnya', f: '🇮🇸', n: 'Islandia', y: 'Sekitar 7 tahun tinggal', l: 'Tes bahasa Islandia', d: 'Islandia mengizinkan kewarganegaraan ganda' },
+  { k: 'at', g: 'alam', lg: 'Jerman', ts: 'Goethe-Zertifikat', f: '🇦🇹', n: 'Austria', y: 'Sekitar 10 tahun tinggal sah', l: 'Jerman B1 + tes pengetahuan kewarganegaraan', d: 'Austria umumnya tidak mengizinkan ganda; ada pengecualian terbatas' },
+  { k: 'dk', g: 'alam', lg: 'Denmark', ts: 'Lainnya', f: '🇩🇰', n: 'Denmark', y: 'Sekitar 9 tahun tinggal sah', l: 'Bahasa Denmark + tes kewarganegaraan', d: 'Denmark mengizinkan kewarganegaraan ganda sejak 2015' },
+  { k: 'cr', g: 'alam', lg: 'Spanyol', ts: 'Lainnya', f: '🇨🇷', n: 'Kosta Rika', y: 'Sekitar 7 tahun sebagai penduduk', l: 'Bahasa Spanyol + tes sejarah dan budaya', d: 'Kosta Rika mengizinkan kewarganegaraan ganda' },
+  { k: 'cl', g: 'alam', lg: 'Spanyol', ts: 'Lainnya', f: '🇨🇱', n: 'Chile', y: 'Sekitar 5 tahun sebagai penduduk tetap', l: 'Bahasa Spanyol dasar', d: 'Chile mengizinkan kewarganegaraan ganda' },
+  /* Asia alam menakjubkan: ringkasan kasar, naturalisasi umumnya sangat selektif. Wajib dicek ke imigrasi/kedutaan. */
+  { k: 'kz', g: 'asia', lg: 'Kazakh/Rusia', ts: 'Lainnya', f: '🇰🇿', n: 'Kazakhstan', y: 'Sekitar 5 tahun tinggal sah', l: 'Bahasa Kazakh dasar + tes konstitusi', d: 'Kazakhstan umumnya tidak mengizinkan ganda' },
+  { k: 'kg', g: 'asia', lg: 'Kirgiz/Rusia', ts: 'Lainnya', f: '🇰🇬', n: 'Kirgistan', y: 'Sekitar 5 tahun tinggal sah', l: 'Bahasa Kirgiz atau Rusia + tes konstitusi', d: 'Ganda terbatas (umumnya lewat perjanjian khusus), cek kedutaan' },
+  { k: 'ge', g: 'asia', lg: 'Georgia', ts: 'Lainnya', f: '🇬🇪', n: 'Georgia', y: 'Sekitar 5 tahun tinggal sah', l: 'Bahasa Georgia + tes sejarah dan hukum', d: 'Ganda umumnya tidak diakui; ada pengecualian khusus' },
+  { k: 'np', g: 'asia', lg: 'Nepal', ts: 'Lainnya', f: '🇳🇵', n: 'Nepal', y: 'Sangat selektif, sekitar 15 tahun tinggal', l: 'Bahasa Nepal', d: 'Nepal tidak mengizinkan ganda' },
+  { k: 'lk', g: 'asia', lg: 'Sinhala/Tamil/Inggris', ts: 'Lainnya', f: '🇱🇰', n: 'Sri Lanka', y: 'Sekitar 10 tahun tinggal sah', l: 'Cek persyaratan bahasa ke otoritas', d: 'Sri Lanka mengizinkan ganda lewat permohonan resmi' },
+  { k: 'tw', g: 'asia', lg: 'Mandarin', ts: 'Lainnya', f: '🇹🇼', n: 'Taiwan', y: 'Sekitar 5 tahun tinggal sah', l: 'Bahasa Mandarin dasar + pengetahuan dasar Taiwan', d: 'Umumnya wajib melepas kewarganegaraan asal; ada pengecualian untuk profesional tertentu' },
   /* ASEAN: ringkasan kasar, aturan sering berubah dan sangat bergantung kebijakan. Wajib dicek ke imigrasi/kedutaan. */
   { k: 'my', lg: 'Melayu', ts: 'Lainnya', g: 'asean', f: '🇲🇾', n: 'Malaysia', y: 'Sekitar 10 dari 12 tahun terakhir (jalur sangat selektif)', l: 'Bahasa Melayu + ujian kecakapan', d: 'Malaysia tidak mengizinkan ganda' },
   { k: 'th', lg: 'Thai', ts: 'Lainnya', g: 'asean', f: '🇹🇭', n: 'Thailand', y: 'Umumnya 5+ tahun sebagai penduduk tetap (PR)', l: 'Bahasa Thai (wawancara/tes)', d: 'Aturan ganda tidak jelas, cek kedutaan' },
@@ -421,6 +510,12 @@ async function loadData() {
     if (s.exists()) merge(data, s.data());
     else { data.name = user.displayName || ''; save(); }
   } catch (e) { toast('Tidak bisa memuat data (' + (e.code || 'error') + ').'); }
+  const cp = data.compare; cp.aspects ??= []; cp.cells ??= {}; cp.jobs ??= {}; cp.nat ??= {}; cp.natNote ??= {}; cp.cult ??= {};
+  if (!cp.umrAdded) { if (!cp.aspects.some((a) => a.key === 'umr')) cp.aspects.splice(Math.min(1, cp.aspects.length), 0, { id: rid(), name: 'UMR setelah pajak (≈ Rp/bulan)', key: 'umr' }); cp.umrAdded = true; save(); }
+  if (!cp.umrNetAdded) { const ua = cp.aspects.find((a) => a.key === 'umr'); if (ua && ua.name === 'UMR (≈ Rp/bulan)') ua.name = 'UMR setelah pajak (≈ Rp/bulan)'; cp.umrNetAdded = true; save(); }
+  if (!cp.foodAdded) { if (!cp.aspects.some((a) => a.key === 'food')) { const ri = cp.aspects.findIndex((a) => a.key === 'rent'), bi = cp.aspects.findIndex((a) => a.name === 'Biaya hidup'), at = ri >= 0 ? ri + 1 : bi >= 0 ? bi + 1 : Math.min(1, cp.aspects.length); cp.aspects.splice(at, 0, { id: rid(), name: 'Bahan pokok (≈ Rp)', key: 'food' }); } cp.foodAdded = true; save(); }
+  if (!cp.rentAdded) { if (!cp.aspects.some((a) => a.key === 'rent')) { const bi = cp.aspects.findIndex((a) => a.name === 'Biaya hidup'); cp.aspects.splice(bi >= 0 ? bi + 1 : Math.min(1, cp.aspects.length), 0, { id: rid(), name: 'Sewa dekat alam (≈ Rp/bln)', key: 'rent' }); } cp.rentAdded = true; save(); }
+  if (!cp.elecAdded) { if (!cp.aspects.some((a) => a.key === 'elec')) { const at = Math.max(cp.aspects.findIndex((a) => a.key === 'rent'), cp.aspects.findIndex((a) => a.key === 'food'), cp.aspects.findIndex((a) => a.name === 'Biaya hidup')); cp.aspects.splice(at >= 0 ? at + 1 : Math.min(1, cp.aspects.length), 0, { id: rid(), name: 'Listrik sebulan (2–3 orang, rumah standar)', key: 'elec' }); } cp.elecAdded = true; save(); }
 }
 
 /* ============================================================
@@ -446,6 +541,7 @@ const primary = () => data.countries.find((c) => c.priority) || data.countries[0
    ============================================================ */
 const ICON = {
   dash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="9" rx="2"/><rect x="13.5" y="3" width="7.5" height="5.5" rx="2"/><rect x="13.5" y="11.5" width="7.5" height="9.5" rx="2"/><rect x="3" y="15.5" width="7.5" height="5.5" rx="2"/></svg>',
+  cmp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 10h18M9 10v10M15 10v10"/></svg>',
   globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg>',
   prep: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-6 4 3 7-9"/><path d="M15 6h5v5"/><path d="M4 21h16"/></svg>',
   gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>'
@@ -851,11 +947,554 @@ function vSettings() {
   <p class="small muted" style="text-align:center;margin-top:24px">Esitizen v1.0</p>`;
 }
 
+
+/* ============================================================
+   8c. PERBANDINGAN
+   ============================================================ */
+const CMP_FX = { USD: 18128, EUR: 20195, GBP: 24201, AUD: 12690, CAD: 12960, NZD: 10420, CHF: 22840, JPY: 113.3, KRW: 11.85, SGD: 14140, MYR: 4368, THB: 549, TWD: 575, CLP: 19.6, CRC: 37.1, KZT: 35.5, KGS: 207, GEL: 6714, NPR: 120, LKR: 59.4, PHP: 305, VND: 0.697, LAK: 0.838, NOK: 1777, SEK: 1870, DKK: 2700, ISK: 140, BND: 14140, MMK: 8.6 };
+/* UMR bulanan (kerja penuh) dari tarif resmi 2026; m = nominal per bulan mata uang lokal. Kurs perkiraan 10 Nov 2026. */
+const CMP_UMR = {
+  au: { c: 'AUD', m: 4355, n: 'A$1.004,9/minggu, berlaku 1 Jul 2026' },
+  ca: { c: 'CAD', m: 3120, n: 'Ontario CAD 18/jam; provinsi lain CAD 15–19,75/jam' },
+  de: { c: 'EUR', m: 2409, n: '€13,90/jam' },
+  nl: { c: 'EUR', m: 2494, n: 'UMR nasional, usia 21+' },
+  jp: { c: 'JPY', m: 179360, n: '¥1.121/jam rata-rata; naik bertahap ke ±¥1.177 sejak Okt 2026' },
+  gb: { c: 'GBP', m: 2203, n: '£12,71/jam, usia 21+' },
+  us: { c: 'USD', m: 1256, n: 'federal $7,25/jam; banyak negara bagian jauh lebih tinggi, mis. DC $17,95/jam ≈ Rp 56,4 juta' },
+  nz: { c: 'NZD', m: 4160, n: 'NZ$24/jam sejak 1 Apr 2026' },
+  ie: { c: 'EUR', m: 2452, n: '€14,15/jam' },
+  kr: { c: 'KRW', m: 2156880, n: '₩10.320/jam; 2027 jadi ₩10.700' },
+  cr: { c: 'CRC', m: 373092, n: 'pekerja tidak terampil, sejak Jan 2026' },
+  cl: { c: 'CLP', m: 553553, n: 'sejak 1 Mei 2026' },
+  kz: { c: 'KZT', m: 85000 },
+  kg: { c: 'KGS', m: 3280 },
+  ge: { c: 'GEL', m: 20, n: 'nominal; praktis tidak berlaku' },
+  np: { c: 'NPR', m: 19550 },
+  lk: { c: 'LKR', m: 30000 },
+  tw: { c: 'TWD', m: 29500 },
+  my: { c: 'MYR', m: 1700 },
+  th: { c: 'THB', m: 10400, n: 'THB 400/hari × 26 hari; bervariasi per provinsi' },
+  ph: { c: 'PHP', m: 19630, n: '₱755/hari di Metro Manila × 26 hari; ₱780 mulai Jan 2027' },
+  vn: { c: 'VND', m: 5310000, n: 'wilayah I (kota besar)' },
+  kh: { c: 'USD', m: 210, n: 'sektor garmen/alas kaki' },
+  la: { c: 'LAK', m: 1600000, n: 'perkiraan, cek ulang' },
+  tl: { c: 'USD', m: 115 },
+  sg: { c: 'SGD', m: 2200, n: 'perkiraan; tidak ada UMR nasional, acuan Progressive Wage Model (cleaner/satpam)' },
+  ch: { c: 'CHF', m: 4200, n: 'perkiraan; tidak ada UMR nasional, acuan Jenewa ≈ CHF 24/jam; kanton lain bisa lebih rendah' },
+  no: { c: 'NOK', m: 37200, n: 'perkiraan; tidak ada UMR nasional, acuan upah terendah sektor ≈ NOK 215/jam' },
+  se: { c: 'SEK', m: 22000, n: 'perkiraan; tidak ada UMR nasional, acuan upah terendah perjanjian sektor' },
+  fi: { c: 'EUR', m: 2000, n: 'perkiraan; tidak ada UMR nasional, acuan upah terendah perjanjian sektor' },
+  is: { c: 'ISK', m: 470000, n: 'perkiraan; tidak ada UMR nasional, acuan upah terendah perjanjian serikat' },
+  at: { c: 'EUR', m: 2000, n: 'perkiraan; tidak ada UMR nasional, acuan upah terendah perjanjian sektor (14 gaji/tahun)' },
+  dk: { c: 'DKK', m: 21500, n: 'perkiraan; tidak ada UMR nasional, acuan upah terendah perjanjian sektor ≈ DKK 125/jam' },
+  bn: { c: 'BND', m: 500, n: 'perkiraan kasar; tidak ada UMR umum' },
+  mm: { c: 'MMK', m: 176800, n: 'MMK 6.800/hari × 26 hari, aturan lama; pakai kurs resmi, kurs pasar jauh lebih lemah' }
+};
+/* Perkiraan potongan (%) dari UMR kotor: pajak penghasilan + iuran wajib karyawan (jaminan sosial/pensiun/kesehatan), untuk lajang tanpa tanggungan pada level upah minimum. Perkiraan kasar, bukan hitungan resmi. */
+const CMP_UMRTAX = { id: 4, au: 14, ca: 18, de: 28, nl: 18, jp: 17, gb: 15, us: 8, nz: 17, ie: 12, kr: 10, cr: 11, cl: 18, kz: 20, kg: 18, ge: 20, np: 11, lk: 8, tw: 4, my: 12, th: 7, ph: 8, vn: 10, kh: 2, la: 6, tl: 4, sg: 20, ch: 13, no: 21, se: 17, fi: 20, is: 21, at: 19, dk: 30, bn: 5, mm: 2 };
+/* Indonesia sebagai pembanding (negara asal), baris paling atas di tabel Perbandingan. */
+const CMP_HOMEC = { id: '__home', k: 'id', name: 'Indonesia', home: true };
+const CMP_HOME = { y: 'Negara asal (pembanding); tidak ada proses', l: 'Bahasa Indonesia', d: 'Umumnya tidak diakui (kecuali anak sampai usia 18 tahun); mengambil kewarganegaraan lain berarti kehilangan WNI' };
+CMP_UMR.id = { t: 'UMP 2026: Rp 2,3 juta/bln (Jawa Barat, terendah) sampai Rp 5,7 juta/bln (DKI Jakarta, tertinggi); UMK kota/kabupaten bisa lebih tinggi\n\nSetelah PPh 21 (Rp 0, di bawah PTKP) dan iuran BPJS karyawan (≈ 4%): ≈ Rp 2,2 juta sampai Rp 5,5 juta/bln\n\nPerkiraan kasar untuk lajang tanpa tanggungan.' };
+const CMP_IDX = { 'Biaya hidup': 0, 'Iklim / cuaca': 1, 'Alam & lingkungan': 2, 'Peluang kerja': 3, 'Keamanan': 4, 'Layanan kesehatan': 5, 'Pajak': 6 };
+/* urutan: biaya, iklim, alam, peluang kerja, keamanan, kesehatan, pajak. Ringkasan kasar, cek sumber resmi. */
+const CMP_INFO = {
+  au: ['Tinggi; sewa Sydney dan Melbourne mahal', 'Beragam: tropis di utara, empat musim di selatan; musim terbalik dari Eropa', 'Pantai, Great Barrier Reef, outback, banyak taman nasional', 'Kuat di kesehatan, tambang, konstruksi, IT; jalur berbasis keahlian', 'Aman; waspada kebakaran hutan dan satwa berbahaya', 'Medicare publik untuk PR/warga; asuransi swasta umum', 'Progresif, puncak 45% + 2% Medicare'],
+  ca: ['Tinggi di Toronto dan Vancouver; kota kecil lebih murah', 'Musim dingin sangat dingin, musim panas hangat', 'Rocky Mountains, danau, hutan, pesisir; sangat luas', 'Banyak di IT, kesehatan, konstruksi; jalur Express Entry', 'Aman; perlu waspada musim dingin ekstrem', 'Layanan publik per provinsi, antrean spesialis panjang', 'Progresif federal + provinsi; puncak sekitar 50%'],
+  de: ['Menengah-tinggi; sewa kota besar naik tajam', 'Empat musim; musim dingin kelabu dan dingin', 'Alpen Bavaria, Hutan Hitam, lembah Rhine; banyak jalur hiking', 'Industri, teknik, IT; Blue Card untuk profesional', 'Aman', 'Asuransi kesehatan wajib; kualitas baik', 'Progresif (puncak 42–45%) + iuran sosial sekitar 20%'],
+  nl: ['Tinggi; sewa Amsterdam sangat mahal dan sulit dicari', 'Sejuk, berangin, sering hujan', 'Datar: polder, pantai, ladang tulip; alam tertata', 'IT, logistik, keuangan; banyak perusahaan internasional', 'Aman', 'Asuransi swasta wajib dengan premi bulanan; kualitas baik', 'Progresif; puncak sekitar 49,5%'],
+  jp: ['Menengah; Tokyo mahal, kota lain lebih murah', 'Empat musim jelas; musim panas lembap, utara bersalju', 'Gunung Fuji, Alpen Jepang, pantai Okinawa, sakura dan momiji', 'Teknik, IT, perawatan lansia; hambatan bahasa besar', 'Sangat aman', 'Asuransi nasional; kualitas tinggi, biaya terjangkau', 'Progresif sampai sekitar 45% + pajak daerah'],
+  sg: ['Sangat tinggi; hunian dan mobil mahal', 'Tropis panas lembap sepanjang tahun', 'Minim alam liar; taman kota dan cagar kecil', 'Keuangan, teknologi, logistik; izin kerja WNA ketat', 'Sangat aman', 'Kualitas tinggi; biaya sendiri cukup besar (Medisave)', 'Rendah; puncak 24%, tanpa pajak capital gain'],
+  gb: ['Tinggi, terutama London', 'Sejuk, lembap, berubah-ubah', 'Lake District, Highlands Skotlandia, pantai Cornwall', 'Keuangan, kesehatan (NHS), IT; visa skilled makin ketat', 'Cukup aman; bervariasi per kota', 'NHS gratis saat dipakai tapi antrean panjang', 'Progresif; puncak 45% + National Insurance'],
+  us: ['Beragam; kota pantai mahal, wilayah tengah lebih murah', 'Sangat beragam, dari gurun sampai salju', 'Taman nasional kelas dunia (Yosemite, Yellowstone, Grand Canyon)', 'Peluang terbesar di IT, kesehatan, keuangan', 'Bervariasi tajam per kota', 'Sangat mahal; bergantung asuransi dari pemberi kerja', 'Federal progresif (puncak 37%) + pajak negara bagian'],
+  nz: ['Tinggi; hunian di Auckland mahal', 'Sejuk dan lembap; musim terbalik dari Eropa', 'Fjord, gunung, pantai; pemandangan kelas dunia', 'Pertanian, kesehatan, konstruksi; pasar kecil', 'Aman', 'Layanan publik untuk penduduk; antre untuk non-darurat', 'Progresif; puncak 39%, umumnya tanpa pajak capital gain'],
+  ie: ['Tinggi; sewa Dublin sangat mahal', 'Sejuk, sering hujan, jarang ekstrem', 'Tebing Moher, pantai barat, bentang hijau', 'Markas Eropa perusahaan teknologi dan farmasi', 'Aman', 'Publik dan swasta berdampingan; antrean panjang', 'Progresif; puncak 40% + USC dan PRSI'],
+  kr: ['Menengah-tinggi; Seoul mahal, deposit sewa besar', 'Empat musim; musim dingin dingin, musim panas lembap', 'Pegunungan Seoraksan, Pulau Jeju', 'Manufaktur dan teknologi; jam kerja panjang', 'Sangat aman', 'Asuransi nasional; kualitas tinggi dan terjangkau', 'Progresif sampai 45% + pajak daerah'],
+  ch: ['Sangat tinggi; salah satu termahal di dunia', 'Empat musim jelas; salju di pegunungan', 'Alpen, danau jernih, jalur hiking terbaik dunia', 'Keuangan, farmasi, teknik; gaji tinggi', 'Sangat aman', 'Asuransi swasta wajib; kualitas sangat baik, premi mahal', 'Bervariasi per kanton; umumnya lebih ringan dari Eropa utara'],
+  no: ['Sangat tinggi', 'Dingin; musim dingin gelap panjang, pesisir lebih lunak', 'Fjord, aurora, gunung, matahari tengah malam', 'Energi, maritim, kesehatan; bahasa Norwegia dibutuhkan', 'Sangat aman', 'Layanan publik kuat dengan iuran sendiri kecil', 'Tinggi; tarif marginal puncak sekitar 47%'],
+  se: ['Tinggi; sewa Stockholm sulit didapat', 'Dingin dan gelap di musim dingin; musim panas panjang dan terang', 'Hutan, danau, kepulauan, Lapland', 'IT, rekayasa, kesehatan; bahasa Swedia jadi syarat', 'Umumnya aman; ada masalah kejahatan geng di kota tertentu', 'Publik; biaya pasien rendah, antrean bervariasi', 'Tinggi; marginal sampai sekitar 52%'],
+  fi: ['Menengah-tinggi; Helsinki lebih mahal', 'Musim dingin gelap dan dingin; musim panas cerah panjang', 'Ribuan danau, hutan, aurora di Lapland', 'IT, kehutanan, kesehatan; bahasa Finlandia sulit', 'Sangat aman', 'Publik per kota; antre dokter umum bisa lama', 'Tinggi; marginal puncak di atas 50%'],
+  is: ['Sangat tinggi; barang impor mahal', 'Sejuk dan berangin; musim dingin gelap, musim panas terang', 'Gletser, air terjun, gunung berapi, aurora', 'Pasar sangat kecil: pariwisata, perikanan, energi', 'Sangat aman', 'Publik baik; fasilitas terbatas di luar Reykjavik', 'Tinggi; marginal sekitar 31–46%'],
+  at: ['Menengah-tinggi; Wina relatif terjangkau dibanding Eropa Barat', 'Empat musim; bersalju di Alpen', 'Alpen, danau, jalur ski dan hiking', 'Industri, pariwisata, IT; bahasa Jerman wajib', 'Sangat aman', 'Asuransi sosial wajib; kualitas tinggi', 'Tinggi; puncak 50% + iuran sosial'],
+  dk: ['Tinggi; Kopenhagen mahal', 'Sejuk, berangin, lembap; musim dingin gelap', 'Pesisir datar dan tebing Møns Klint; tidak ada pegunungan', 'Farmasi, energi angin, teknologi; bahasa Denmark penting', 'Sangat aman', 'Publik gratis; antrean spesialis bisa lama', 'Sangat tinggi; marginal puncak sekitar 52%'],
+  cr: ['Rendah-menengah; kawasan wisata dan ekspat lebih mahal', 'Tropis; musim hujan dan musim kering', 'Hutan hujan, gunung berapi, pantai Pasifik dan Karibia; kaya satwa', 'Terbatas: BPO, layanan, pariwisata, nomad digital', 'Cukup aman; waspada pencurian kecil', 'Sistem publik CCSS + swasta terjangkau', 'Relatif ringan; penghasilan dari luar negeri umumnya tidak dipajaki'],
+  cl: ['Menengah; Santiago lebih mahal dari kota lain', 'Beragam: gurun di utara, mediterania di tengah, hujan dingin di selatan', 'Andes, Patagonia, Atacama, danau dan gunung berapi', 'Pertambangan, jasa, pertanian; ekonomi relatif stabil', 'Cukup aman; waspada kejahatan jalanan di kota besar', 'FONASA publik dan ISAPRE swasta', 'Progresif; puncak 40%'],
+  kz: ['Rendah', 'Benua ekstrem: musim dingin sangat dingin, musim panas panas', 'Tian Shan, danau pegunungan, ngarai, stepa luas', 'Energi, tambang, jasa di Almaty dan Astana', 'Cukup aman', 'Publik terbatas; swasta di kota besar', 'Rendah; PPh sekitar 10%'],
+  kg: ['Sangat rendah', 'Benua: musim dingin dingin, musim panas hangat di lembah', 'Pegunungan tinggi, Issyk-Kul, padang yurt, trekking', 'Terbatas; banyak warga bekerja ke luar negeri', 'Cukup aman; waspada penipuan dan lalu lintas', 'Layanan publik terbatas', 'Rendah; PPh 10%'],
+  ge: ['Rendah-menengah; Tbilisi naik karena banyak ekspat', 'Subtropis di pantai, sejuk di pegunungan', 'Kaukasus (Kazbegi, Svaneti), Laut Hitam, lembah anggur', 'Terbatas: IT/remote, pariwisata, jasa', 'Cukup aman', 'Publik terbatas; swasta terjangkau', 'Rendah; PPh 20% flat, ada rezim khusus usaha kecil'],
+  np: ['Sangat rendah', 'Beragam: panas di dataran, dingin di Himalaya', 'Himalaya, Everest, Annapurna, Lumbini; trekking kelas dunia', 'Sangat terbatas; banyak warga bekerja ke luar negeri', 'Cukup aman; risiko gempa dan longsor', 'Fasilitas terbatas di luar Kathmandu', 'Progresif ringan; puncak 36%'],
+  lk: ['Rendah', 'Tropis; dua musim monsun', 'Pantai, perkebunan teh, taman safari, Sigiriya', 'Terbatas: jasa, tekstil, TI kecil', 'Cukup aman', 'Publik gratis; swasta terjangkau', 'Progresif; puncak 36%'],
+  tw: ['Menengah; Taipei lebih mahal', 'Subtropis lembap; musim topan', 'Taroko Gorge, Yushan, pemandian air panas, pantai timur', 'Semikonduktor dan teknologi; bahasa Mandarin dibutuhkan', 'Sangat aman', 'Asuransi nasional (NHI); murah dan lengkap', 'Progresif; puncak 40%'],
+  my: ['Rendah-menengah; Kuala Lumpur relatif terjangkau', 'Tropis panas lembap, hujan sepanjang tahun', 'Hutan hujan Borneo, Langkawi, dataran tinggi Cameron', 'Manufaktur, jasa, migas; kesempatan WNA terbatas', 'Cukup aman; waspada pencurian jalanan', 'Publik murah + swasta terjangkau', 'Progresif; puncak 30%'],
+  th: ['Rendah-menengah; Bangkok dan Phuket lebih mahal', 'Tropis; musim panas, hujan, dan sejuk', 'Pantai Andaman, hutan utara, pulau-pulau', 'Pariwisata, manufaktur; izin kerja WNA ketat', 'Cukup aman; waspada penipuan wisatawan', 'Rumah sakit swasta berkualitas dan terjangkau', 'Progresif; puncak 35%'],
+  ph: ['Rendah-menengah', 'Tropis; musim topan Jun–Nov', 'Ribuan pulau, pantai, gunung berapi, terumbu karang', 'BPO/call center dan jasa; upah rendah', 'Bervariasi; waspada di beberapa wilayah selatan', 'Publik terbatas; swasta mahal tanpa asuransi', 'Progresif; puncak 35%'],
+  vn: ['Rendah', 'Utara empat musim, selatan tropis', 'Ha Long Bay, Sapa, Delta Mekong, pantai Da Nang', 'Manufaktur dan IT outsourcing; terus berkembang', 'Cukup aman; lalu lintas padat', 'Publik murah; swasta di kota besar', 'Progresif; puncak 35%'],
+  bn: ['Menengah; barang impor mahal tapi ada subsidi lokal', 'Tropis panas lembap', 'Hutan hujan Ulu Temburong, sungai, pantai', 'Sangat terbatas: migas dan pemerintahan', 'Sangat aman', 'Layanan publik hampir gratis untuk warga', 'Tanpa pajak penghasilan pribadi'],
+  kh: ['Rendah', 'Tropis; musim hujan dan musim kering', 'Angkor Wat, Tonle Sap, pantai selatan', 'Garmen, pariwisata, properti', 'Cukup aman; waspada pencurian jalanan', 'Layanan publik terbatas; swasta di kota besar', 'Progresif; puncak 20%'],
+  la: ['Sangat rendah', 'Tropis; musim hujan Mei–Okt', 'Sungai Mekong, air terjun Kuang Si, pegunungan', 'Sangat terbatas', 'Cukup aman', 'Fasilitas sangat terbatas', 'Progresif; puncak 25%'],
+  mm: ['Sangat rendah', 'Tropis; musim monsun', 'Bagan, Danau Inle, sungai Ayeyarwady', 'Sangat terbatas; ekonomi tidak stabil', 'Risiko tinggi; konflik bersenjata di banyak wilayah', 'Sangat terbatas', 'Progresif; puncak 25%'],
+  tl: ['Rendah-menengah; barang impor mahal', 'Tropis; musim hujan dan kering', 'Pantai, terumbu karang, Gunung Ramelau', 'Sangat terbatas: pemerintahan dan LSM', 'Cukup aman', 'Fasilitas terbatas', 'Pajak upah sekitar 10%']
+};
+/* Perkiraan biaya hidup 1 orang per bulan termasuk sewa (USD), model World Bank ICP 2021 via WhereNext, Apr 2026. e = perkiraan kasar (tidak ada di sumber). */
+CMP_INFO.id = ['Pembanding: negara asal. Jakarta paling mahal, kota kecil jauh lebih murah', 'Tropis panas lembap; musim hujan dan kemarau', 'Ribuan pulau, gunung berapi, hutan hujan, pantai, terumbu karang', 'Pasar kerja besar; persaingan ketat untuk posisi formal', 'Cukup aman; waspada pencurian jalanan, banjir, dan gempa', 'BPJS Kesehatan (JKN) untuk semua warga; kualitas dan antrean bervariasi', 'Progresif; puncak 35% (PPh 21)'];
+const CMP_COST = { au: 3350, ca: 2850, de: 2500, nl: 2750, jp: 2700, sg: 2250, gb: 2900, us: 3000, nz: 2950, ie: 3350, kr: 2250, ch: 4000, no: 3500, se: 3050, fi: 2950, is: 3600, at: 2650, dk: 3200, cr: 1700, cl: 1650, kz: { u: 900, e: 1 }, kg: { u: 700, e: 1 }, ge: 850, np: 800, lk: 750, tw: 1550, my: 1050, th: 1000, ph: 1150, vn: 900, bn: { u: 1500, e: 1 }, kh: 1050, la: 900, mm: 750, tl: { u: 1000, e: 1 } };
+/* Perkiraan subjektif (%) kemudahan WNA mendapat pekerjaan; bisa diubah manual di tabel. */
+const CMP_JOB = { id: 80, au: 70, ca: 55, de: 60, nl: 75, jp: 45, sg: 55, gb: 55, us: 60, nz: 50, ie: 75, kr: 35, ch: 60, no: 45, se: 50, fi: 30, is: 30, at: 50, dk: 60, cr: 40, cl: 45, kz: 40, kg: 25, ge: 35, np: 15, lk: 25, tw: 45, my: 50, th: 40, ph: 40, vn: 60, bn: 20, kh: 40, la: 15, mm: 5, tl: 15 };
+/* Alasan angka awal. Data: IMF/Trading Economics (pengangguran 2026) dan InterNations Expat Insider 2025/2026 (survei persepsi ekspat, bukan ukuran langsung kemudahan dapat kerja). */
+const CMP_JOBWHY = {
+  au: 'Pengangguran sekitar 4,4–4,7% (2026) dan peringkat 10 dari 46 di indeks Working Abroad Expat Insider 2025. Jalur visa berbasis keahlian membantu, tetapi kualifikasi tetap harus diakui.',
+  ca: 'Pengangguran 6,5% (Sep 2026), lebih tinggi dari AS dan Australia, jadi persaingan kerja lebih ketat. Peringkat keseluruhan Expat Insider 2026: 27 dari 31.',
+  de: 'Pengangguran sekitar 6,4% (Okt 2026, ukuran nasional). Permintaan kuat di teknik dan IT, tetapi bahasa Jerman sering jadi syarat. Peringkat keseluruhan Expat Insider 2026: 30 dari 31.',
+  nl: 'Peringkat 4 dari 46 di Working Abroad 2025 dan 6 dari 31 di 2026; ekspat memuji jam kerja dan keseimbangan hidup. Banyak perusahaan internasional berbahasa Inggris.',
+  jp: 'Pengangguran hanya sekitar 2,4–2,5% (2026), tetapi peringkat 41 dari 46 di Working Abroad 2025: ekspat menilai ekonomi dan fleksibilitas kerja kurang. Hambatan bahasa besar.',
+  kr: 'Pengangguran rendah (sekitar 2,6%), tetapi ekspat menilai Korea terburuk (46 dari 46) untuk peluang karier pribadi dan 54% menilai pasar kerjanya negatif (Working Abroad 2025).',
+  sg: 'Pengangguran sangat rendah (sekitar 1,9%, Jun 2026), tetapi izin kerja WNA ketat. Belum ada data peringkat ekspat yang terverifikasi.',
+  gb: 'Pengangguran sekitar 4,7% (Agu 2026). Peringkat keseluruhan Expat Insider 2026: 28 dari 31. Visa pekerja terampil makin ketat.',
+  us: 'Pengangguran sekitar 4,2% (Sep 2026) dan pasar kerja terbesar, tetapi sponsor visa kerja jadi hambatan utama bagi WNA.',
+  ie: 'Peringkat 2 dari 46 di Working Abroad 2025; 70% ekspat setuju pindah ke sana memperbaiki prospek karier. Banyak ekspat di IT, kesehatan, dan keuangan.',
+  dk: 'Peringkat 6 dari 46 di Working Abroad 2025, tetapi bahasa Denmark penting di banyak sektor.',
+  no: 'Peringkat keseluruhan Expat Insider 2026: 31 dari 31 (terakhir), bukan khusus kerja. Bahasa Norwegia dibutuhkan di banyak pekerjaan.',
+  fi: 'Pengangguran sekitar 10,5% (Jun 2026), tertinggi di OECD, dan peringkat 43 dari 46 di Working Abroad 2025. Bahasa Finlandia sulit.',
+  ph: 'Peringkat 39 dari 46 di Working Abroad 2025: ekspat menilai karier dan ekonomi kurang, meski 74% merasa dibayar adil. Peluang utama ada di BPO.',
+  my: 'Naik 27 peringkat ke 20 dari 46 di Working Abroad 2025; hanya 4% ekspat menilai ekonominya negatif. Kesempatan untuk WNA tetap terbatas.',
+  vn: 'Peringkat 11 dari 46 di Working Abroad 2025; manufaktur dan IT outsourcing terus berkembang.',
+  ch: 'Pengangguran sekitar 3,0% (Sep 2026) dan gaji tinggi, tetapi izin kerja untuk warga non-UE berkuota ketat.',
+  id: 'Pengangguran 4,68% (Mar 2026). Sebagai WNI tidak ada hambatan visa; angka 80% mengasumsikan persaingan kerja tetap ketat.'
+};
+function cmpJobWhy(c) {
+  const k = c.k || catOf(c)?.k; if (!k) return '';
+  if (CMP_JOBWHY[k]) return CMP_JOBWHY[k];
+  const t = CMP_INFO[k]?.[3];
+  return 'Belum ada data lapangan terverifikasi untuk negara ini, jadi angka awal adalah perkiraan' + (t ? ' dari kondisi pasar kerjanya: ' + t.charAt(0).toLowerCase() + t.slice(1) + '.' : '.');
+}
+/* Kekayaan alam per penduduk: indeks perkiraan 0–100 (luas dan ragam alam dibanding jumlah/kepadatan penduduk). Data hutan: World Bank/FAO 2023. */
+const CMP_NAT = { id: 90, au: 85, ca: 95, de: 45, nl: 30, jp: 60, sg: 15, gb: 55, us: 85, nz: 90, ie: 60, kr: 50, ch: 75, no: 90, se: 85, fi: 85, is: 90, at: 70, dk: 40, cr: 85, cl: 85, kz: 75, kg: 80, ge: 70, np: 70, lk: 65, tw: 55, my: 75, th: 70, ph: 70, vn: 60, bn: 80, kh: 60, la: 80, mm: 70, tl: 70 };
+const CMP_NATPLACE = {
+  id: 'Bali, Raja Ampat, Pulau Komodo, Gunung Bromo dan Rinjani, Danau Toba',
+  au: 'Great Barrier Reef, Uluru, Whitsunday Islands, Blue Mountains, Twelve Apostles',
+  ca: 'Banff dan Lake Louise, Rocky Mountains, Moraine Lake, Niagara Falls, pesisir Pasifik',
+  de: 'Alpen Bavaria (Zugspitze), Hutan Hitam, Lembah Rhine, Danau Konstanz, Pulau Rügen',
+  nl: 'Keukenhof, Laut Wadden, Hoge Veluwe, Giethoorn',
+  jp: 'Gunung Fuji, Alpen Jepang, pantai Okinawa, Hakone, sakura dan momiji Kyoto',
+  sg: 'Gardens by the Bay, Sentosa, Pulau Ubin, Bukit Timah',
+  gb: 'Lake District, Highlands Skotlandia (Ben Nevis), Cornwall, Jurassic Coast, Snowdonia',
+  us: 'Yosemite, Grand Canyon, Yellowstone, Hawaii, Denali di Alaska',
+  nz: 'Milford Sound, Aoraki/Mount Cook, Queenstown, Bay of Islands, Tongariro',
+  ie: 'Cliffs of Moher, Ring of Kerry, Connemara, Semenanjung Dingle',
+  kr: 'Pulau Jeju (Hallasan), Seoraksan, pantai Haeundae di Busan, Pulau Nami',
+  ch: 'Matterhorn, Jungfrau, Danau Lucerne, Lauterbrunnen, Gletser Aletsch',
+  no: 'Fjord Geiranger dan Nærøyfjord, Lofoten, Preikestolen, aurora di Tromsø',
+  se: 'Lapland (Abisko, aurora), kepulauan Stockholm, Gotland, Kebnekaise',
+  fi: 'Lapland, ribuan danau (Saimaa), Kepulauan Åland, Taman Nasional Nuuksio',
+  is: 'Gullfoss, Jökulsárlón, Skógafoss, Landmannalaugar, Blue Lagoon',
+  at: 'Hallstatt, Grossglockner, Salzkammergut, Alpen Tirol',
+  dk: 'Møns Klint, Skagen, Pulau Bornholm, pantai Jutland',
+  cr: 'Monteverde, Gunung Api Arenal, Manuel Antonio, Tortuguero, pantai Pasifik dan Karibia',
+  cl: 'Torres del Paine, Gurun Atacama, Pulau Paskah, Gunung Api Villarrica',
+  kz: 'Ngarai Charyn, Danau Kolsai, Tian Shan, Danau Big Almaty',
+  kg: 'Issyk-Kul, Ala Kul, Song-Kol, padang jailoo Tian Shan',
+  ge: 'Kazbegi, Svaneti (Ushguli), Laut Hitam di Batumi, Gua Prometheus',
+  np: 'Everest, Annapurna, Langtang, Pokhara, Lumbini',
+  lk: 'Sigiriya, Ella, perkebunan teh Nuwara Eliya, pantai Mirissa, Yala',
+  tw: 'Taroko Gorge, Alishan, Danau Sun Moon, Yushan, Kenting',
+  my: 'Langkawi, Gunung Kinabalu, Taman Negara, Perhentian, Cameron Highlands',
+  th: 'Phi Phi, Krabi, Similan, Doi Inthanon, Koh Samui',
+  ph: 'Palawan (El Nido), Boracay, Chocolate Hills di Bohol, sawah terasering Banaue',
+  vn: 'Ha Long Bay, Sapa, Phong Nha, Da Nang dan Hoi An, Delta Mekong',
+  bn: 'Ulu Temburong, hutan hujan Borneo, Kampong Ayer',
+  kh: 'Angkor Wat, Tonle Sap, Koh Rong, Kep, Pegunungan Cardamom',
+  la: 'Air terjun Kuang Si, Si Phan Don (4.000 pulau), Luang Prabang, Sungai Mekong',
+  mm: 'Danau Inle, Bagan, pantai Ngapali, Kepulauan Mergui',
+  tl: 'Pulau Atauro, Gunung Ramelau, pantai dan terumbu karang Jaco'
+};
+const CMP_NATWHY = {
+  fi: 'Hutan menutup 73,7% daratan (2023, tertinggi dunia), sekitar 40 ribu m² hutan per penduduk (2017) untuk penduduk sekitar 5,5 juta.',
+  la: 'Hutan menutup 71,5% daratan (2023, peringkat 2 dunia), sekitar 27 ribu m² hutan per penduduk (2017).',
+  se: 'Hutan menutup 68,7% daratan (2023, peringkat 3 dunia) dengan penduduk yang relatif sedikit untuk wilayahnya.',
+  jp: 'Hutan menutup 68,4% daratan (2023), tetapi penduduk padat, jadi alam per orang lebih sempit dari Skandinavia.',
+  cr: 'Hutan menutup 60,4% daratan (2023) untuk penduduk sekitar 5,1 juta, ditambah hutan hujan dan dua garis pantai.',
+  my: 'Hutan sekitar 58% daratan menurut FAO, dengan hutan hujan Borneo dan banyak pulau; penduduk lebih padat dari negara Skandinavia.',
+  us: 'Hutan 33,9% daratan (2023), sekitar 3,1 juta km², plus taman nasional besar; jumlah penduduk besar menurunkan alam per orang.',
+  ca: 'Sekitar 3,47 juta km² hutan (peringkat 3 dunia, 8,6% hutan dunia) untuk penduduk yang relatif sedikit.',
+  au: 'Sekitar 1,34 juta km² hutan (peringkat 6 dunia), outback luas, dan penduduk terkonsentrasi di pesisir.',
+  lk: 'Hutan 34,0% daratan (2023) di pulau kecil dengan penduduk cukup padat.'
+};
+function cmpNatWhy(c) {
+  const k = c.k || catOf(c)?.k; if (!k) return '';
+  return CMP_NATWHY[k] || 'Belum ada angka terverifikasi untuk negara ini; angka awal adalah perkiraan keragaman alamnya dibanding kepadatan penduduk.';
+}
+function cmpNat(c) {
+  const sv = data.compare.nat?.[c.id]; if (sv !== undefined && sv !== '') return sv;
+  const k = c.k || catOf(c)?.k; return k && CMP_NAT[k] !== undefined ? CMP_NAT[k] : '';
+}
+function cmpNatPlace(c) {
+  const sv = data.compare.natNote?.[c.id]; if (sv !== undefined) return sv;
+  const k = c.k || catOf(c)?.k; return (k && CMP_NATPLACE[k]) || '';
+}
+function cmpNatCell(c) {
+  const v = cmpNat(c), n = v === '' ? 0 : Math.min(100, Math.max(0, Number(v) || 0)), x = data.compare.cells?.[c.id]?._nat || {};
+  return `<td class="jobc natc ${x.ok ? 'okc' : x.no ? 'noc' : ''}" data-nat="${c.id}"><div class="jobbox"><div class="jobi"><input type="number" min="0" max="100" step="1" inputmode="numeric" data-cnat="${c.id}" value="${v}" placeholder="–" aria-label="Kekayaan alam per penduduk di ${esc(c.name)} (persen)"><span>%</span></div><div class="jbar"><i style="width:${n}%"></i></div><small>Indeks perkiraan, bisa diubah. Ikut menentukan persentase Toleransi.</small><details class="jwhy"><summary>Kenapa angka awalnya begini?</summary><p>${esc(cmpNatWhy(c))}</p><p class="jsrc">Sumber data hutan: World Bank / FAO 2023. Angka akhir adalah indeks perkiraan, bukan statistik resmi.</p></details><textarea class="natp" data-cnote="${c.id}" maxlength="400" placeholder="Tempat, gunung, laut…" aria-label="Tempat unggulan ${esc(c.name)}">${esc(cmpNatPlace(c))}</textarea></div><div class="tgs"><button class="tg" data-act="cmp-mark" data-m="ok" data-c="${c.id}" data-a="_nat" aria-pressed="${!!x.ok}">✓ Toleransi</button><button class="tg no" data-act="cmp-mark" data-m="no" data-c="${c.id}" data-a="_nat" aria-pressed="${!!x.no}">✕ Tidak</button></div></td>`;
+}
+/* Musim per negara: [nama, bulan mulai, bulan akhir, suhu rata-rata harian min, maks (°C)], mengacu satu kota utama (CMP_SEAREF). Perkiraan kasar dari pola iklim umum; cek data BMKG/layanan cuaca resmi. */
+const CMP_SEASON = {
+ "id": "Hujan|11|4|24|31;Kemarau|5|10|24|33",
+ "au": "Panas|12|2|19|26;Gugur|3|5|14|23;Dingin|6|8|8|17;Semi|9|11|12|23",
+ "ca": "Dingin|12|3|-8|2;Semi|4|5|3|15;Panas|6|8|16|27;Gugur|9|11|4|18",
+ "de": "Dingin|12|2|-2|4;Semi|3|5|3|17;Panas|6|8|12|24;Gugur|9|11|4|17",
+ "nl": "Dingin|12|2|1|6;Semi|3|5|4|15;Panas|6|8|12|21;Gugur|9|11|6|16",
+ "jp": "Dingin|12|2|2|12;Semi|3|5|8|22;Panas lembap (hujan Jun–Jul)|6|8|21|31;Gugur|9|11|11|26",
+ "sg": "Hujan (monsun timur laut)|12|3|24|31;Peralihan|4|5|26|33;Lebih kering (monsun barat daya)|6|9|26|32;Peralihan|10|11|25|32",
+ "gb": "Dingin|12|2|2|8;Semi|3|5|5|16;Panas|6|8|13|23;Gugur|9|11|6|17",
+ "us": "Dingin|12|2|-3|5;Semi|3|5|4|19;Panas|6|8|19|29;Gugur|9|11|6|21",
+ "nz": "Panas|12|2|16|24;Gugur|3|5|11|20;Dingin|6|8|8|15;Semi|9|11|10|19",
+ "ie": "Dingin|12|2|3|8;Semi|3|5|5|14;Panas|6|8|11|19;Gugur|9|11|6|15",
+ "kr": "Dingin|12|2|-6|3;Semi|3|5|5|20;Panas dan hujan|6|8|20|30;Gugur|9|11|6|22",
+ "ch": "Dingin|12|2|-2|4;Semi|3|5|3|17;Panas|6|8|13|25;Gugur|9|11|4|18",
+ "no": "Dingin|12|3|-7|1;Semi|4|5|1|14;Panas|6|8|11|22;Gugur|9|11|1|13",
+ "se": "Dingin|12|3|-4|2;Semi|4|5|2|14;Panas|6|8|12|22;Gugur|9|11|3|14",
+ "fi": "Dingin|11|3|-8|1;Semi|4|5|0|13;Panas|6|8|12|22;Gugur|9|10|3|12",
+ "is": "Dingin|11|3|-3|3;Semi|4|5|1|8;Panas (sejuk)|6|8|8|14;Gugur|9|10|3|8",
+ "at": "Dingin|12|2|-2|4;Semi|3|5|4|18;Panas|6|8|14|26;Gugur|9|11|5|19",
+ "dk": "Dingin|12|2|-1|4;Semi|3|5|2|14;Panas|6|8|13|22;Gugur|9|11|5|15",
+ "cr": "Kemarau|12|4|17|27;Hujan|5|11|17|26",
+ "cl": "Panas|12|2|13|31;Gugur|3|5|8|23;Dingin|6|8|4|15;Semi|9|11|7|24",
+ "kz": "Dingin|12|2|-10|1;Semi|3|5|3|19;Panas|6|8|16|30;Gugur|9|11|3|20",
+ "kg": "Dingin|12|2|-6|3;Semi|3|5|5|20;Panas|6|8|17|32;Gugur|9|11|3|22",
+ "ge": "Dingin|12|2|-1|7;Semi|3|5|6|20;Panas|6|8|18|31;Gugur|9|11|6|23",
+ "np": "Dingin|12|2|2|19;Pra-monsun|3|5|11|29;Monsun (hujan)|6|9|20|29;Pasca-monsun|10|11|10|26",
+ "lk": "Monsun timur laut (kering)|12|3|23|31;Peralihan|4|4|25|32;Monsun barat daya (hujan)|5|9|25|31;Peralihan|10|11|24|30",
+ "tw": "Dingin|12|2|12|19;Semi|3|5|15|27;Panas dan topan|6|8|25|34;Gugur|9|11|18|30",
+ "my": "Monsun timur laut (lebih hujan)|11|3|24|32;Peralihan|4|5|24|33;Monsun barat daya (agak kering)|6|9|24|33;Peralihan|10|10|24|32",
+ "th": "Dingin|11|2|21|32;Panas|3|5|26|36;Hujan|6|10|25|33",
+ "ph": "Kemarau|11|5|23|34;Hujan dan topan|6|10|25|32",
+ "vn": "Dingin|12|2|14|20;Semi|3|4|20|27;Panas lembap|5|9|26|33;Gugur|10|11|20|28",
+ "bn": "Lebih hujan|10|1|23|31;Lebih kering (tidak tegas)|2|9|23|32",
+ "kh": "Kering sejuk|11|2|22|31;Panas|3|5|25|36;Hujan|6|10|25|33",
+ "la": "Dingin|11|2|16|29;Panas|3|5|24|35;Hujan|6|10|24|32",
+ "mm": "Dingin|11|2|19|33;Panas|3|5|25|35;Hujan|6|10|24|31",
+ "tl": "Hujan|12|4|24|32;Kemarau|5|11|23|32"
+};
+const CMP_SEAREF = {"id": "Jakarta", "au": "Sydney", "ca": "Toronto", "de": "Berlin", "nl": "Amsterdam", "jp": "Tokyo", "sg": "Singapura", "gb": "London", "us": "New York", "nz": "Auckland", "ie": "Dublin", "kr": "Seoul", "ch": "Zürich", "no": "Oslo", "se": "Stockholm", "fi": "Helsinki", "is": "Reykjavik", "at": "Wina", "dk": "Kopenhagen", "cr": "San José", "cl": "Santiago", "kz": "Almaty", "kg": "Bishkek", "ge": "Tbilisi", "np": "Kathmandu", "lk": "Colombo", "tw": "Taipei", "my": "Kuala Lumpur", "th": "Bangkok", "ph": "Manila", "vn": "Hanoi", "bn": "Bandar Seri Begawan", "kh": "Phnom Penh", "la": "Vientiane", "mm": "Yangon", "tl": "Dili"};
+const CMP_BLN = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+function cmpSeaRows(k) {
+  return (CMP_SEASON[k] || '').split(';').filter(Boolean).map((t) => { const [n, a, b, lo, hi] = t.split('|'), A = +a, B = +b, m = ((B - A + 12) % 12) + 1; return { lo: +lo, hi: +hi, n, bln: A === B ? CMP_BLN[A - 1] : CMP_BLN[A - 1] + '–' + CMP_BLN[B - 1], t: lo + ' s/d ' + hi + ' °C', m, p: Math.round(m / 12 * 100) }; });
+}
+function cmpSeaCell(c) {
+  const k = c.k || catOf(c)?.k, rows = k ? cmpSeaRows(k) : [], x = data.compare.cells?.[c.id]?._sea || {};
+  const tb = rows.length ? `<table class="ftbl"><tbody><tr class="hd"><td>Musim</td><td>Bulan</td><td>Suhu</td><td>% tahun</td></tr>${rows.map((r) => `<tr><td>${esc(r.n)}</td><td>${r.bln}</td><td>${r.t}</td><td>${r.p}%<small>${r.m} bln</small></td></tr>`).join('')}</tbody></table><p class="ftn">Acuan suhu: ${esc(CMP_SEAREF[k])}. Perkiraan kasar.</p>` : '<p class="muted small" style="margin:0">Belum ada data musim.</p>';
+  return `<td class="jobc seac ${x.ok ? 'okc' : x.no ? 'noc' : ''}">${tb}<div class="tgs"><button class="tg" data-act="cmp-mark" data-m="ok" data-c="${c.id}" data-a="_sea" aria-pressed="${!!x.ok}">✓ Toleransi</button><button class="tg no" data-act="cmp-mark" data-m="no" data-c="${c.id}" data-a="_sea" aria-pressed="${!!x.no}">✕ Tidak</button></div></td>`;
+}
+/* Tangga karier keuangan sebagai langkah awal menuju akuntan profesional. Perkiraan gaji kotor per bulan tingkat pemula (USD; khusus Indonesia dalam juta Rp) per langkah, urut sesuai CMP_STEPS. Perkiraan kasar, bukan data resmi atau jaminan lowongan. */
+const CMP_STEPS = ['1. Kasir / teller', '2. Admin kantor / data entry', '3. Staf akuntansi / bookkeeper', '4. Akuntan junior / auditor junior'];
+const CMP_JOBS = {
+  id: [3.5, 4.5, 6, 7.5],
+  au: [2950, 3650, 4200, 4500], ca: [2150, 2740, 3100, 3580], de: [2750, 3200, 3800, 4100], nl: [2600, 3230, 3680, 3790],
+  jp: [1250, 1500, 1810, 2060], sg: [1720, 2340, 2810, 3120], gb: [3000, 3340, 3600, 3900], us: [2300, 3500, 4000, 4800],
+  nz: [2415, 2880, 3280, 3450], ie: [2780, 3230, 3570, 3900], kr: [1440, 1830, 2090, 2290], ch: [5290, 6680, 7560, 7940],
+  no: [3630, 4310, 4900, 5200], se: [2680, 3200, 3510, 3820], fi: [2560, 3010, 3340, 3680], is: [4010, 4940, 5790, 6180],
+  at: [2230, 2780, 3230, 3450], dk: [3580, 4770, 5360, 5660], cr: [920, 1330, 1640, 2050], cl: [650, 860, 1030, 1300],
+  kz: [430, 590, 780, 880], kg: [230, 320, 400, 510], ge: [410, 555, 740, 925], np: [130, 185, 250, 300],
+  lk: [150, 195, 245, 310], tw: [950, 1200, 1430, 1580], my: [435, 600, 770, 840], th: [360, 545, 760, 850],
+  ph: [250, 340, 420, 505], vn: [270, 385, 540, 655], bn: [620, 1010, 1250, 1720], kh: [250, 350, 500, 600],
+  la: [115, 160, 230, 280], mm: [80, 110, 160, 200], tl: [150, 300, 450, 550]
+};
+/* Perkiraan potongan (%) pada level gaji menengah: pajak penghasilan + iuran wajib karyawan. Di antara UMR (CMP_UMRTAX) dan level ini, potongan diinterpolasi menurut besar gaji. */
+const CMP_TAXMID = { id: 8, au: 22, ca: 26, de: 38, nl: 32, jp: 22, sg: 21, gb: 22, us: 24, nz: 22, ie: 25, kr: 14, ch: 22, no: 30, se: 26, fi: 28, is: 28, at: 27, dk: 38, cr: 15, cl: 21, kz: 20, kg: 18, ge: 22, np: 15, lk: 12, tw: 8, my: 16, th: 10, ph: 12, vn: 15, bn: 6, kh: 6, la: 8, mm: 3, tl: 5 };
+const cmpUmrIdr = (k) => { if (k === 'id') return 3.5e6; const u = CMP_UMR[k]; return u && CMP_FX[u.c] ? u.m * CMP_FX[u.c] : 0; };
+function cmpWorkRows(k) {
+  const L = CMP_JOBS[k]; if (!L) return [];
+  const um = cmpUmrIdr(k), lo = CMP_UMRTAX[k] ?? 10, hi = CMP_TAXMID[k] ?? lo;
+  return L.map((v, ix) => { const n = CMP_STEPS[ix], g = k === 'id' ? v * 1e6 : v * CMP_FX.USD, r = um ? g / um : 3, rate = lo + (hi - lo) * clamp((r - 1) / 1.5, 0, 1); return { n, g, rate, net: g * (1 - rate / 100) }; });
+}
+function cmpWorkCell(c) {
+  const k = c.k || catOf(c)?.k, rows = k ? cmpWorkRows(k) : [], x = data.compare.cells?.[c.id]?._work || {};
+  const tb = rows.length ? `<table class="ftbl"><tbody><tr class="hd"><td>Langkah karier</td><td>Kotor/bln</td><td>Setelah pajak/bln</td></tr>${rows.map((r) => `<tr><td>${esc(r.n)}</td><td>${cmpRp(r.g)}</td><td><b>${cmpRp(r.net)}</b><small>potongan ≈ ${Math.round(r.rate)}%</small></td></tr>`).join('')}</tbody></table><p class="ftn">Gaji tingkat pemula, perkiraan kasar untuk lajang tanpa tanggungan; potongan = pajak penghasilan + iuran wajib karyawan. Bukan data resmi atau jaminan lowongan.</p><p class="ftn">Jalur: mulai dari kasir atau admin untuk masuk ke dunia kerja, pindah ke staf akuntansi sambil menambah pengalaman, lalu jadi akuntan junior. Untuk akuntan profesional umumnya perlu sertifikasi (mis. CPA, ACCA, atau CA) dan pengakuan kualifikasi yang syaratnya berbeda per negara.</p>` : '<p class="muted small" style="margin:0">Belum ada data gaji.</p>';
+  return `<td class="jobc wrkc ${x.ok ? 'okc' : x.no ? 'noc' : ''}">${tb}<div class="tgs"><button class="tg" data-act="cmp-mark" data-m="ok" data-c="${c.id}" data-a="_work" aria-pressed="${!!x.ok}">✓ Toleransi</button><button class="tg no" data-act="cmp-mark" data-m="no" data-c="${c.id}" data-a="_work" aria-pressed="${!!x.no}">✕ Tidak</button></div></td>`;
+}
+/* Culture: indeks perkiraan (0–100) diskriminasi kerja terhadap pelamar dari luar negeri/Asia; makin tinggi makin diskriminatif. Sembilan negara dipatok ke rasio hasil eksperimen lapangan (Quillian dkk. 2019, Sociological Science): indeks = 45 × rasio terhadap AS. Negara lain adalah penilaian kasar tanpa eksperimen lapangan terverifikasi. Bukan statistik resmi dan bukan persentase orang yang rasis. */
+const CMP_CULT = { id: 10, au: 55, ca: 50, de: 41, nl: 46, jp: 65, sg: 50, gb: 50, us: 45, nz: 50, ie: 50, kr: 70, ch: 55, no: 45, se: 59, fi: 55, is: 45, at: 55, dk: 55, cr: 35, cl: 40, kz: 50, kg: 45, ge: 40, np: 35, lk: 40, tw: 55, my: 60, th: 55, ph: 35, vn: 40, bn: 50, kh: 40, la: 35, mm: 50, tl: 35 };
+const CMP_CULTWHY = {
+  id: 'Negara asal: sebagai WNI tidak ada hambatan status. Angka 10 hanya pembanding simbolis.',
+  us: 'Titik acuan studi: 30 eksperimen lapangan di AS, pelamar kulit putih mendapat sekitar 22–41% lebih banyak panggilan dibanding kelompok non-kulit putih (rasio 1,00 → indeks 45).',
+  ca: 'Rasio 1,11 terhadap AS (tidak signifikan; 28 ribu lamaran, termasuk kelompok Asia) → indeks 50.',
+  gb: 'Rasio 1,11 terhadap AS (tidak signifikan; termasuk pelamar Asia Selatan dan Tionghoa) → indeks 50.',
+  nl: 'Rasio 1,03 terhadap AS (tidak signifikan; termasuk pelamar Hindustan/Arab/Turki) → indeks 46. Survei pekerja asing juga sering melaporkan diskriminasi di tempat kerja.',
+  no: 'Rasio 1,00 terhadap AS (hanya 4 studi, pelamar Pakistan) → indeks 45.',
+  se: 'Rasio 1,30 terhadap AS (lebih tinggi, signifikan di p<0,1; studi hanya pada pelamar Timur Tengah) → indeks 59.',
+  de: 'Rasio 0,92 terhadap AS (rendah, tidak signifikan; hanya 5 studi pada pelamar Turki) → indeks 41. Data terbatas pada satu kelompok.'
+};
+function cmpCultWhy(c) {
+  const k = c.k || catOf(c)?.k; if (!k) return '';
+  return CMP_CULTWHY[k] || 'Belum ada eksperimen lapangan terverifikasi yang saya temukan untuk negara ini, jadi angka awal adalah penilaian kasar dari persepsi umum dan kebijakan imigrasi. Ubah sesuai pengalaman Anda.';
+}
+function cmpCult(c) {
+  const sv = data.compare.cult?.[c.id]; if (sv !== undefined && sv !== '') return sv;
+  const k = c.k || catOf(c)?.k; return k && CMP_CULT[k] !== undefined ? CMP_CULT[k] : '';
+}
+function cmpCultCell(c) {
+  const v = cmpCult(c), n = v === '' ? 0 : Math.min(100, Math.max(0, Number(v) || 0)), x = data.compare.cells?.[c.id]?._cult || {};
+  return `<td class="jobc ${x.ok ? 'okc' : x.no ? 'noc' : ''}"><div class="jobbox"><div class="jobi"><input type="number" min="0" max="100" step="1" inputmode="numeric" data-ccu="${c.id}" value="${v}" placeholder="–" aria-label="Indeks diskriminasi kerja terhadap orang luar di ${esc(c.name)} (persen)"><span>%</span></div><div class="jbar"><i style="width:${n}%;background:var(--bad)"></i></div><small>Makin tinggi makin diskriminatif. Indeks perkiraan, bisa diubah. Menurunkan persentase Toleransi.</small><details class="jwhy"><summary>Kenapa angka awalnya begini?</summary><p>${esc(cmpCultWhy(c))}</p><p class="jsrc">Sumber: Quillian dkk. 2019, "Do Some Countries Discriminate More than Others?" (97 eksperimen lapangan, 9 negara). Bukan statistik resmi dan bukan persentase orang yang rasis.</p></details></div><div class="tgs"><button class="tg" data-act="cmp-mark" data-m="ok" data-c="${c.id}" data-a="_cult" aria-pressed="${!!x.ok}">✓ Toleransi</button><button class="tg no" data-act="cmp-mark" data-m="no" data-c="${c.id}" data-a="_cult" aria-pressed="${!!x.no}">✕ Tidak</button></div></td>`;
+}
+/* Pekerjaan paruh waktu: perkiraan upah per jam tingkat pemula di sektor jasa (USD; khusus Indonesia dalam Rp), tanpa tips. Perkiraan kasar, bukan data resmi atau jaminan lowongan. */
+const CMP_PTJOBS = [['Waiter / waitress', 1], ['Barista / staf kafe', 1.05], ['Staf dapur / dishwasher', 0.95], ['Kasir / staf toko', 1]];
+const CMP_PTHOURS = 87;
+const CMP_PT = { id: 20000, au: 22, ca: 12.5, de: 16, nl: 16, jp: 7.8, sg: 7, gb: 17, us: 14, nz: 14, ie: 15.5, kr: 7, ch: 28, no: 20, se: 15, fi: 15, is: 21, at: 14, dk: 19, cr: 4.5, cl: 3.8, kz: 1.8, kg: 1.5, ge: 3, np: 1, lk: 1.1, tw: 6.5, my: 2.2, th: 2.1, ph: 1.4, vn: 1.2, bn: 2.3, kh: 1.2, la: 0.6, mm: 0.4, tl: 1.2 };
+function cmpPartRows(k) {
+  const b = CMP_PT[k]; if (b === undefined) return [];
+  const rate = CMP_UMRTAX[k] ?? 10;
+  return CMP_PTJOBS.map(([n, mu]) => { const hr = (k === 'id' ? b : b * CMP_FX.USD) * mu, mon = hr * CMP_PTHOURS; return { n, hr, mon, rate, net: mon * (1 - rate / 100) }; });
+}
+function cmpPartCell(c) {
+  const k = c.k || catOf(c)?.k, rows = k ? cmpPartRows(k) : [], x = data.compare.cells?.[c.id]?._part || {};
+  const tb = rows.length ? `<table class="ftbl"><tbody><tr class="hd"><td>Pekerjaan</td><td>Kotor/jam</td><td>Setelah pajak/bln</td></tr>${rows.map((r) => `<tr><td>${esc(r.n)}</td><td>${cmpRp(r.hr)}</td><td><b>${cmpRp(r.net)}</b><small>kotor ${cmpRp(r.mon)} · potongan ≈ ${Math.round(r.rate)}%</small></td></tr>`).join('')}</tbody></table><p class="ftn">Hitungan 20 jam per minggu (±${CMP_PTHOURS} jam/bulan), upah per jam tingkat pemula, perkiraan kasar, belum termasuk tips (cukup besar di AS dan Kanada). Bukan data resmi atau jaminan lowongan.</p><p class="ftn">Pemegang visa pelajar atau izin tinggal tertentu biasanya dibatasi jam kerjanya; cek aturan imigrasi sebelum melamar.</p>` : '<p class="muted small" style="margin:0">Belum ada data paruh waktu.</p>';
+  return `<td class="jobc wrkc ${x.ok ? 'okc' : x.no ? 'noc' : ''}">${tb}<div class="tgs"><button class="tg" data-act="cmp-mark" data-m="ok" data-c="${c.id}" data-a="_part" aria-pressed="${!!x.ok}">✓ Toleransi</button><button class="tg no" data-act="cmp-mark" data-m="no" data-c="${c.id}" data-a="_part" aria-pressed="${!!x.no}">✕ Tidak</button></div></td>`;
+}
+function cmpJob(c) {
+  const sv = data.compare.jobs?.[c.id];
+  if (sv !== undefined && sv !== '') return sv;
+  const k = c.k || catOf(c)?.k; return k && CMP_JOB[k] !== undefined ? CMP_JOB[k] : '';
+}
+function cmpJobCell(c) {
+  const v = cmpJob(c), n = v === '' ? 0 : Math.min(100, Math.max(0, Number(v) || 0)), x = data.compare.cells?.[c.id]?._job || {};
+  return `<td class="jobc ${x.ok ? 'okc' : x.no ? 'noc' : ''}" data-job="${c.id}"><div class="jobbox"><div class="jobi"><input type="number" min="0" max="100" step="1" inputmode="numeric" data-cj="${c.id}" value="${v}" placeholder="–" aria-label="Kemudahan mencari pekerjaan di ${esc(c.name)} (persen)"><span>%</span></div><div class="jbar"><i style="width:${n}%"></i></div><small>Bisa diubah. Ikut menentukan persentase Toleransi.</small><details class="jwhy"><summary>Kenapa angka awalnya begini?</summary><p>${esc(cmpJobWhy(c))}</p><p class="jsrc">Sumber: IMF / Trading Economics 2026, InterNations Expat Insider 2025–2026. Expat Insider adalah survei persepsi ekspat, bukan ukuran langsung kemudahan mendapat kerja.</p></details></div><div class="tgs"><button class="tg" data-act="cmp-mark" data-m="ok" data-c="${c.id}" data-a="_job" aria-pressed="${!!x.ok}">✓ Toleransi</button><button class="tg no" data-act="cmp-mark" data-m="no" data-c="${c.id}" data-a="_job" aria-pressed="${!!x.no}">✕ Tidak</button></div></td>`;
+}
+/* Sewa apartemen 1 kamar / rumah kecil di kota kecil atau pinggiran dekat alam (bukan pusat kota), USD per bulan [bawah, atas]. Perkiraan kasar; bukan data resmi. */
+const CMP_RENT = { au: [1100, 1900], ca: [900, 1500], de: [650, 1150], nl: [1000, 1600], jp: [400, 800], sg: [1500, 2500], gb: [900, 1500], us: [1000, 1800], nz: [1000, 1700], ie: [1100, 1800], kr: [400, 800], ch: [1500, 2500], no: [900, 1500], se: [700, 1200], fi: [700, 1100], is: [1300, 2000], at: [700, 1200], dk: [900, 1500], cr: [500, 1000], cl: [400, 800], kz: [250, 500], kg: [200, 400], ge: [300, 600], np: [100, 250], lk: [150, 350], tw: [300, 600], my: [250, 500], th: [300, 600], ph: [250, 500], vn: [250, 500], bn: [400, 800], kh: [250, 500], la: [150, 350], mm: [100, 250], tl: [300, 600] };
+const CMP_RENTNOTE = { fi: ' Acuan Numbeo: rata-rata apartemen 1 kamar di luar pusat kota sekitar €646.' };
+/* Rekomendasi wilayah dekat alam: [nama, USD bawah, USD atas]. Perkiraan kasar per wilayah, belum terverifikasi; cek portal sewa lokal. */
+const CMP_RENTREG = {
+  au: [['Blue Mountains (NSW)', 1000, 1500], ['Sunshine Coast hinterland (QLD)', 1200, 1800], ['Cairns dan Atherton Tablelands (QLD)', 900, 1400]],
+  ca: [['Squamish (BC)', 1400, 2000], ['Canmore dan Banff (Alberta)', 1300, 1900], ['Kelowna dan Okanagan (BC)', 1100, 1600]],
+  de: [['Garmisch-Partenkirchen (Bavaria)', 800, 1300], ['Hutan Hitam: Titisee dan Triberg', 500, 850], ['Sächsische Schweiz (Saxony)', 400, 650]],
+  nl: [['Veluwe: Apeldoorn dan Ede', 1000, 1500], ['Zeeland', 800, 1200], ['Friesland: Heerenveen', 750, 1100]],
+  jp: [['Matsumoto dan Alpen Jepang (Nagano)', 400, 700], ['Odawara dan Hakone (Kanagawa)', 450, 800], ['Nago, Okinawa utara', 400, 700]],
+  sg: [['Punggol dan Coney Island', 1600, 2300], ['Sembawang dan Yishun (Sungei Buloh)', 1500, 2200], ['Upper Thomson dan Bukit Timah', 2000, 3000]],
+  gb: [['Lake District (Keswick, Ambleside)', 900, 1500], ['Highlands Skotlandia (Fort William, Inverness)', 700, 1100], ['Cornwall (St Ives, Penzance)', 900, 1500]],
+  us: [['Asheville (North Carolina)', 1300, 1900], ['Bend (Oregon)', 1300, 1900], ['Missoula (Montana)', 1000, 1500]],
+  nz: [['Nelson dan Tasman', 1000, 1500], ['Rotorua', 900, 1400], ['Queenstown', 1500, 2300]],
+  ie: [['Killarney (Kerry)', 900, 1400], ['Galway dan Connemara', 1100, 1700], ['West Cork', 900, 1400]],
+  kr: [['Seogwipo dan Jeju City (Pulau Jeju)', 400, 800], ['Gangneung dan Sokcho', 350, 650], ['Gapyeong', 350, 650]],
+  ch: [['Interlaken (Bernese Oberland)', 1800, 2600], ['Valais: Brig dan Visp', 1400, 2000], ['Locarno (Ticino)', 1500, 2200]],
+  no: [['Tromsø', 1000, 1600], ['Ålesund dan fjord Sunnmøre', 900, 1400], ['Voss (Hardanger)', 800, 1300]],
+  se: [['Åre', 700, 1200], ['Dalarna: Mora dan Rättvik', 500, 900], ['Kiruna (Lapland)', 600, 1000]],
+  fi: [['Rovaniemi (Lapland)', 600, 1000], ['Kuopio (Saimaa)', 550, 900], ['Mariehamn (Åland)', 650, 1000]],
+  is: [['Akureyri', 1200, 1800], ['Selfoss (selatan)', 1300, 1900], ['Egilsstaðir (timur)', 1000, 1500]],
+  at: [['Salzkammergut: Bad Ischl dan Gmunden', 650, 1000], ['Zell am See (Salzburgerland)', 800, 1300], ['Kärnten: Villach dan Wörthersee', 600, 1000]],
+  dk: [['Pulau Bornholm', 650, 1000], ['Skagen dan Nordjylland', 650, 1000], ['Silkeborg (daerah danau)', 750, 1100]],
+  cr: [['Monteverde dan Santa Elena', 600, 1100], ['Uvita dan Dominical (Pasifik)', 700, 1300], ['La Fortuna (Arenal)', 600, 1000]],
+  cl: [['Pucón (Danau dan Gunung Api)', 400, 750], ['Puerto Varas', 450, 800], ['Pisco Elqui (Lembah Elqui)', 300, 600]],
+  kz: [['Kaki Pegunungan Alatau (Almaty)', 400, 750], ['Burabay', 250, 450], ['Saty dan Kolsai', 150, 300]],
+  kg: [['Karakol (Issyk-Kul)', 150, 300], ['Cholpon-Ata (Issyk-Kul)', 200, 400], ['Kaki Gunung Ala-Archa (Bishkek)', 250, 450]],
+  ge: [['Stepantsminda (Kazbegi)', 250, 450], ['Borjomi', 200, 350], ['Batumi (Laut Hitam)', 350, 600]],
+  np: [['Pokhara', 150, 300], ['Nagarkot', 100, 250], ['Dhulikhel', 100, 250]],
+  lk: [['Ella', 150, 300], ['Nuwara Eliya', 150, 300], ['Mirissa dan Unawatuna', 250, 450]],
+  tw: [['Hualien (Taroko)', 250, 450], ['Taitung', 200, 400], ['Yilan', 250, 450]],
+  my: [['Cameron Highlands', 200, 400], ['Langkawi', 250, 450], ['Kundasang (Kinabalu, Sabah)', 200, 400]],
+  th: [['Chiang Mai: Mae Rim dan Doi Suthep', 350, 700], ['Pai', 250, 450], ['Krabi: Ao Nang', 350, 650]],
+  ph: [['Puerto Princesa dan El Nido (Palawan)', 250, 500], ['Baguio (Benguet)', 200, 400], ['Panglao (Bohol)', 300, 550]],
+  vn: [['Da Lat', 200, 400], ['Sapa', 150, 300], ['Hoi An dan pantai Da Nang', 300, 600]],
+  bn: [['Tutong', 300, 600], ['Jerudong', 450, 800], ['Temburong', 200, 400]],
+  kh: [['Kampot dan Kep', 200, 400], ['Siem Reap (area Angkor)', 250, 500], ['Mondulkiri', 150, 300]],
+  la: [['Luang Prabang', 250, 450], ['Vang Vieng', 200, 350], ['Don Det (Si Phan Don)', 100, 200]],
+  mm: [['Danau Inle (Nyaungshwe)', 100, 250], ['Ngapali', 150, 300], ['Pyin Oo Lwin', 100, 250]],
+  tl: [['Pinggiran Dili (Hera)', 250, 450], ['Maubisse (pegunungan)', 150, 300], ['Pulau Atauro', 150, 300]]
+};
+const CMP_RENTREG_ID = [['Batu (Malang)', 2, 4], ['Ubud (Bali)', 3, 7], ['Lembang (Bandung)', 2.5, 5], ['Pinggiran Bogor dan Puncak', 2, 5]];
+function cmpRentText(k) {
+  const jt = (n) => n.toLocaleString('id-ID', { maximumFractionDigits: 1 });
+  if (k === 'id') return 'Rp 2–6 juta/bln untuk rumah atau kontrakan di daerah dekat alam (perkiraan kasar).\n\nRekomendasi wilayah:\n' + CMP_RENTREG_ID.map((r) => `• ${r[0]}: ≈ Rp ${jt(r[1])}–${jt(r[2])} juta`).join('\n') + '\n\nCek portal sewa lokal untuk harga terkini.';
+  const r = CMP_RENT[k]; if (!r) return '';
+  const f = (u) => jt(u * CMP_FX.USD / 1e6);
+  const regs = (CMP_RENTREG[k] || []).map((g) => `• ${g[0]}: ≈ Rp ${f(g[1])}–${f(g[2])} juta`).join('\n');
+  return `≈ Rp ${f(r[0])}–${f(r[1])} juta/bln untuk apartemen 1 kamar atau rumah kecil di kota kecil/pinggiran dekat alam, bukan pusat kota.${regs ? '\n\nRekomendasi wilayah:\n' + regs : ''}\n\nPerkiraan kasar per wilayah, belum terverifikasi; cek portal sewa lokal.${CMP_RENTNOTE[k] || ''}`;
+}
+/* Harga bahan pokok: tingkat harga relatif terhadap AS (1,0). Perkiraan kasar, belum terverifikasi per negara. */
+const CMP_FOODX = { au: 1.1, ca: 1.0, de: 0.8, nl: 0.85, jp: 1.0, sg: 1.2, gb: 0.85, us: 1.0, nz: 1.1, ie: 1.0, kr: 1.1, ch: 1.8, no: 1.6, se: 1.0, fi: 1.0, is: 1.6, at: 0.95, dk: 1.2, cr: 0.8, cl: 0.7, kz: 0.55, kg: 0.4, ge: 0.5, np: 0.4, lk: 0.45, tw: 0.8, my: 0.5, th: 0.5, ph: 0.55, vn: 0.4, bn: 0.65, kh: 0.5, la: 0.45, mm: 0.35, tl: 0.6 };
+/* Harga dasar tingkat AS (USD): dada ayam fillet 1 kg, telur 12 butir, beras 1 kg, tomat 1 kg, apel 1 kg, susu 1 liter. */
+const CMP_FOODBASE = [['Dada ayam (fillet) 1 kg', 8], ['Daging sapi 1 kg', 13], ['Telur 12 butir', 4], ['Beras putih 1 kg', 1.9], ['Sayur (tomat) 1 kg', 4], ['Buah (apel) 1 kg', 3.8], ['Susu 1 liter', 1.2]];
+/* Makanan pokok utama tiap negara: ringkasan umum kebiasaan makan, bukan data statistik. */
+const CMP_STAPLE = {
+  id: 'Nasi, jagung, singkong, ubi, sagu (Maluku/Papua)',
+  au: 'Roti, kentang, daging sapi dan domba, nasi, pasta',
+  ca: 'Roti, kentang, pasta, daging, produk gandum',
+  de: 'Kentang, roti, pasta dan spätzle, daging babi, sosis',
+  nl: 'Kentang, roti, keju, produk susu',
+  jp: 'Nasi, mi (udon, soba, ramen), ikan, kedelai (tahu, miso), rumput laut',
+  sg: 'Nasi, mi, ayam, ikan',
+  gb: 'Kentang, roti, daging sapi dan ayam, ikan, oat dan sereal',
+  us: 'Roti, jagung, kentang, daging sapi dan ayam, sereal',
+  nz: 'Kentang, ubi kumara, roti, daging domba, produk susu',
+  ie: 'Kentang, roti, daging sapi dan domba, susu dan mentega, oat',
+  kr: 'Nasi, kimchi, mi, kedelai (doenjang), daging babi dan sapi',
+  ch: 'Roti, kentang (rösti), keju, produk susu, pasta dan polenta',
+  no: 'Kentang, roti, ikan (salmon, kod), produk susu',
+  se: 'Kentang, roti (termasuk crispbread), ikan haring, daging',
+  fi: 'Kentang, roti gandum hitam, ikan, bubur oat, produk susu',
+  is: 'Ikan (kod, haring), daging domba, kentang, roti rye, skyr',
+  at: 'Kentang, roti, daging babi dan sapi (schnitzel), knödel, pasta',
+  dk: 'Roti rye, kentang, daging babi, ikan haring',
+  cr: 'Nasi dan kacang hitam (gallo pinto), jagung (tortilla), pisang raja, singkong',
+  cl: 'Roti, kentang, jagung, kacang-kacangan, ikan dan seafood',
+  kz: 'Daging (kuda, domba), roti, nasi (plov), mi, produk susu',
+  kg: 'Roti, daging domba dan kuda, nasi (plov), mi (lagman), produk susu',
+  ge: 'Roti (shoti), keju, jagung, kacang-kacangan, daging',
+  np: 'Nasi, dal (lentil), tepung jagung dan gandum, sayur, roti',
+  lk: 'Nasi, kari, kelapa, roti, ikan',
+  tw: 'Nasi, mi, daging babi, ikan, tahu dan sayur',
+  my: 'Nasi, mi, ikan, ayam, roti canai',
+  th: 'Nasi (ketan di utara), mi, ikan, ayam, sayur',
+  ph: 'Nasi, jagung, ikan, daging babi dan ayam, singkong',
+  vn: 'Nasi, mi (pho, bun), ikan, sayur, kecap ikan',
+  bn: 'Nasi, ambuyat (sagu), ikan, ayam',
+  kh: 'Nasi, ikan (prahok), sup, mi',
+  la: 'Beras ketan (khao niao), ikan, sayur, daging babi dan ayam',
+  mm: 'Nasi, mi, mohinga (sup ikan), kacang-kacangan, sayur',
+  tl: 'Jagung, nasi, singkong, ubi, ikan'
+};
+/* Harga makanan pokok utama per negara: [nama, satuan, harga tingkat AS (USD), harga Indonesia (Rp)]. Diskalakan dengan CMP_FOODX; perkiraan kasar. Nasi, ayam, sapi, telur, dan susu sudah ada di tabel dasar. */
+const CMP_STP = {
+  kentang: ['Kentang', '1 kg', 2.5, 18000], roti: ['Roti', '500 g', 3, 17000], jagung: ['Jagung', '1 kg', 3, 12000], singkong: ['Singkong', '1 kg', 2, 7000],
+  ubi: ['Ubi', '1 kg', 3, 15000], sagu: ['Sagu', '1 kg', 4, 20000], mi: ['Mi', '500 g', 2.5, 15000], pasta: ['Pasta', '500 g', 2.5, 25000],
+  ikan: ['Ikan', '1 kg', 12, 45000], babi: ['Daging babi', '1 kg', 8, 130000], domba: ['Daging domba', '1 kg', 16, 140000], keju: ['Keju', '1 kg', 14, 120000],
+  oat: ['Oat', '1 kg', 4, 60000], kacang: ['Kacang-kacangan', '1 kg', 3.5, 30000], tahu: ['Tahu', '400 g', 2.5, 12000], tepung: ['Tepung gandum', '1 kg', 1.5, 13000],
+  kelapa: ['Kelapa', '1 butir', 1.5, 15000], pisang: ['Pisang raja', '1 kg', 1.8, 20000], kimchi: ['Kimchi', '1 kg', 8, 80000], yogurt: ['Yogurt', '1 kg', 4, 50000]
+};
+const CMP_STPSET = { id: 'jagung singkong ubi sagu', au: 'roti kentang domba pasta', ca: 'roti kentang pasta tepung', de: 'kentang roti pasta babi', nl: 'kentang roti keju', jp: 'mi ikan tahu', sg: 'mi ikan', gb: 'kentang roti ikan oat', us: 'roti jagung kentang oat', nz: 'kentang ubi roti domba', ie: 'kentang roti domba oat', kr: 'kimchi mi tahu babi', ch: 'roti kentang keju pasta', no: 'kentang roti ikan keju', se: 'kentang roti ikan', fi: 'kentang roti ikan oat', is: 'ikan domba kentang roti yogurt', at: 'kentang roti babi pasta', dk: 'roti kentang babi ikan', cr: 'kacang jagung pisang singkong', cl: 'roti kentang jagung kacang ikan', kz: 'domba roti mi yogurt', kg: 'roti domba mi yogurt', ge: 'roti keju jagung kacang', np: 'kacang tepung jagung roti', lk: 'kelapa roti ikan kacang', tw: 'mi babi ikan tahu', my: 'mi ikan roti', th: 'mi ikan', ph: 'jagung ikan babi singkong', vn: 'mi ikan', bn: 'sagu ikan', kh: 'ikan mi', la: 'ikan babi', mm: 'mi kacang ikan', tl: 'jagung singkong ubi ikan' };
+/* Keranjang makanan pokok 1 orang per bulan. Harga satuan di CMP_FOODBASE (tingkat AS), jumlah per bulan di bawah. */
+const CMP_BASKET = [3, 1, 2.5, 10, 6, 4, 8];
+const CMP_BASKETLB = [['Dada ayam (fillet)', '1 kg', '3 kg', 'ayam'], ['Daging sapi', '1 kg', '1 kg', 'sapi'], ['Telur', '12 butir', '30 butir', 'telur'], ['Beras putih', '1 kg', '10 kg', 'beras'], ['Sayur (tomat)', '1 kg', '6 kg', 'sayur'], ['Buah (apel)', '1 kg', '4 kg', 'buah'], ['Susu', '1 liter', '8 liter', 'susu']];
+function cmpFoodData(k) {
+  let pr;
+  if (k === 'id') pr = [45000, 140000, 24000, 15000, 12000, 40000, 21000];
+  else { const x = CMP_FOODX[k]; if (x === undefined) return null; pr = CMP_FOODBASE.map((it) => it[1] * x * CMP_FX.USD); }
+  const rows = CMP_BASKETLB.map((l, i) => ({ n: l[0], u: l[1], q: l[2], key: l[3], p: pr[i], sub: pr[i] * CMP_BASKET[i] }));
+  const sx = k === 'id' ? 1 : CMP_FOODX[k] * CMP_FX.USD;
+  const stp = (CMP_STPSET[k] || '').split(' ').filter(Boolean).map((key) => { const t = CMP_STP[key]; return { n: t[0], u: t[1], key: 'stp-' + key, p: k === 'id' ? t[3] : t[2] * sx }; });
+  const tot = rows.reduce((a, r) => a + r.sub, 0);
+  let pcts = [];
+  if (k === 'id') pcts = [['UMP terendah (Rp 2,3 juta)', Math.round(tot / 2.3e6 * 100)], ['UMP tertinggi (Rp 5,7 juta)', Math.round(tot / 5.7e6 * 100)]];
+  else { const u = CMP_UMR[k]; if (u && CMP_FX[u.c]) pcts = [['UMR (' + cmpRp(u.m * CMP_FX[u.c]) + '/bln)', Math.round(tot / (u.m * CMP_FX[u.c]) * 100)]]; }
+  return { rows, stp, tot, pcts, note: k === 'id' ? 'Perkiraan kasar, belum terverifikasi; cek pasar lokal.' : 'Perkiraan kasar, belum terverifikasi per negara; cek supermarket lokal.' };
+}
+function cmpFoodPct(k, price) {
+  const f = (v) => (v >= 10 ? Math.round(v) : v.toLocaleString('id-ID', { maximumFractionDigits: v >= 1 ? 1 : 2 })) + '%';
+  if (k === 'id') return f(price / 5.7e6 * 100) + '–' + f(price / 2.3e6 * 100);
+  const u = CMP_UMR[k], v = u && CMP_FX[u.c] ? price / (u.m * CMP_FX[u.c]) * 100 : NaN; return v <= 100 ? f(v) : '–';
+}
+function cmpFoodTable(c, k) {
+  const d = cmpFoodData(k); if (!d) return '';
+  const fm = data.compare.cells?.[c.id]?._food || {};
+  const btn = (r, m, lb) => `<button class="tg ${m === 'no' ? 'no' : ''}" data-act="cmp-food-mark" data-m="${m}" data-c="${c.id}" data-f="${r.key}" aria-pressed="${fm[r.key] === m}">${lb}</button>`;
+  const row = (r) => `<tr class="${fm[r.key] === 'ok' ? 'fok' : fm[r.key] === 'no' ? 'fno' : ''}"><td>${r.n}<small>per ${r.u}</small></td><td>${cmpRp(r.p)}</td><td>${cmpFoodPct(k, r.p)}</td><td class="tl"><div class="tgs">${btn(r, 'ok', '✓')}${btn(r, 'no', '✕')}</div></td></tr>`;
+  const sec = d.stp.length ? `<tr class="sh"><td colspan="4"><b>Makanan pokok utama:</b> ${esc(CMP_STAPLE[k] || '')}</td></tr>${d.stp.map(row).join('')}` : '';
+  return `<table class="ftbl"><tbody><tr class="hd"><td>Bahan</td><td>Harga</td><td>% ${k === 'id' ? 'UMP' : 'UMR'}</td><td>Toleransi</td></tr>${d.rows.map(row).join('')}${sec}</tbody></table>`;
+}
+function cmpFoodText(k) {
+  const d = cmpFoodData(k); if (!d) return '';
+  const ln = (r) => `• ${r.n} per ${r.u}: ≈ ${cmpRp(r.p)} (${cmpFoodPct(k, r.p)} dari ${k === 'id' ? 'UMP' : 'UMR'})`;
+  return d.rows.map(ln).join('\n') + (d.stp.length ? '\n\nMakanan pokok utama: ' + (CMP_STAPLE[k] || '') + '\n' + d.stp.map(ln).join('\n') : '');
+}
+const cmpRp = (n) => (n >= 1e6 ? 'Rp ' + (n / 1e6).toLocaleString('id-ID', { maximumFractionDigits: 1 }) + ' juta' : 'Rp ' + Math.round(n / 1000).toLocaleString('id-ID') + ' ribu');
+/* Listrik rumah standar 2–3 orang: [kWh per bulan, tarif USD per kWh, (khusus Indonesia: tarif Rp per kWh)]. Perkiraan kasar tarif rumah tangga; negara dingin (mis. Norwegia) sangat bergantung pemanas listrik. */
+const CMP_ELEC = {"id": [200, null, 1445], "au": [550, 0.25], "ca": [800, 0.13], "de": [290, 0.43], "nl": [250, 0.33], "jp": [260, 0.2], "sg": [350, 0.23], "gb": [250, 0.35], "us": [900, 0.17], "nz": [580, 0.2], "ie": [300, 0.38], "kr": [300, 0.12], "ch": [330, 0.3], "no": [900, 0.14], "se": [450, 0.19], "fi": [400, 0.2], "is": [350, 0.13], "at": [300, 0.3], "dk": [280, 0.48], "cr": [250, 0.16], "cl": [200, 0.15], "kz": [250, 0.04], "kg": [250, 0.03], "ge": [250, 0.11], "np": [120, 0.075], "lk": [150, 0.1], "tw": [300, 0.14], "my": [300, 0.12], "th": [250, 0.13], "ph": [200, 0.19], "vn": [250, 0.095], "bn": [400, 0.04], "kh": [150, 0.17], "la": [150, 0.07], "mm": [150, 0.04], "tl": [100, 0.12]};
+/* Model rincian listrik rumah standar 2–3 orang. AC dan pemanas dihitung dari suhu tiap musim (CMP_SEASON) dikali porsi rumah yang memakai listrik untuk itu. */
+const CMP_ACS = { id: .6, au: 1, ca: .6, de: .1, nl: .05, jp: .9, sg: 1, gb: .05, us: 1, nz: .1, ie: .02, kr: .9, ch: .1, no: .05, se: .05, fi: .05, is: 0, at: .1, dk: .05, cr: .1, cl: .2, kz: .4, kg: .3, ge: .5, np: .1, lk: .3, tw: .9, my: .9, th: .8, ph: .6, vn: .6, bn: 1, kh: .4, la: .4, mm: .3, tl: .2 };
+const CMP_HEATS = { id: 0, au: .5, ca: .3, de: .15, nl: .05, jp: .7, sg: 0, gb: .15, us: .4, nz: .7, ie: .1, kr: .2, ch: .3, no: .9, se: .4, fi: .5, is: 0, at: .15, dk: .2, cr: 0, cl: .2, kz: .1, kg: .3, ge: .3, np: .5, lk: 0, tw: .5, my: 0, th: 0, ph: 0, vn: .3, bn: 0, kh: 0, la: 0, mm: 0, tl: 0 };
+const CMP_WHS = { id: .15, au: .5, ca: .4, de: .4, nl: .15, jp: .3, sg: .7, gb: .2, us: .45, nz: .7, ie: .3, kr: .3, ch: .5, no: .95, se: .5, fi: .6, is: 0, at: .3, dk: .15, cr: .5, cl: .1, kz: .3, kg: .3, ge: .3, np: .5, lk: .3, tw: .5, my: .4, th: .5, ph: .3, vn: .5, bn: .2, kh: .3, la: .2, mm: .1, tl: .1 };
+const CMP_ACKW = { us: 2.5, ca: 2, au: 1.5 };
+const CMP_HTKW = { us: 2, ca: 2 };
+const CMP_KITCHEN = { us: 250, ca: 150, au: 120, nz: 120, gb: 100, ie: 90, de: 80, ch: 80, at: 80, no: 80, fi: 80, nl: 70, dk: 70, se: 70, is: 100, jp: 40, kr: 40, sg: 25, tw: 25 };
+const CMP_RICE = new Set(['id', 'jp', 'kr', 'sg', 'tw', 'my', 'th', 'ph', 'vn', 'bn', 'kh', 'la', 'mm', 'tl', 'np', 'lk']);
+function cmpElecData(k) {
+  const e = CMP_ELEC[k]; if (!e) return null;
+  const rate = e[2] !== undefined ? e[2] : e[1] * CMP_FX.USD, ss = cmpSeaRows(k);
+  const acH = (hi) => (hi >= 33 ? 8 : hi >= 30 ? 6 : hi >= 27 ? 3 : hi >= 25 ? 1.5 : 0), htH = (lo) => (lo <= -5 ? 10 : lo <= 0 ? 8 : lo <= 5 ? 5 : lo <= 9 ? 2 : 0);
+  const avg = (fn) => ss.reduce((a, r) => a + r.m * fn(r), 0) / 12;
+  const acHr = avg((r) => acH(r.hi)), htHr = avg((r) => htH(r.lo)), acMo = avg((r) => (acH(r.hi) > 0 ? 1 : 0)) * 12, htMo = avg((r) => (htH(r.lo) > 0 ? 1 : 0)) * 12;
+  const warm = ss.length && Math.min(...ss.map((r) => r.lo)) >= 15, rice = CMP_RICE.has(k);
+  const rows = [
+    { n: 'AC / pendingin ruangan', note: `${Math.round((CMP_ACKW[k] || 0.75) * 1000)} W, ±${acMo.toFixed(0)} bln/tahun, ${CMP_ACS[k] ? Math.round(CMP_ACS[k] * 100) : 0}% rumah memakai`, kwh: (CMP_ACKW[k] || 0.75) * 0.6 * acHr * 30 * (CMP_ACS[k] || 0) },
+    { n: 'Pemanas ruangan listrik', note: `≈ ${(CMP_HTKW[k] || 1.2).toString().replace('.', ',')} kW, ±${htMo.toFixed(0)} bln/tahun, ${Math.round((CMP_HEATS[k] || 0) * 100)}% rumah memakai (sisanya gas / pemanas pusat)`, kwh: (CMP_HTKW[k] || 1.2) * htHr * 30 * (CMP_HEATS[k] || 0) },
+    { n: 'Pemanas air listrik', note: `${Math.round((CMP_WHS[k] || 0) * 100)}% rumah memakai; mandi 2–3 orang`, kwh: 87 * (CMP_WHS[k] || 0) * (warm ? 0.4 : 1) },
+    { n: 'Rice cooker', note: rice ? '400 W, ±1 jam masak + menghangatkan' : '400 W, jarang dipakai', kwh: rice ? 15 : 4 },
+    { n: 'Microwave', note: '1000 W, ±20 menit/hari', kwh: 9 },
+    { n: 'Kulkas', note: '≈ 150 W, kompresor bergantian', kwh: 35 },
+    { n: 'Mesin cuci', note: '≈ 500 W, ±20 kali/bulan', kwh: 10 },
+    { n: 'TV dan internet (modem)', note: 'TV 80 W ±4 jam, modem 24 jam', kwh: 17 },
+    { n: 'Lampu LED', note: '8 titik × 9 W × 5 jam', kwh: 11 },
+    { n: 'Oven, ketel, mesin pengering, mesin cuci piring', note: 'dapur listrik dan peralatan rumah tangga; lebih besar di negara barat', kwh: CMP_KITCHEN[k] || 15 },
+    { n: 'Laptop, ponsel, kipas, setrika, lain-lain', note: 'perkiraan gabungan', kwh: 27 }
+  ].map((r) => ({ ...r, kwh: Math.round(r.kwh), cost: Math.round(r.kwh) * rate }));
+  const kwh = rows.reduce((a, r) => a + r.kwh, 0);
+  return { rows, kwh, rate, bill: kwh * rate };
+}
+function cmpElecTable(k) {
+  const d = cmpElecData(k); if (!d) return '';
+  const lb = k === 'id' ? 'UMP' : 'UMR';
+  return `<table class="ftbl"><tbody><tr class="hd"><td>Alat</td><td>kWh/bln</td><td>Biaya</td></tr>${d.rows.map((r) => `<tr class="${r.kwh === 0 ? 'zero' : ''}"><td>${r.n}<small>${r.note}</small></td><td>${r.kwh}</td><td>${cmpRp(r.cost)}</td></tr>`).join('')}<tr class="tt"><td>Total sebulan<small>tarif ≈ Rp ${Math.round(d.rate).toLocaleString('id-ID')} per kWh</small></td><td>${d.kwh}</td><td>${cmpRp(d.bill)}</td></tr><tr class="pc"><td colspan="2">% terhadap ${lb}</td><td>${cmpFoodPct(k, d.bill)}</td></tr></tbody></table><p class="ftn">Model perkiraan kasar dari suhu musim dan kebiasaan umum; belum terverifikasi. Cek tarif dan pemakaian nyata.</p>`;
+}
+function cmpElecText(k) {
+  const d = cmpElecData(k); if (!d) return '';
+  const lb = k === 'id' ? 'UMP' : 'UMR';
+  return d.rows.map((r) => `• ${r.n}: ${r.kwh} kWh ≈ ${cmpRp(r.cost)}`).join('\n') + `\n• Total: ${d.kwh} kWh/bln, tarif ≈ Rp ${Math.round(d.rate).toLocaleString('id-ID')} per kWh ≈ ${cmpRp(d.bill)}\n• % terhadap ${lb}: ${cmpFoodPct(k, d.bill)}`;
+}
+function cmpDefault(c, a) {
+  const k = c.k || catOf(c)?.k; if (!k) return '';
+  const cat = c.home ? CMP_HOME : (catOf(c) || {}), nm = a.key || a.name;
+  if (a.key === 'rent') return cmpRentText(k);
+  if (a.key === 'food') return cmpFoodText(k);
+  if (a.key === 'elec') return cmpElecText(k);
+  if (a.key === 'umr') {
+    const u = CMP_UMR[k]; if (!u) return '';
+    if (u.t) return u.t;
+    const fx = CMP_FX[u.c], tx = CMP_UMRTAX[k], gross = u.m * fx;
+    return `Kotor: ${u.c} ${Math.round(u.m).toLocaleString('id-ID')}/bln${u.n ? ' (' + u.n + ')' : ''} ≈ ${cmpRp(gross)}/bln` + (tx !== undefined ? `\n\nSetelah pajak & iuran wajib (≈ ${tx}%): ≈ ${cmpRp(gross * (1 - tx / 100))}/bln\n\nPerkiraan kasar untuk lajang tanpa tanggungan; cek kalkulator gaji resmi.` : '');
+  }
+  if (nm === 'Lama proses') return cat.y || '';
+  if (nm === 'Syarat bahasa') return cat.l || (cat.lg ? 'Bahasa ' + cat.lg + '; cek syarat terbaru' : '');
+  if (nm === 'Kewarganegaraan ganda') return cat.d || '';
+  const i = CMP_IDX[nm], base = i === undefined ? '' : (CMP_INFO[k]?.[i] || '');
+  if (nm === 'Biaya hidup' && CMP_COST[k] !== undefined) {
+    const cv = CMP_COST[k], u = typeof cv === 'object' ? cv.u : cv, est = typeof cv === 'object' && cv.e;
+    return `≈ ${cmpRp(u * CMP_FX.USD)}/bln (1 orang, termasuk sewa${est ? '; perkiraan kasar' : ''})${base ? ' · ' + base : ''}`;
+  }
+  return base;
+}
+function cmpSum(cid2) {
+  const cp = data.compare, row = cp.cells?.[cid2] || {}, c = [CMP_HOMEC, ...data.countries].find((x) => x.id === cid2);
+  const ok = cp.aspects.filter((a) => row[a.id]?.ok).length, no = cp.aspects.filter((a) => row[a.id]?.no).length;
+  const tot = cp.aspects.length;
+  let den = tot, sc = ok, extra = '', nx = 0;
+  [['_job', 'kerja', c ? cmpJob(c) : ''], ['_work', 'pekerjaan', ''], ['_part', 'paruh waktu', ''], ['_cult', 'rasisme', c ? cmpCult(c) : '', true], ['_nat', 'alam', c ? cmpNat(c) : ''], ['_sea', 'musim', '']].forEach(([key, lb, v, inv]) => {
+    const m = row[key] || {}, has = v !== '' || m.ok || m.no; if (!has) return;
+    const p = Math.min(100, Math.max(0, Number(v) || 0));
+    den += 1; sc += m.ok ? 1 : m.no ? 0 : (inv ? 100 - p : p) / 100; if (m.no) nx++;
+    extra += ' + ' + lb + ' ' + (m.ok ? '✓' : m.no ? '✕' : p + '%');
+  });
+  const pc = den ? Math.round((sc / den) * 100) : 0, nn = no + nx;
+  return `${pc}%<small>ditoleransi (${ok}/${tot} aspek${extra})${nn ? ' · ' + nn + ' tidak' : ''}</small>`;
+}
+function vCompare() {
+  const cp = data.compare, cs = data.countries, cell = (cid2, aid) => cp.cells?.[cid2]?.[aid] || {};
+  const asp = [...cp.aspects.filter((a) => a.key === 'elec'), ...cp.aspects.filter((a) => a.key !== 'elec')];
+  if (!cs.length) return `${head('Perbandingan', 'Bandingkan negara tujuan dari berbagai aspek.')}<div class="card"><p class="muted" style="margin:0">Belum ada negara. Tambahkan negara dulu di menu Negara, lalu isi perbandingannya di sini.</p></div>`;
+  const thead = `<thead><tr><th>Negara</th><th class="jobh"><div class="hx"><span class="hn">Kemudahan kerja</span></div></th><th class="jobh wrkh"><div class="hx"><span class="hn">Karier keuangan: kasir → akuntan (setelah pajak)</span></div></th><th class="jobh wrkh"><div class="hx"><span class="hn">Pekerjaan paruh waktu: waiter dll (setelah pajak)</span></div></th><th class="jobh"><div class="hx"><span class="hn">Culture: diskriminasi kerja terhadap orang luar/Asia</span></div></th><th class="jobh"><div class="hx"><span class="hn">Kekayaan alam per penduduk</span></div></th><th class="jobh seah"><div class="hx"><span class="hn">Musim dan suhu</span></div></th>${asp.map((a) => `<th><div class="hx"><input type="text" class="hn" data-ca="${a.id}" value="${esc(a.name)}" maxlength="40" aria-label="Nama kolom"><button class="x" data-act="cmp-del-aspect" data-id="${a.id}" aria-label="Hapus aspek ${esc(a.name)}">×</button></div></th>`).join('')}<th class="sumc">Toleransi</th></tr></thead>`;
+  const rows = [CMP_HOMEC, ...cs].map((c) => `<tr${c.home ? ' class="homer"' : ''}><th scope="row"><div class="cn">${flagHtml(c)}<span>${esc(c.name)}${c.home ? '<small>Negara asal</small>' : ''}</span></div>${c.home ? '' : `<button class="exitb" data-act="cmp-exit" data-id="${c.id}" aria-label="Keluarkan ${esc(c.name)} dari perbandingan dan daftar negara">Exit</button>`}</th>${cmpJobCell(c)}${cmpWorkCell(c)}${cmpPartCell(c)}${cmpCultCell(c)}${cmpNatCell(c)}${cmpSeaCell(c)}${asp.map((a) => {
+    const x = cell(c.id, a.id), val = x.v !== undefined ? x.v : cmpDefault(c, a);
+    const fk = c.k || catOf(c)?.k, ft = a.key === 'food' && x.v === undefined && fk && cmpFoodData(fk), et = a.key === 'elec' && x.v === undefined && fk && cmpElecData(fk);
+    const body = ft ? cmpFoodTable(c, fk) + `<button class="tg" style="margin-top:8px" data-act="cmp-food-edit" data-kind="food" data-c="${c.id}" data-a="${a.id}">Ubah sebagai teks</button>` : et ? cmpElecTable(fk) + `<button class="tg" style="margin-top:8px" data-act="cmp-food-edit" data-kind="elec" data-c="${c.id}" data-a="${a.id}">Ubah sebagai teks</button>` : `<textarea${a.key === 'rent' || a.key === 'food' ? ' class="rentt"' : ''} data-cc="${c.id}|${a.id}" maxlength="1200" placeholder="Isi manual…" aria-label="${esc(c.name)}: ${esc(a.name)}">${esc(val)}</textarea>${a.key === 'food' || a.key === 'elec' ? `<button class="tg" style="margin-top:8px" data-act="cmp-food-reset" data-c="${c.id}" data-a="${a.id}">Kembalikan tabel</button>` : ''}`;
+    return `<td class="${x.ok ? 'okc' : x.no ? 'noc' : ''}">${body}<div class="tgs"><button class="tg" data-act="cmp-mark" data-m="ok" data-c="${c.id}" data-a="${a.id}" aria-pressed="${!!x.ok}">✓ Toleransi</button><button class="tg no" data-act="cmp-mark" data-m="no" data-c="${c.id}" data-a="${a.id}" aria-pressed="${!!x.no}">✕ Tidak</button></div></td>`;
+  }).join('')}<td class="sumc" data-sum="${c.id}">${cmpSum(c.id)}</td></tr>`).join('');
+  return `${head('Perbandingan')}
+  <div class="card" style="margin-bottom:14px"><div class="addrow" style="margin:0"><input type="text" id="cmp-new" placeholder="Tambah kolom pertimbangan (mis. Komunitas Indonesia)" maxlength="40" aria-label="Nama kolom baru"><button class="btn" data-act="cmp-add-aspect">Tambah kolom</button></div></div>
+  <div class="cpw" tabindex="0" aria-label="Tabel perbandingan negara"><table class="cpt">${thead}<tbody>${rows}</tbody></table></div>`;
+}
+
 function vShell() {
-  const items = [['dashboard', 'Dashboard', ICON.dash], ['countries', 'Negara', ICON.globe], ['prep', 'Persiapan', ICON.prep], ['settings', 'Setting', ICON.gear]];
-  const body = { dashboard: vDash, countries: vCountries, prep: vPrep, settings: vSettings }[tab]();
+  const items = [['dashboard', 'Dashboard', ICON.dash], ['countries', 'Negara', ICON.globe], ['compare', 'Perbandingan', ICON.cmp], ['prep', 'Persiapan', ICON.prep], ['settings', 'Setting', ICON.gear]];
+  const body = { dashboard: vDash, countries: vCountries, compare: vCompare, prep: vPrep, settings: vSettings }[tab]();
   let inner = body;
-  if (tab !== 'countries' || csub) { const m = body.match(/^(\s*<header class="stick[^>]*>[\s\S]*?<\/header>(?:\s*<p class="sub">[\s\S]*?<\/p>)?)([\s\S]*)$/); if (m) inner = m[1] + '<div class="cols">' + m[2] + '</div>'; }
+  if ((tab !== 'countries' && tab !== 'compare') || csub) { const m = body.match(/^(\s*<header class="stick[^>]*>[\s\S]*?<\/header>(?:\s*<p class="sub">[\s\S]*?<\/p>)?)([\s\S]*)$/); if (m) inner = m[1] + '<div class="cols">' + m[2] + '</div>'; }
   return `<main class="view">${inner}</main><div class="bar"><nav aria-label="Navigasi utama">${items.map(([k, t, i]) => `<button data-act="goto" data-t="${k}" ${tab === k ? 'aria-current="page"' : ''}>${i}<span>${t}</span></button>`).join('')}</nav></div>`;
 }
 
@@ -878,7 +1517,7 @@ const closeSheet = () => { $('#sheet').innerHTML = ''; };
 const normQ = (t) => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
 function pickRows(q) {
   const have = new Set(data.countries.map((c) => c.name)), nq = normQ(q);
-  const html = [['', 'Negara populer'], ['asean', 'ASEAN']].map(([g, t]) => {
+  const html = [['', 'Negara populer'], ['alam', 'Alam & pegunungan'], ['asia', 'Asia: alam menakjubkan'], ['asean', 'ASEAN']].map(([g, t]) => {
     const rows = CATALOG.filter((c) => (c.g || '') === g && !have.has(c.n) && (!nq || normQ(c.n + ' ' + c.lg + ' ' + c.k).includes(nq)));
     return rows.length ? `<div class="gh">${t}</div>` + rows.map((c) => `<button class="pick" data-act="pick" data-k="${c.k}">${flagHtml(c)}<span class="cinfo"><b>${c.n}</b><small>${esc(c.y)}</small>${c.d ? `<small class="dualn">Ganda: ${esc(c.d)}</small>` : ''}</span></button>`).join('') : '';
   }).join('');
@@ -898,7 +1537,10 @@ const EXTRA = {
   jp: { cap: 'Tokyo', cur: 'JPY' }, sg: { cap: 'Singapura', cur: 'SGD' }, gb: { cap: 'London', cur: 'GBP' }, us: { cap: 'Washington, D.C.', cur: 'USD' },
   nz: { cap: 'Wellington', cur: 'NZD' }, ie: { cap: 'Dublin', cur: 'EUR' }, kr: { cap: 'Seoul', cur: 'KRW' }, my: { cap: 'Kuala Lumpur', cur: 'MYR' },
   th: { cap: 'Bangkok', cur: 'THB' }, ph: { cap: 'Manila', cur: 'PHP' }, vn: { cap: 'Hanoi', cur: 'VND' }, bn: { cap: 'Bandar Seri Begawan', cur: 'BND' },
-  kh: { cap: 'Phnom Penh', cur: 'KHR' }, la: { cap: 'Vientiane', cur: 'LAK' }, mm: { cap: 'Naypyidaw', cur: 'MMK' }, tl: { cap: 'Dili', cur: 'USD' }
+  kh: { cap: 'Phnom Penh', cur: 'KHR' }, la: { cap: 'Vientiane', cur: 'LAK' }, mm: { cap: 'Naypyidaw', cur: 'MMK' }, tl: { cap: 'Dili', cur: 'USD' },
+  ch: { cap: 'Bern', cur: 'CHF' }, no: { cap: 'Oslo', cur: 'NOK' }, se: { cap: 'Stockholm', cur: 'SEK' }, fi: { cap: 'Helsinki', cur: 'EUR' },
+  is: { cap: 'Reykjavik', cur: 'ISK' }, at: { cap: 'Wina', cur: 'EUR' }, dk: { cap: 'Kopenhagen', cur: 'DKK' }, cr: { cap: 'San José', cur: 'CRC' }, cl: { cap: 'Santiago', cur: 'CLP' },
+  kz: { cap: 'Astana', cur: 'KZT' }, kg: { cap: 'Bishkek', cur: 'KGS' }, ge: { cap: 'Tbilisi', cur: 'GEL' }, np: { cap: 'Kathmandu', cur: 'NPR' }, lk: { cap: 'Sri Jayawardenepura Kotte', cur: 'LKR' }, tw: { cap: 'Taipei', cur: 'TWD' }
 };
 const REG = {
   au: [['Sydney', 'Kota terbesar, banyak lapangan kerja. Sewa dan biaya hidup tergolong tertinggi.'], ['Melbourne', 'Kuat di pendidikan, seni, dan kuliner; populer bagi pendatang.'], ['Brisbane', 'Iklim hangat dan terus berkembang; biasanya lebih terjangkau dari Sydney.'], ['Perth', 'Dikenal dengan sektor pertambangan; relatif jauh dari kota besar lain.']],
@@ -920,7 +1562,22 @@ const REG = {
   kh: [['Phnom Penh', 'Ibu kota dan pusat bisnis.'], ['Siem Reap', 'Pusat pariwisata dekat Angkor.']],
   la: [['Vientiane', 'Ibu kota dan pusat pemerintahan.'], ['Luang Prabang', 'Kota warisan budaya dan pariwisata.']],
   mm: [['Yangon', 'Kota terbesar dan pusat ekonomi.'], ['Naypyidaw', 'Ibu kota administratif.']],
-  tl: [['Dili', 'Ibu kota dan pusat pemerintahan.']]
+  tl: [['Dili', 'Ibu kota dan pusat pemerintahan.']],
+  ch: [['Zürich', 'Pusat keuangan dan kerja terbesar; biaya hidup sangat tinggi.'], ['Genève', 'Kota organisasi internasional, di tepi danau; berbahasa Prancis.'], ['Luzern', 'Kota kecil di tepi danau dengan pegunungan Alpen di sekitarnya.'], ['Lausanne', 'Kota di tepi Danau Jenewa; kampus dan kualitas hidup tinggi.']],
+  no: [['Oslo', 'Ibu kota; fjord dan hutan dekat kota, biaya hidup tinggi.'], ['Bergen', 'Kota fjord di pesisir barat; curah hujan tinggi.'], ['Trondheim', 'Kota kampus teknologi; suasana lebih tenang.'], ['Tromsø', 'Kota di utara Arktik; terkenal untuk aurora dan musim gelap panjang.']],
+  se: [['Stockholm', 'Ibu kota dengan kepulauan di sekitarnya; peluang kerja terbanyak.'], ['Göteborg', 'Kota pesisir barat; industri dan pendidikan.'], ['Malmö', 'Dekat Kopenhagen; komunitas internasional besar.'], ['Uppsala', 'Kota universitas tua; dekat Stockholm.']],
+  fi: [['Helsinki', 'Ibu kota; peluang kerja dan teknologi terbanyak.'], ['Tampere', 'Kota di antara danau; biaya lebih rendah dari Helsinki.'], ['Oulu', 'Kota utara; sektor teknologi, musim dingin panjang.'], ['Turku', 'Kota pesisir barat daya dengan kepulauan.']],
+  is: [['Reykjavik', 'Ibu kota dan pusat kerja; hampir separuh penduduk tinggal di sekitarnya.'], ['Akureyri', 'Kota utama di utara; suasana lebih tenang.'], ['Hafnarfjörður', 'Kota satelit dekat Reykjavik.']],
+  at: [['Wina', 'Ibu kota; kualitas hidup tinggi dan komunitas internasional.'], ['Salzburg', 'Kota di kaki pegunungan Alpen; dekat danau dan jalur hiking.'], ['Innsbruck', 'Kota Alpen untuk pecinta ski dan pendakian.'], ['Graz', 'Kota kampus dengan biaya lebih rendah dari Wina.']],
+  dk: [['Kopenhagen', 'Ibu kota; kota ramah sepeda, biaya hunian tinggi.'], ['Aarhus', 'Kota kampus di pesisir Jutland.'], ['Odense', 'Kota menengah di Pulau Fyn; lebih terjangkau.']],
+  cr: [['San José', 'Ibu kota dan pusat kerja di lembah tengah.'], ['Heredia', 'Dekat San José; iklim lebih sejuk dan kampus.'], ['Guanacaste', 'Pesisir Pasifik utara; pantai dan musim kering jelas.']],
+  cl: [['Santiago', 'Ibu kota dengan peluang kerja terbanyak; dikelilingi Andes.'], ['Valparaíso', 'Kota pelabuhan bersejarah di pesisir.'], ['Concepción', 'Kota besar di selatan; kampus dan industri.'], ['Puerto Varas', 'Kota danau dan gunung berapi di wilayah selatan.']],
+  kz: [['Almaty', 'Kota terbesar di kaki Tian Shan; dekat danau dan ngarai, polusi musim dingin cukup berat.'], ['Astana', 'Ibu kota modern; musim dingin sangat dingin.'], ['Shymkent', 'Kota besar di selatan; iklim lebih hangat.']],
+  kg: [['Bishkek', 'Ibu kota dengan pegunungan di latar kota; biaya hidup rendah.'], ['Karakol', 'Basis trekking dekat Danau Issyk-Kul dan pegunungan.'], ['Osh', 'Kota tua di Lembah Fergana.']],
+  ge: [['Tbilisi', 'Ibu kota; kota tua, kuliner, dan komunitas ekspat besar.'], ['Batumi', 'Kota pantai Laut Hitam; musim panas ramai.'], ['Kutaisi', 'Kota tengah yang tenang; dekat ngarai dan gua.']],
+  np: [['Kathmandu', 'Ibu kota di lembah; polusi dan lalu lintas padat.'], ['Pokhara', 'Kota danau di kaki Annapurna; basis trekking.']],
+  lk: [['Colombo', 'Pusat bisnis dan peluang kerja.'], ['Kandy', 'Kota budaya di perbukitan.'], ['Galle', 'Kota pesisir dengan benteng bersejarah.']],
+  tw: [['Taipei', 'Pusat kerja dan teknologi; gunung dan pemandian air panas dekat kota.'], ['Taichung', 'Kota menengah; biaya lebih terjangkau.'], ['Hualien', 'Gerbang Taroko Gorge di pesisir timur.']]
 };
 const STEP0 = ['Riset syarat kewarganegaraan', 'Dapatkan visa / izin tinggal', 'Capai status penduduk tetap (jika diperlukan)', 'Penuhi lama tinggal minimum', 'Lulus tes bahasa', 'Lulus tes kewarganegaraan / integrasi', 'Ajukan permohonan', 'Wawancara / biometrik', 'Sumpah / upacara kewarganegaraan'];
 const DOC0 = ['Paspor berlaku', 'Akta kelahiran', 'Ijazah dan transkrip', 'SKCK / surat keterangan catatan kepolisian', 'Bukti tempat tinggal', 'Bukti penghasilan dan pajak', 'Sertifikat tes bahasa', 'Pas foto sesuai ketentuan', 'Terjemahan tersumpah dan legalisasi dokumen'];
@@ -1103,6 +1760,30 @@ document.addEventListener('click', async (e) => {
   const el = e.target.closest('[data-act]'); if (!el) return;
   const { act, id, cat, p, t, k, v, m, sub, list, ix } = el.dataset;
   switch (act) {
+    case 'cmp-mark': {
+      const cc = el.dataset.c, aa = el.dataset.a, cp = data.compare;
+      cp.cells ??= {}; const x = ((cp.cells[cc] ??= {})[aa] ??= {});
+      const was = !!x[m]; x.ok = false; x.no = false; if (!was) x[m] = true; save();
+      const td = el.closest('td'); td.classList.toggle('okc', !!x.ok); td.classList.toggle('noc', !!x.no);
+      td.querySelectorAll('.tg').forEach((bt) => bt.setAttribute('aria-pressed', !!x[bt.dataset.m]));
+      const sm = $('[data-sum="' + cc + '"]'); if (sm) sm.innerHTML = cmpSum(cc);
+      break;
+    }
+    case 'cmp-food-mark': {
+      const cc = el.dataset.c, ff = el.dataset.f; data.compare.cells ??= {}; const fm = ((data.compare.cells[cc] ??= {})._food ??= {});
+      if (fm[ff] === m) delete fm[ff]; else fm[ff] = m; save();
+      const tr = el.closest('tr'); tr.classList.toggle('fok', fm[ff] === 'ok'); tr.classList.toggle('fno', fm[ff] === 'no');
+      tr.querySelectorAll('.tg').forEach((bt) => bt.setAttribute('aria-pressed', fm[ff] === bt.dataset.m));
+      break;
+    }
+    case 'cmp-food-edit': { const cc = el.dataset.c, aa = el.dataset.a, c0 = [CMP_HOMEC, ...data.countries].find((z) => z.id === cc), kk = c0 && (c0.k || catOf(c0)?.k); if (!kk) break; data.compare.cells ??= {}; ((data.compare.cells[cc] ??= {})[aa] ??= {}).v = el.dataset.kind === 'elec' ? cmpElecText(kk) : cmpFoodText(kk); save(); render(); break; }
+    case 'cmp-food-reset': { const x0 = data.compare.cells?.[el.dataset.c]?.[el.dataset.a]; if (x0) delete x0.v; save(); render(); break; }
+    case 'cmp-add-aspect': { const i = $('#cmp-new'), sv = i.value.trim(); if (!sv) return i.focus(); data.compare.aspects.push({ id: rid(), name: sv }); save(); render(); break; }
+    case 'cmp-del-aspect': {
+      const a = data.compare.aspects.find((x) => x.id === id); if (!a || !confirm('Hapus aspek "' + a.name + '" beserta isinya?')) return;
+      data.compare.aspects = data.compare.aspects.filter((x) => x.id !== id);
+      Object.values(data.compare.cells || {}).forEach((o) => { delete o[id]; }); save(); render(); break;
+    }
     case 'goto': tab = t; cid = null; csub = null; closeSheet(); render(true); break;
     case 'goto-prep': tab = 'prep'; cid = null; csub = null; ptab = p; render(true); break;
     case 'ptab': ptab = p; render(); break;
@@ -1165,6 +1846,19 @@ document.addEventListener('click', async (e) => {
     case 'c-reg-fav': { const x = C().regions.find((a) => a.id === id); if (x) { x.fav = !x.fav; save(); render(); } break; }
     case 'c-reg-del': { const c = C(); c.regions = c.regions.filter((a) => a.id !== id); save(); render(); break; }
     case 'c-reg-sug': { const c = C(), r = (REG[catOf(c)?.k] || [])[+ix]; if (r) { c.regions.push({ id: rid(), name: r[0], note: r[1], fav: false }); save(); render(); } break; }
+    case 'cmp-exit': {
+      const c = data.countries.find((x) => x.id === id); if (!c) break;
+      if (!confirm('Keluarkan ' + c.name + ' dari Perbandingan dan daftar Negara? Semua data negara ini ikut terhapus.')) return;
+      const was = c.priority;
+      data.countries = data.countries.filter((x) => x.id !== id);
+      if (was && data.countries[0]) data.countries[0].priority = true;
+      if (data.compare.cells) delete data.compare.cells[id];
+      if (data.compare.jobs) delete data.compare.jobs[id];
+      if (data.compare.nat) delete data.compare.nat[id];
+      if (data.compare.natNote) delete data.compare.natNote[id];
+      if (data.compare.cult) delete data.compare.cult[id];
+      save(); toast(c.name + ' dikeluarkan'); render(); break;
+    }
     case 'del-country': {
       if (!confirm('Hapus negara ini dari daftar?')) return;
       const was = data.countries.find((x) => x.id === id)?.priority;
@@ -1195,7 +1889,10 @@ document.addEventListener('click', async (e) => {
   }
 });
 
-document.addEventListener('input', (e) => { const t = e.target; if (t.id === 'c-search') { const l = $('#pick-list'); if (l) l.innerHTML = pickRows(t.value); return; } if (t.type === 'range' && t.nextElementSibling) t.nextElementSibling.textContent = t.value + '%'; });
+document.addEventListener('input', (e) => { const t = e.target; if (t.dataset.cj || t.dataset.cnat || t.dataset.ccu) { const b = t.closest('td').querySelector('.jbar i'); if (b) b.style.width = Math.min(100, Math.max(0, Number(t.value) || 0)) + '%'; return; } if (t.id === 'c-search') { const l = $('#pick-list'); if (l) l.innerHTML = pickRows(t.value); return; } if (t.type === 'range' && t.nextElementSibling) t.nextElementSibling.textContent = t.value + '%'; });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.target.id === 'cmp-new') { e.preventDefault(); const b = $('[data-act="cmp-add-aspect"]'); if (b) b.click(); }
+});
 document.addEventListener('change', (e) => {
   const t = e.target;
   if (t.id === 'lang-country') {
@@ -1203,6 +1900,31 @@ document.addEventListener('change', (e) => {
     const c = data.countries.find((x) => x.id === t.value), m = c && catOf(c);
     if (m) { L.target = m.lg; L.test = m.ts; } else if (c) L.target = '';
     save(); render(); return;
+  }
+  if (t.dataset.ccu) {
+    const cp = data.compare; cp.cult ??= {};
+    if (t.value.trim() === '') delete cp.cult[t.dataset.ccu]; else { const n = Math.min(100, Math.max(0, Math.round(Number(t.value) || 0))); cp.cult[t.dataset.ccu] = n; t.value = n; }
+    save(); render(); return;
+  }
+  if (t.dataset.cnat) {
+    const cp = data.compare; cp.nat ??= {};
+    if (t.value.trim() === '') delete cp.nat[t.dataset.cnat]; else { const n = Math.min(100, Math.max(0, Math.round(Number(t.value) || 0))); cp.nat[t.dataset.cnat] = n; t.value = n; }
+    save(); render(); return;
+  }
+  if (t.dataset.cnote) { const cp = data.compare; cp.natNote ??= {}; cp.natNote[t.dataset.cnote] = t.value.trim(); save(); return; }
+  if (t.dataset.cj) {
+    const cp = data.compare; cp.jobs ??= {};
+    if (t.value.trim() === '') delete cp.jobs[t.dataset.cj]; else { const n = Math.min(100, Math.max(0, Math.round(Number(t.value) || 0))); cp.jobs[t.dataset.cj] = n; t.value = n; }
+    save(); render(); return;
+  }
+  if (t.dataset.ca) {
+    const a = data.compare.aspects.find((x) => x.id === t.dataset.ca), nv = t.value.trim();
+    if (a) { if (nv) { a.name = nv; save(); } else t.value = a.name; }
+    return;
+  }
+  if (t.dataset.cc) {
+    const [cc, aa] = t.dataset.cc.split('|'), cp = data.compare; cp.cells ??= {};
+    const x = ((cp.cells[cc] ??= {})[aa] ??= {}); x.v = t.value.trim(); save(); return;
   }
   const p = t.dataset.bind; if (!p) return;
   let val = t.type === 'checkbox' ? t.checked : t.value;

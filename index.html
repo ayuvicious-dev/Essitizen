@@ -515,6 +515,8 @@ async function loadData() {
   if (!cp.umrNetAdded) { const ua = cp.aspects.find((a) => a.key === 'umr'); if (ua && ua.name === 'UMR (≈ Rp/bulan)') ua.name = 'UMR setelah pajak (≈ Rp/bulan)'; cp.umrNetAdded = true; save(); }
   if (!cp.foodAdded) { if (!cp.aspects.some((a) => a.key === 'food')) { const ri = cp.aspects.findIndex((a) => a.key === 'rent'), bi = cp.aspects.findIndex((a) => a.name === 'Biaya hidup'), at = ri >= 0 ? ri + 1 : bi >= 0 ? bi + 1 : Math.min(1, cp.aspects.length); cp.aspects.splice(at, 0, { id: rid(), name: 'Bahan pokok (≈ Rp)', key: 'food' }); } cp.foodAdded = true; save(); }
   if (!cp.rentAdded) { if (!cp.aspects.some((a) => a.key === 'rent')) { const bi = cp.aspects.findIndex((a) => a.name === 'Biaya hidup'); cp.aspects.splice(bi >= 0 ? bi + 1 : Math.min(1, cp.aspects.length), 0, { id: rid(), name: 'Sewa dekat alam (≈ Rp/bln)', key: 'rent' }); } cp.rentAdded = true; save(); }
+  if (!cp.houseAdded) { if (!cp.aspects.some((a) => a.key === 'house')) { const at = Math.max(cp.aspects.findIndex((a) => a.key === 'rent'), cp.aspects.findIndex((a) => a.key === 'food'), cp.aspects.findIndex((a) => a.name === 'Biaya hidup')); cp.aspects.splice(at >= 0 ? at + 1 : Math.min(1, cp.aspects.length), 0, { id: rid(), name: 'Harga rumah standar (≈ Rp)', key: 'house' }); } cp.houseAdded = true; save(); }
+  if (!cp.saveAdded) { if (!cp.aspects.some((a) => a.key === 'save')) { const at = Math.max(cp.aspects.findIndex((a) => a.key === 'house'), cp.aspects.findIndex((a) => a.key === 'rent'), cp.aspects.findIndex((a) => a.name === 'Biaya hidup')); cp.aspects.splice(at >= 0 ? at + 1 : Math.min(1, cp.aspects.length), 0, { id: rid(), name: 'Lama menabung beli rumah dengan UMR (≈ bulan)', key: 'save' }); } cp.saveAdded = true; save(); }
   if (!cp.elecAdded) { if (!cp.aspects.some((a) => a.key === 'elec')) { const at = Math.max(cp.aspects.findIndex((a) => a.key === 'rent'), cp.aspects.findIndex((a) => a.key === 'food'), cp.aspects.findIndex((a) => a.name === 'Biaya hidup')); cp.aspects.splice(at >= 0 ? at + 1 : Math.min(1, cp.aspects.length), 0, { id: rid(), name: 'Listrik sebulan (2–3 orang, rumah standar)', key: 'elec' }); } cp.elecAdded = true; save(); }
 }
 
@@ -1308,6 +1310,97 @@ function cmpRentText(k) {
   const regs = (CMP_RENTREG[k] || []).map((g) => `• ${g[0]}: ≈ Rp ${f(g[1])}–${f(g[2])} juta`).join('\n');
   return `≈ Rp ${f(r[0])}–${f(r[1])} juta/bln untuk apartemen 1 kamar atau rumah kecil di kota kecil/pinggiran dekat alam, bukan pusat kota.${regs ? '\n\nRekomendasi wilayah:\n' + regs : ''}\n\nPerkiraan kasar per wilayah, belum terverifikasi; cek portal sewa lokal.${CMP_RENTNOTE[k] || ''}`;
 }
+/* Harga rumah standar (beli): rumah tapak ±3 kamar, 80–120 m² dengan halaman kecil, di kota kecil atau pinggiran yang tidak padat tetapi tidak terlalu pedalaman (masih dekat kota, layanan, dan transportasi). Ribuan USD [bawah, atas]. Perkiraan kasar; bukan data resmi. */
+const CMP_HOUSE = { au: [450, 750], ca: [350, 650], de: [250, 500], nl: [400, 650], jp: [100, 250], sg: [500, 800], gb: [250, 450], us: [250, 450], nz: [450, 750], ie: [250, 450], kr: [200, 450], ch: [900, 1500], no: [350, 600], se: [200, 400], fi: [130, 250], is: [500, 800], at: [350, 600], dk: [300, 500], cr: [120, 280], cl: [100, 250], kz: [60, 150], kg: [40, 110], ge: [60, 150], np: [40, 120], lk: [50, 120], tw: [200, 450], my: [100, 250], th: [80, 250], ph: [60, 200], vn: [80, 250], bn: [150, 350], kh: [40, 150], la: [30, 100], mm: [30, 100], tl: [30, 100] };
+/* Catatan kepemilikan orang asing (ringkas). Aturan sering berubah; cek ke notaris atau pengacara properti setempat. */
+const CMP_HOUSENOTE = {
+  au: ' Pembeli asing sementara dilarang membeli rumah yang sudah berdiri; warga dan penduduk tetap tidak terkena larangan.',
+  ca: ' Non-warga dan non-penduduk tetap dilarang membeli rumah hunian (larangan berlaku sampai 2027); cek status terbaru.',
+  nz: ' Non-warga dan non-penduduk umumnya tidak boleh membeli rumah yang sudah berdiri.',
+  ch: ' Pembelian oleh orang asing dibatasi (Lex Koller), terutama rumah di daerah wisata.',
+  dk: ' Orang asing yang bukan penduduk perlu izin untuk membeli rumah.',
+  fi: ' Åland membatasi pembelian oleh non-penduduk Åland.',
+  sg: ' Rumah tapak (landed) hanya untuk warga dan harganya jauh lebih tinggi (umumnya di atas US$3 juta); angka di sini untuk flat HDB 5 kamar atau kondominium, dan HDB mensyaratkan status warga atau PR.',
+  jp: ' Orang asing boleh membeli. Rumah kosong (akiya) di pedesaan bisa jauh lebih murah tetapi biasanya perlu renovasi besar.',
+  th: ' Orang asing tidak boleh memiliki tanah; umumnya hanya kondominium atau sewa tanah jangka panjang.',
+  ph: ' Orang asing tidak boleh memiliki tanah; hanya kondominium atau sewa tanah.',
+  vn: ' Orang asing tidak bisa memiliki tanah; hanya hak guna terbatas.',
+  kh: ' Orang asing tidak boleh memiliki tanah; kondominium di atas lantai dasar diperbolehkan.',
+  la: ' Orang asing tidak boleh memiliki tanah.',
+  mm: ' Orang asing tidak boleh memiliki tanah.',
+  np: ' Orang asing umumnya tidak boleh memiliki tanah.',
+  kg: ' Orang asing tidak boleh memiliki tanah.',
+  lk: ' Pembelian tanah oleh orang asing dikenai pajak sangat tinggi; umumnya sewa jangka panjang.',
+  my: ' Orang asing punya batas harga minimum (umumnya sekitar RM1 juta, tergantung negara bagian).',
+  bn: ' Kepemilikan properti oleh orang asing sangat dibatasi.',
+  tl: ' Orang asing tidak boleh memiliki tanah; hanya sewa jangka panjang.'
+};
+/* Rumah standar per wilayah dekat alam: [nama, ribu USD bawah, ribu USD atas]. Perkiraan kasar, belum terverifikasi; cek portal properti lokal. */
+const CMP_HOUSEREG = {
+  au: [['Blue Mountains (NSW)', 650, 950], ['Sunshine Coast hinterland (QLD)', 600, 900], ['Cairns dan Atherton Tablelands (QLD)', 300, 500]],
+  ca: [['Squamish (BC)', 900, 1300], ['Canmore dan Banff (Alberta)', 1000, 1600], ['Kelowna dan Okanagan (BC)', 600, 900]],
+  de: [['Garmisch-Partenkirchen (Bavaria)', 600, 1000], ['Hutan Hitam: Titisee dan Triberg', 300, 500], ['Sächsische Schweiz (Saxony)', 200, 350]],
+  nl: [['Veluwe: Apeldoorn dan Ede', 450, 700], ['Zeeland', 350, 550], ['Friesland: Heerenveen', 300, 480]],
+  jp: [['Matsumoto dan Alpen Jepang (Nagano)', 200, 350], ['Odawara dan Hakone (Kanagawa)', 250, 400], ['Nago, Okinawa utara', 150, 300]],
+  sg: [['Punggol dan Coney Island', 600, 800], ['Sembawang dan Yishun (Sungei Buloh)', 500, 700], ['Upper Thomson dan Bukit Timah', 900, 1500]],
+  gb: [['Lake District (Keswick, Ambleside)', 320, 520], ['Highlands Skotlandia (Fort William, Inverness)', 220, 380], ['Cornwall (St Ives, Penzance)', 300, 480]],
+  us: [['Asheville (North Carolina)', 400, 650], ['Bend (Oregon)', 600, 900], ['Missoula (Montana)', 450, 700]],
+  nz: [['Nelson dan Tasman', 500, 750], ['Rotorua', 380, 550], ['Queenstown', 900, 1500]],
+  ie: [['Killarney (Kerry)', 300, 450], ['Galway dan Connemara', 280, 450], ['West Cork', 250, 420]],
+  kr: [['Seogwipo dan Jeju City (Pulau Jeju)', 300, 600], ['Gangneung dan Sokcho', 250, 450], ['Gapyeong', 300, 550]],
+  ch: [['Interlaken (Bernese Oberland)', 1000, 1600], ['Valais: Brig dan Visp', 800, 1300], ['Locarno (Ticino)', 900, 1500]],
+  no: [['Tromsø', 450, 700], ['Ålesund dan fjord Sunnmøre', 380, 600], ['Voss (Hardanger)', 400, 650]],
+  se: [['Åre', 350, 600], ['Dalarna: Mora dan Rättvik', 130, 250], ['Kiruna (Lapland)', 150, 300]],
+  fi: [['Rovaniemi (Lapland)', 150, 260], ['Kuopio (Saimaa)', 150, 250], ['Mariehamn (Åland)', 250, 400]],
+  is: [['Akureyri', 450, 700], ['Selfoss (selatan)', 500, 750], ['Egilsstaðir (timur)', 380, 600]],
+  at: [['Salzkammergut: Bad Ischl dan Gmunden', 450, 800], ['Zell am See (Salzburgerland)', 700, 1200], ['Kärnten: Villach dan Wörthersee', 400, 700]],
+  dk: [['Pulau Bornholm', 200, 380], ['Skagen dan Nordjylland', 250, 450], ['Silkeborg (daerah danau)', 330, 520]],
+  cr: [['Monteverde dan Santa Elena', 150, 300], ['Uvita dan Dominical (Pasifik)', 200, 400], ['La Fortuna (Arenal)', 150, 300]],
+  cl: [['Pucón (Danau dan Gunung Api)', 150, 300], ['Puerto Varas', 180, 350], ['Pisco Elqui (Lembah Elqui)', 80, 180]],
+  kz: [['Kaki Pegunungan Alatau (Almaty)', 150, 350], ['Burabay', 60, 140], ['Saty dan Kolsai', 40, 100]],
+  kg: [['Karakol (Issyk-Kul)', 40, 90], ['Cholpon-Ata (Issyk-Kul)', 60, 150], ['Kaki Gunung Ala-Archa (Bishkek)', 80, 200]],
+  ge: [['Stepantsminda (Kazbegi)', 70, 180], ['Borjomi', 40, 100], ['Batumi (Laut Hitam)', 90, 200]],
+  np: [['Pokhara', 50, 150], ['Nagarkot', 40, 100], ['Dhulikhel', 40, 100]],
+  lk: [['Ella', 50, 120], ['Nuwara Eliya', 60, 150], ['Mirissa dan Unawatuna', 80, 200]],
+  tw: [['Hualien (Taroko)', 200, 400], ['Taitung', 150, 300], ['Yilan', 250, 500]],
+  my: [['Cameron Highlands', 90, 200], ['Langkawi', 100, 250], ['Kundasang (Kinabalu, Sabah)', 80, 200]],
+  th: [['Chiang Mai: Mae Rim dan Doi Suthep', 120, 300], ['Pai', 80, 200], ['Krabi: Ao Nang', 120, 300]],
+  ph: [['Puerto Princesa dan El Nido (Palawan)', 70, 220], ['Baguio (Benguet)', 80, 200], ['Panglao (Bohol)', 80, 220]],
+  vn: [['Da Lat', 100, 250], ['Sapa', 80, 200], ['Hoi An dan pantai Da Nang', 150, 400]],
+  bn: [['Tutong', 150, 300], ['Jerudong', 400, 800], ['Temburong', 100, 250]],
+  kh: [['Kampot dan Kep', 50, 150], ['Siem Reap (area Angkor)', 60, 200], ['Mondulkiri', 30, 100]],
+  la: [['Luang Prabang', 50, 150], ['Vang Vieng', 40, 120], ['Don Det (Si Phan Don)', 20, 70]],
+  mm: [['Danau Inle (Nyaungshwe)', 30, 90], ['Ngapali', 40, 120], ['Pyin Oo Lwin', 30, 90]],
+  tl: [['Pinggiran Dili (Hera)', 40, 120], ['Maubisse (pegunungan)', 20, 60], ['Pulau Atauro', 20, 60]]
+};
+/* Indonesia: [bawah, atas] dalam juta Rupiah. */
+const CMP_HOUSEREG_ID = [['Batu (Malang)', 600, 1500], ['Ubud (Bali)', 1500, 4000], ['Lembang (Bandung)', 700, 2000], ['Pinggiran Bogor dan Puncak', 500, 1500]];
+function cmpHouseText(k) {
+  const rp = (juta) => juta >= 1000 ? (juta / 1000).toLocaleString('id-ID', { maximumFractionDigits: 1 }) + ' miliar' : Math.round(juta).toLocaleString('id-ID') + ' juta';
+  const what = 'rumah standar (±3 kamar, 80–120 m² dengan halaman kecil) di kota kecil atau pinggiran yang tidak padat penduduk tetapi tidak terlalu pedalaman';
+  if (k === 'id') return `≈ Rp ${rp(300)}–${rp(800)} untuk ${what}.\n\nRekomendasi wilayah:\n` + CMP_HOUSEREG_ID.map((r) => `• ${r[0]}: ≈ Rp ${rp(r[1])}–${rp(r[2])}`).join('\n') + '\n\nPerkiraan kasar, belum terverifikasi; harga sangat bergantung lokasi, luas tanah, dan legalitas. Cek portal properti lokal.';
+  const r = CMP_HOUSE[k]; if (!r) return '';
+  const f = (kusd) => rp(kusd * 1000 * CMP_FX.USD / 1e6);
+  const regs = (CMP_HOUSEREG[k] || []).map((g) => `• ${g[0]}: ≈ Rp ${f(g[1])}–${f(g[2])}`).join('\n');
+  return `≈ Rp ${f(r[0])}–${f(r[1])} untuk ${what}.${regs ? '\n\nRekomendasi wilayah:\n' + regs : ''}\n\nPerkiraan kasar, belum terverifikasi; cek portal properti lokal.${CMP_HOUSENOTE[k] || ''}`;
+}
+/* Lama menabung untuk rumah standar dengan UMR setempat (gaji bersih setelah pajak). Indonesia memakai kisaran UMP terendah sampai tertinggi. */
+function cmpSaveText(k) {
+  const SAVE_RATE = 0.3, MAXM = 1200;
+  const dur = (m) => { const y = m / 12; return Math.round(m).toLocaleString('id-ID') + ' bulan (' + (y >= 10 ? Math.round(y) : y.toLocaleString('id-ID', { maximumFractionDigits: 1 })) + ' tahun)'; };
+  const rng = (lo, hi, net) => { const a = lo / net, b = hi / net; return a > MAXM ? 'lebih dari 100 tahun' : '≈ ' + dur(a) + (b > MAXM ? ' sampai lebih dari 100 tahun' : Math.round(a) === Math.round(b) ? '' : ' sampai ' + dur(b)); };
+  const jt = (n) => (n / 1e6).toLocaleString('id-ID', { maximumFractionDigits: 1 });
+  const rp = (n) => n >= 1e9 ? (n / 1e9).toLocaleString('id-ID', { maximumFractionDigits: 1 }) + ' miliar' : jt(n) + ' juta';
+  const tail = '\n\nPerkiraan kasar: memakai harga rumah dan UMR di kolom ini, tanpa biaya hidup, bunga atau KPR, pajak dan biaya pembelian, atau kenaikan harga. Menabung ' + Math.round(SAVE_RATE * 100) + '% dari gaji bersih lebih realistis daripada 100%.';
+  if (k === 'id') {
+    const lo = 300e6, hi = 800e6, nets = [['UMP terendah', 2.2e6], ['UMP tertinggi (DKI Jakarta)', 5.5e6]];
+    return 'Rumah standar ≈ Rp ' + rp(lo) + '–' + rp(hi) + '.\n\n' + nets.map(([lb, n]) => `• ${lb} (≈ Rp ${jt(n)} juta/bln bersih)\n   - Menabung 100%: ${rng(lo, hi, n)}\n   - Menabung ${Math.round(SAVE_RATE * 100)}%: ${rng(lo, hi, n * SAVE_RATE)}`).join('\n') + tail;
+  }
+  const r = CMP_HOUSE[k], u = CMP_UMR[k]; if (!r || !u || !CMP_FX[u.c]) return '';
+  const tx = CMP_UMRTAX[k] || 0, net = u.m * CMP_FX[u.c] * (1 - tx / 100);
+  const lo = r[0] * 1000 * CMP_FX.USD, hi = r[1] * 1000 * CMP_FX.USD;
+  return `UMR bersih ≈ Rp ${jt(net)} juta/bln${tx ? ' (setelah pajak ≈ ' + tx + '%)' : ''}; rumah standar ≈ Rp ${rp(lo)}–${rp(hi)}.\n\n• Menabung 100% gaji bersih: ${rng(lo, hi, net)}\n• Menabung ${Math.round(SAVE_RATE * 100)}% gaji bersih: ${rng(lo, hi, net * SAVE_RATE)}` + tail + (u.n && /nominal|perkiraan|tidak ada UMR/.test(u.n) ? '\n\nCatatan UMR: ' + u.n + '.' : '');
+}
 /* Harga bahan pokok: tingkat harga relatif terhadap AS (1,0). Perkiraan kasar, belum terverifikasi per negara. */
 const CMP_FOODX = { au: 1.1, ca: 1.0, de: 0.8, nl: 0.85, jp: 1.0, sg: 1.2, gb: 0.85, us: 1.0, nz: 1.1, ie: 1.0, kr: 1.1, ch: 1.8, no: 1.6, se: 1.0, fi: 1.0, is: 1.6, at: 0.95, dk: 1.2, cr: 0.8, cl: 0.7, kz: 0.55, kg: 0.4, ge: 0.5, np: 0.4, lk: 0.45, tw: 0.8, my: 0.5, th: 0.5, ph: 0.55, vn: 0.4, bn: 0.65, kh: 0.5, la: 0.45, mm: 0.35, tl: 0.6 };
 /* Harga dasar tingkat AS (USD): dada ayam fillet 1 kg, telur 12 butir, beras 1 kg, tomat 1 kg, apel 1 kg, susu 1 liter. */
@@ -1442,6 +1535,8 @@ function cmpDefault(c, a) {
   const k = c.k || catOf(c)?.k; if (!k) return '';
   const cat = c.home ? CMP_HOME : (catOf(c) || {}), nm = a.key || a.name;
   if (a.key === 'rent') return cmpRentText(k);
+  if (a.key === 'house') return cmpHouseText(k);
+  if (a.key === 'save') return cmpSaveText(k);
   if (a.key === 'food') return cmpFoodText(k);
   if (a.key === 'elec') return cmpElecText(k);
   if (a.key === 'umr') {
@@ -1482,7 +1577,7 @@ function vCompare() {
   const rows = [CMP_HOMEC, ...cs].map((c) => `<tr${c.home ? ' class="homer"' : ''}><th scope="row"><div class="cn">${flagHtml(c)}<span>${esc(c.name)}${c.home ? '<small>Negara asal</small>' : ''}</span></div>${c.home ? '' : `<button class="exitb" data-act="cmp-exit" data-id="${c.id}" aria-label="Keluarkan ${esc(c.name)} dari perbandingan dan daftar negara">Exit</button>`}</th>${cmpJobCell(c)}${cmpWorkCell(c)}${cmpPartCell(c)}${cmpCultCell(c)}${cmpNatCell(c)}${cmpSeaCell(c)}${asp.map((a) => {
     const x = cell(c.id, a.id), val = x.v !== undefined ? x.v : cmpDefault(c, a);
     const fk = c.k || catOf(c)?.k, ft = a.key === 'food' && x.v === undefined && fk && cmpFoodData(fk), et = a.key === 'elec' && x.v === undefined && fk && cmpElecData(fk);
-    const body = ft ? cmpFoodTable(c, fk) + `<button class="tg" style="margin-top:8px" data-act="cmp-food-edit" data-kind="food" data-c="${c.id}" data-a="${a.id}">Ubah sebagai teks</button>` : et ? cmpElecTable(fk) + `<button class="tg" style="margin-top:8px" data-act="cmp-food-edit" data-kind="elec" data-c="${c.id}" data-a="${a.id}">Ubah sebagai teks</button>` : `<textarea${a.key === 'rent' || a.key === 'food' ? ' class="rentt"' : ''} data-cc="${c.id}|${a.id}" maxlength="1200" placeholder="Isi manual…" aria-label="${esc(c.name)}: ${esc(a.name)}">${esc(val)}</textarea>${a.key === 'food' || a.key === 'elec' ? `<button class="tg" style="margin-top:8px" data-act="cmp-food-reset" data-c="${c.id}" data-a="${a.id}">Kembalikan tabel</button>` : ''}`;
+    const body = ft ? cmpFoodTable(c, fk) + `<button class="tg" style="margin-top:8px" data-act="cmp-food-edit" data-kind="food" data-c="${c.id}" data-a="${a.id}">Ubah sebagai teks</button>` : et ? cmpElecTable(fk) + `<button class="tg" style="margin-top:8px" data-act="cmp-food-edit" data-kind="elec" data-c="${c.id}" data-a="${a.id}">Ubah sebagai teks</button>` : `<textarea${a.key === 'rent' || a.key === 'food' || a.key === 'house' || a.key === 'save' ? ' class="rentt"' : ''} data-cc="${c.id}|${a.id}" maxlength="1200" placeholder="Isi manual…" aria-label="${esc(c.name)}: ${esc(a.name)}">${esc(val)}</textarea>${a.key === 'food' || a.key === 'elec' ? `<button class="tg" style="margin-top:8px" data-act="cmp-food-reset" data-c="${c.id}" data-a="${a.id}">Kembalikan tabel</button>` : ''}`;
     return `<td class="${x.ok ? 'okc' : x.no ? 'noc' : ''}">${body}<div class="tgs"><button class="tg" data-act="cmp-mark" data-m="ok" data-c="${c.id}" data-a="${a.id}" aria-pressed="${!!x.ok}">✓ Toleransi</button><button class="tg no" data-act="cmp-mark" data-m="no" data-c="${c.id}" data-a="${a.id}" aria-pressed="${!!x.no}">✕ Tidak</button></div></td>`;
   }).join('')}<td class="sumc" data-sum="${c.id}">${cmpSum(c.id)}</td></tr>`).join('');
   return `${head('Perbandingan')}

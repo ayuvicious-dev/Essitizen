@@ -462,7 +462,14 @@ const CATALOG = [
   { k: 'kh', lg: 'Khmer', ts: 'Lainnya', g: 'asean', f: '🇰🇭', n: 'Kamboja', y: 'Sekitar 7 tahun tinggal sah', l: 'Bahasa Khmer', d: 'Cek aturan ganda sebelum mengajukan' },
   { k: 'la', lg: 'Laos', ts: 'Lainnya', g: 'asean', f: '🇱🇦', n: 'Laos', y: 'Sangat selektif, lama tinggal panjang', l: 'Bahasa Laos', d: 'Cek aturan ganda sebelum mengajukan' },
   { k: 'mm', lg: 'Myanmar', ts: 'Lainnya', g: 'asean', f: '🇲🇲', n: 'Myanmar', y: 'Jalur naturalisasi sangat terbatas', l: 'Bahasa Myanmar', d: 'Umumnya tidak mengizinkan ganda' },
-  { k: 'tl', lg: 'Tetum/Portugis', ts: 'Lainnya', g: 'asean', f: '🇹🇱', n: 'Timor-Leste', y: 'Aturan ketat, cek langsung ke otoritas', l: 'Tetum/Portugis', d: 'Cek aturan ganda sebelum mengajukan' }
+  { k: 'tl', lg: 'Tetum/Portugis', ts: 'Lainnya', g: 'asean', f: '🇹🇱', n: 'Timor-Leste', y: 'Aturan ketat, cek langsung ke otoritas', l: 'Tetum/Portugis', d: 'Cek aturan ganda sebelum mengajukan' },
+  /* Gaji tinggi & butuh tenaga kerja: ringkasan kasar. Naturalisasi di Teluk dan Liechtenstein sangat selektif dan izin tinggal tidak otomatis mengarah ke paspor. Wajib dicek ke imigrasi/kedutaan. */
+  { k: 'li', g: 'gaji', lg: 'Jerman', ts: 'Goethe-Zertifikat', f: '🇱🇮', n: 'Liechtenstein', y: 'Jalur biasa sekitar 10 tahun dengan persetujuan komune; jalur 30 tahun tanpa pemungutan suara (tahun sebelum usia 20 dihitung ganda)', l: 'Jerman B1 + integrasi di komune', d: 'Umumnya wajib melepas kewarganegaraan asal; ada rencana pelonggaran terbatas untuk warga EEA/Swiss, cek kedutaan' },
+  { k: 'lu', g: 'gaji', lg: 'Luksemburg/Prancis/Jerman', ts: 'Lainnya', f: '🇱🇺', n: 'Luksemburg', y: 'Sekitar 5 tahun tinggal sah', l: 'Bahasa Luksemburg (lisan A2, mendengar B1) + kursus kewarganegaraan', d: 'Luksemburg mengizinkan kewarganegaraan ganda' },
+  { k: 'ae', g: 'gaji', lg: 'Arab/Inggris', ts: 'IELTS', f: '🇦🇪', n: 'Uni Emirat Arab', y: 'Sangat selektif, umumnya sekitar 30 tahun tinggal; Golden Visa hanya izin tinggal, bukan jalur ke paspor', l: 'Bahasa Arab; naturalisasi lewat keputusan pemerintah', d: 'UEA umumnya tidak mengizinkan ganda' },
+  { k: 'qa', g: 'gaji', lg: 'Arab/Inggris', ts: 'IELTS', f: '🇶🇦', n: 'Qatar', y: 'Sekitar 25 tahun tinggal sah; kuota tahunan sangat kecil', l: 'Bahasa Arab', d: 'Qatar tidak mengizinkan ganda' },
+  { k: 'sa', g: 'gaji', lg: 'Arab/Inggris', ts: 'IELTS', f: '🇸🇦', n: 'Arab Saudi', y: 'Sekitar 10 tahun tinggal; jalur terbatas untuk profesional dan talenta khusus. Premium Residency hanya izin tinggal', l: 'Bahasa Arab; cek syarat lain ke otoritas', d: 'Arab Saudi tidak mengakui ganda' },
+  { k: 'om', g: 'gaji', lg: 'Arab/Inggris', ts: 'IELTS', f: '🇴🇲', n: 'Oman', y: 'Sekitar 15 tahun tinggal sah berkelanjutan (turun dari 20 tahun sejak aturan 2025)', l: 'Membaca dan menulis bahasa Arab', d: 'Oman umumnya tidak mengizinkan ganda; pengecualian hanya lewat dekret kerajaan' }
 ];
 const STATUS = ['Riset', 'Rencana', 'Proses', 'Diajukan', 'Disetujui'];
 const TESTS = ['IELTS', 'TOEFL iBT', 'PTE Academic', 'Goethe-Zertifikat', 'TestDaF', 'JLPT', 'TOPIK', 'Inburgering (NT2)', 'TCF / TEF', 'Lainnya'];
@@ -1612,7 +1619,7 @@ const closeSheet = () => { $('#sheet').innerHTML = ''; };
 const normQ = (t) => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
 function pickRows(q) {
   const have = new Set(data.countries.map((c) => c.name)), nq = normQ(q);
-  const html = [['', 'Negara populer'], ['alam', 'Alam & pegunungan'], ['asia', 'Asia: alam menakjubkan'], ['asean', 'ASEAN']].map(([g, t]) => {
+  const html = [['', 'Negara populer'], ['alam', 'Alam & pegunungan'], ['asia', 'Asia: alam menakjubkan'], ['asean', 'ASEAN'], ['gaji', 'Gaji tinggi & butuh tenaga kerja']].map(([g, t]) => {
     const rows = CATALOG.filter((c) => (c.g || '') === g && !have.has(c.n) && (!nq || normQ(c.n + ' ' + c.lg + ' ' + c.k).includes(nq)));
     return rows.length ? `<div class="gh">${t}</div>` + rows.map((c) => `<button class="pick" data-act="pick" data-k="${c.k}">${flagHtml(c)}<span class="cinfo"><b>${c.n}</b><small>${esc(c.y)}</small>${c.d ? `<small class="dualn">Ganda: ${esc(c.d)}</small>` : ''}</span></button>`).join('') : '';
   }).join('');
@@ -1676,6 +1683,135 @@ const REG = {
 };
 const STEP0 = ['Riset syarat kewarganegaraan', 'Dapatkan visa / izin tinggal', 'Capai status penduduk tetap (jika diperlukan)', 'Penuhi lama tinggal minimum', 'Lulus tes bahasa', 'Lulus tes kewarganegaraan / integrasi', 'Ajukan permohonan', 'Wawancara / biometrik', 'Sumpah / upacara kewarganegaraan'];
 const DOC0 = ['Paspor berlaku', 'Akta kelahiran', 'Ijazah dan transkrip', 'SKCK / surat keterangan catatan kepolisian', 'Bukti tempat tinggal', 'Bukti penghasilan dan pajak', 'Sertifikat tes bahasa', 'Pas foto sesuai ketentuan', 'Terjemahan tersumpah dan legalisasi dokumen'];
+/* ============================================================
+   NEGARA TAMBAHAN: gaji tinggi & butuh tenaga kerja
+   Liechtenstein, Luksemburg, Uni Emirat Arab, Qatar, Arab Saudi, Oman.
+   Semua angka perkiraan kasar (USD kecuali dinyatakan lain), belum terverifikasi per negara;
+   UMR Luksemburg dan Qatar dari tarif resmi, sisanya acuan sektor. Cek sumber resmi sebelum memutuskan.
+   ============================================================ */
+Object.assign(CMP_FX, { AED: 4936, QAR: 4980, SAR: 4834, OMR: 47150 });
+Object.assign(CMP_UMR, {
+  li: { c: 'CHF', m: 4200, n: 'perkiraan; tidak ada UMR nasional, acuan upah terendah sektor ≈ CHF 22–24/jam; banyak pekerja lintas batas dari Swiss dan Austria' },
+  lu: { c: 'EUR', m: 2771, n: '€2.771,33/bln untuk pekerja tidak terampil sejak 1 Jun 2026 (terampil €3.325,59); naik 3,8% mulai 1 Jan 2027' },
+  ae: { c: 'AED', m: 2000, n: 'perkiraan; tidak ada UMR nasional untuk ekspat, acuan gaji pekerja layanan ≈ AED 1.500–3.000, sering plus akomodasi dan transportasi dari pemberi kerja' },
+  qa: { c: 'QAR', m: 1800, n: 'QAR 1.000 gaji pokok + QAR 300 makan + QAR 500 akomodasi bila tidak disediakan' },
+  sa: { c: 'SAR', m: 2000, n: 'perkiraan; tidak ada UMR nasional untuk ekspat (acuan SAR 4.000 hanya untuk warga Saudi); pekerja asing sektor layanan umumnya SAR 1.000–2.500 plus akomodasi' },
+  om: { c: 'OMR', m: 250, n: 'perkiraan; UMR OMR 325 hanya untuk warga Oman; pekerja asing sektor layanan umumnya OMR 150–300' }
+});
+Object.assign(CMP_UMRTAX, { li: 10, lu: 14, ae: 0, qa: 0, sa: 2, om: 0 });
+Object.assign(CMP_TAXMID, { li: 14, lu: 22, ae: 0, qa: 0, sa: 2, om: 0 });
+Object.assign(CMP_INFO, {
+  li: ['Sangat tinggi, setara Swiss; gaji juga sangat tinggi', 'Empat musim; salju di pegunungan, musim panas sejuk', 'Alpen, lembah Rhine, jalur hiking dan ski di Malbun', 'Industri presisi dan keuangan; pekerjaan melebihi jumlah penduduk, banyak diisi pekerja lintas batas', 'Sangat aman', 'Asuransi kesehatan wajib; kualitas sangat baik, premi mahal', 'Rendah dibanding negara sekitar; tarif puncak sekitar 22% (termasuk pajak komune)'],
+  lu: ['Tinggi; sewa sangat mahal, terutama Luksemburg Kota', 'Empat musim sedang; musim dingin dingin dan lembap', 'Hutan Ardennes, Müllerthal, lembah Moselle; kecil tapi hijau', 'Keuangan, hukum, lembaga Eropa, logistik; kekurangan tenaga kerja di banyak bidang', 'Aman', 'Asuransi kesehatan publik wajib; kualitas baik', 'Progresif, puncak sekitar 42% plus iuran sosial'],
+  ae: ['Menengah-tinggi; sewa Dubai dan Abu Dhabi mahal, Sharjah lebih murah', 'Gurun: musim panas sangat terik (di atas 40°C), musim dingin hangat', 'Gurun, pantai, pegunungan Hajar di timur; hampir tanpa hutan. Kekayaan alam utama: minyak dan gas', 'Permintaan sangat tinggi di konstruksi, perhotelan, ritel, energi, keuangan', 'Sangat aman', 'Asuransi kesehatan wajib dari pemberi kerja; kualitas baik di kota besar', 'Tidak ada pajak penghasilan pribadi; PPN 5%'],
+  qa: ['Menengah-tinggi; sewa Doha mahal', 'Gurun: musim panas sangat terik dan lembap, musim dingin hangat', 'Gurun datar, pantai, laguna Inland Sea; alam terbatas. Kekayaan alam utama: gas alam', 'Permintaan tinggi di energi (LNG), konstruksi, perhotelan, layanan', 'Sangat aman', 'Asuransi dari pemberi kerja; layanan publik dan swasta baik', 'Tidak ada pajak penghasilan pribadi bagi karyawan'],
+  sa: ['Menengah; sewa Riyadh naik, kota lain lebih murah', 'Gurun panas; pesisir Laut Merah lembap, pegunungan Asir lebih sejuk', 'Gurun, pegunungan Asir, Laut Merah, AlUla. Kekayaan alam utama: minyak dan gas', 'Proyek Visi 2030 (konstruksi, pariwisata, energi); kuota Saudisasi di banyak posisi', 'Aman; waspada aturan sosial dan hukum yang ketat', 'Asuransi wajib dari pemberi kerja; kualitas baik di kota besar', 'Tidak ada pajak penghasilan pribadi; PPN 15%'],
+  om: ['Menengah-rendah; lebih murah dari UEA dan Qatar', 'Gurun dan pesisir panas; pegunungan lebih sejuk; Salalah dapat hujan monsun Jun–Sep', 'Wadi, pegunungan Hajar, gurun Wahiba, pantai dan fjord Musandam. Kekayaan alam: minyak dan gas', 'Peluang terbatas dan ada kuota Omanisasi; energi, konstruksi, kesehatan, pendidikan', 'Sangat aman', 'Asuransi dari pemberi kerja; layanan publik terbatas untuk ekspat', 'Tidak ada pajak penghasilan pribadi; PPN 5%']
+});
+Object.assign(CMP_COST, { li: { u: 4100, e: 1 }, lu: { u: 3250, e: 1 }, ae: { u: 2200, e: 1 }, qa: { u: 2000, e: 1 }, sa: { u: 1700, e: 1 }, om: { u: 1500, e: 1 } });
+Object.assign(CMP_JOB, { li: 40, lu: 60, ae: 80, qa: 70, sa: 65, om: 55 });
+Object.assign(CMP_JOBWHY, {
+  li: 'Pengangguran umumnya di bawah 3% dan jumlah pekerjaan melebihi jumlah penduduk (banyak pekerja lintas batas dari Swiss dan Austria). Namun izin kerja untuk warga non-EEA berkuota sangat kecil, jadi peluang nyata bagi WNI sangat terbatas. Angka awal perkiraan.',
+  lu: 'Upah minimum tertinggi di UE (€2.771/bln sejak Jun 2026) dan permintaan tenaga kerja tinggi di keuangan, hukum, dan layanan; hampir separuh pekerja adalah lintas batas. Untuk warga non-UE biasanya perlu sponsor kerja dan kualifikasi tinggi, dan bahasa Prancis, Jerman, atau Luksemburg sering diminta.',
+  ae: 'Permintaan tenaga kerja ekspat sangat tinggi (konstruksi, perhotelan, ritel, keuangan, teknologi) dan visa kerja lewat sponsor pemberi kerja. Gaji bebas pajak penghasilan, tetapi tidak ada jalur ke kewarganegaraan dan izin tinggal terikat kontrak kerja. Angka awal perkiraan.',
+  qa: 'Permintaan tinggi dari sektor gas/LNG, konstruksi, dan layanan, dengan sebagian besar tenaga kerja adalah ekspat yang disponsori pemberi kerja. Gaji bebas pajak penghasilan, tetapi masa tinggal bergantung kontrak. Angka awal perkiraan.',
+  sa: 'Proyek Visi 2030 (proyek raksasa, pariwisata, energi) membuka banyak lowongan, tetapi kebijakan Saudisasi membatasi banyak posisi untuk warga Saudi, dan menurut laporan 2026 program visa kerja sementara ditangguhkan. Peluang terbaik di teknik, kesehatan, dan konstruksi. Angka awal perkiraan.',
+  om: 'Ekonomi minyak dan gas dengan kuota Omanisasi di banyak sektor; peluang ekspat terpusat di energi, konstruksi, kesehatan, dan pendidikan. Biaya hidup lebih rendah dari UEA dan Qatar, tetapi gajinya juga lebih kecil. Angka awal perkiraan.'
+});
+Object.assign(CMP_NAT, { li: 70, lu: 45, ae: 35, qa: 25, sa: 55, om: 65 });
+Object.assign(CMP_NATPLACE, {
+  li: 'Pegunungan Rätikon dan Malbun, jalur Fürstensteig, lembah Rhine, kastel Vaduz',
+  lu: 'Müllerthal (disebut Swiss kecil), Ardennes (Wiltz, Clervaux), lembah Moselle, Vianden',
+  ae: 'Jebel Jais (Ras Al Khaimah), gurun Liwa, Hatta, Fujairah, Pulau Sir Bani Yas',
+  qa: 'Inland Sea (Khor Al Adaid), gurun Zekreet, Pulau Banana, hutan bakau Al Thakira',
+  sa: 'AlUla (Hegra), Gunung Al-Soudah, Kepulauan Farasan, Edge of the World, pesisir Laut Merah',
+  om: 'Wadi Shab, Jebel Akhdar dan Jebel Shams, gurun Wahiba Sands, Salalah (musim khareef), Musandam'
+});
+Object.assign(CMP_NATWHY, {
+  li: 'Negara kecil (±160 km²) berpenduduk sekitar 40 ribu dengan Alpen di timur; alamnya indah dan dekat, tetapi luasnya terbatas dan sumber daya alam komersial tidak dominan.',
+  lu: 'Hutan menutup sekitar sepertiga daratan (Ardennes dan Müllerthal), tetapi negaranya kecil dan padat; kekayaan ekonominya dari jasa keuangan, bukan sumber daya alam.',
+  ae: 'Kekayaan alam utama adalah minyak dan gas (salah satu cadangan terbesar dunia per penduduk). Lanskap dominan gurun dan pesisir; hutan hampir tidak ada, jadi skor alam rendah walau sumber daya energinya besar.',
+  qa: 'Kekayaan alam utama adalah gas alam (North Field, salah satu ladang gas terbesar dunia) dan Qatar eksportir LNG utama. Lanskap gurun datar dengan penduduk kecil, jadi alam hijau terbatas.',
+  sa: 'Salah satu cadangan minyak terbesar dunia, plus tambang fosfat dan emas. Lanskap dominan gurun, dengan pegunungan Asir dan pesisir Laut Merah sebagai alam yang lebih hijau.',
+  om: 'Minyak dan gas lebih kecil dari tetangganya tetapi tetap pendorong ekonomi. Alamnya lebih beragam: pegunungan, wadi, pantai, dan monsun di Salalah, dengan penduduk jarang.'
+});
+Object.assign(CMP_SEASON, {
+  li: 'Dingin|12|2|-2|5;Semi|3|5|3|17;Panas|6|8|13|25;Gugur|9|11|4|16',
+  lu: 'Dingin|12|2|0|5;Semi|3|5|3|16;Panas|6|8|12|23;Gugur|9|11|5|15',
+  ae: 'Sejuk|11|3|16|29;Panas|4|5|24|39;Terik|6|9|30|43;Peralihan|10|10|26|37',
+  qa: 'Sejuk|11|3|15|27;Panas|4|5|24|40;Terik|6|9|30|43;Peralihan|10|10|26|36',
+  sa: 'Sejuk|11|3|9|25;Panas|4|5|22|38;Terik|6|9|28|43;Peralihan|10|10|20|34',
+  om: 'Sejuk|11|3|19|30;Panas|4|5|27|39;Terik|6|9|31|41;Peralihan|10|10|27|35'
+});
+Object.assign(CMP_SEAREF, { li: 'Vaduz', lu: 'Luksemburg', ae: 'Dubai', qa: 'Doha', sa: 'Riyadh', om: 'Muskat' });
+Object.assign(CMP_JOBS, {
+  li: [5300, 6500, 7400, 7900], lu: [3150, 3500, 4000, 4600], ae: [700, 1000, 1500, 1900],
+  qa: [650, 1000, 1600, 2100], sa: [600, 900, 1400, 1900], om: [500, 700, 1100, 1500]
+});
+Object.assign(CMP_CULT, { li: 50, lu: 40, ae: 50, qa: 55, sa: 60, om: 45 });
+const CMP_GULFCULT = 'Belum ada eksperimen lapangan terverifikasi. Penilaian kasar: sistem sponsor dan hierarki berdasarkan kebangsaan memengaruhi gaji dan perlakuan, dan pekerja dari Asia Tenggara sangat umum di sektor layanan. Ubah sesuai pengalaman Anda.';
+Object.assign(CMP_CULTWHY, {
+  li: 'Belum ada eksperimen lapangan terverifikasi. Penilaian kasar: masyarakat sangat kecil dan tertutup, dan hambatan lebih besar di aturan imigrasi (kuota izin kerja non-EEA) daripada sikap pribadi.',
+  lu: 'Belum ada eksperimen lapangan terverifikasi. Penilaian kasar: hampir separuh penduduk berpaspor asing, jadi hambatan lebih ke bahasa daripada diskriminasi.',
+  ae: CMP_GULFCULT, qa: CMP_GULFCULT, sa: CMP_GULFCULT, om: CMP_GULFCULT
+});
+Object.assign(CMP_PT, { li: 27, lu: 17, ae: 3.5, qa: 3.2, sa: 3, om: 2.5 });
+Object.assign(CMP_RENT, { li: [1700, 2600], lu: [1500, 2300], ae: [1000, 1800], qa: [900, 1600], sa: [600, 1200], om: [500, 1000] });
+Object.assign(CMP_RENTREG, {
+  li: [['Triesenberg dan Malbun (pegunungan)', 1500, 2200], ['Balzers (selatan)', 1400, 2100]],
+  lu: [['Echternach (Müllerthal)', 1100, 1700], ['Clervaux (Ardennes)', 1000, 1500], ['Vianden', 1000, 1500]],
+  ae: [['Ras Al Khaimah (dekat Jebel Jais)', 600, 1100], ['Fujairah dan Khor Fakkan', 500, 900]],
+  qa: [['Al Khor', 700, 1200], ['Al Wakrah', 700, 1200]],
+  sa: [['Abha (pegunungan Asir)', 400, 800], ['Taif', 350, 700]],
+  om: [['Salalah', 350, 700], ['Nizwa (dekat Jebel Akhdar)', 300, 600]]
+});
+Object.assign(CMP_HOUSE, { li: [1500, 2500], lu: [800, 1400], ae: [350, 700], qa: [400, 800], sa: [250, 500], om: [200, 400] });
+Object.assign(CMP_HOUSENOTE, {
+  li: ' Pembelian properti oleh orang asing dibatasi dan memerlukan izin pemerintah; harga termasuk tertinggi di dunia.',
+  lu: ' Orang asing boleh membeli properti; harga sangat tinggi.',
+  ae: ' Orang asing hanya boleh memiliki hak milik penuh (freehold) di zona tertentu, mis. di Dubai dan Abu Dhabi; di tempat lain umumnya sewa.',
+  qa: ' Kepemilikan penuh orang asing hanya di zona yang ditentukan (mis. The Pearl dan Lusail); di luar itu umumnya hak guna.',
+  sa: ' Aturan kepemilikan asing sedang dilonggarkan (kerangka zonasi disetujui Juni 2026); cek aturan terbaru dan zona yang diizinkan.',
+  om: ' Orang asing umumnya hanya boleh memiliki properti di kompleks wisata terpadu dan zona khusus; cek aturan terbaru.'
+});
+Object.assign(CMP_HOUSEREG, {
+  li: [['Triesenberg dan Malbun (pegunungan)', 1800, 3000], ['Balzers (selatan)', 1500, 2600]],
+  lu: [['Echternach (Müllerthal)', 800, 1300], ['Clervaux dan Wiltz (Ardennes)', 650, 1100], ['Vianden', 650, 1100]],
+  ae: [['Ras Al Khaimah (dekat Jebel Jais)', 300, 600], ['Fujairah', 250, 500]],
+  qa: [['Al Khor', 400, 800], ['Al Wakrah', 400, 800]],
+  sa: [['Abha (pegunungan Asir)', 200, 400], ['Taif', 200, 400]],
+  om: [['Salalah', 150, 300], ['Nizwa', 150, 280]]
+});
+Object.assign(CMP_FOODX, { li: 1.7, lu: 1.1, ae: 0.9, qa: 0.95, sa: 0.8, om: 0.8 });
+Object.assign(CMP_STAPLE, {
+  li: 'Roti, kentang, keju, produk susu, daging (masakan Swiss-Austria)',
+  lu: 'Roti, kentang, babi, keju, ikan, dan pasta (campuran Prancis-Jerman)',
+  ae: 'Nasi, roti pipih, domba dan ayam, kacang-kacangan, yogurt',
+  qa: 'Nasi, roti pipih, domba dan ayam, kacang-kacangan, yogurt',
+  sa: 'Nasi, roti, domba dan ayam, kurma, yogurt',
+  om: 'Nasi, roti pipih, ikan, domba dan ayam, kurma'
+});
+Object.assign(CMP_STPSET, { li: 'roti kentang keju pasta', lu: 'kentang roti keju pasta', ae: 'roti domba kacang yogurt', qa: 'roti domba kacang yogurt', sa: 'roti domba kacang yogurt', om: 'roti ikan domba kacang' });
+Object.assign(CMP_ELEC, { li: [330, 0.25], lu: [250, 0.25], ae: [300, 0.09], qa: [300, 0.04], sa: [300, 0.06], om: [300, 0.05] });
+Object.assign(CMP_ACS, { li: .05, lu: .05, ae: 1, qa: 1, sa: 1, om: .95 });
+Object.assign(CMP_HEATS, { li: .3, lu: .2, ae: 0, qa: 0, sa: 0, om: 0 });
+Object.assign(CMP_WHS, { li: .5, lu: .4, ae: .9, qa: .9, sa: .9, om: .9 });
+Object.assign(CMP_ACKW, { ae: 1.5, qa: 1.5, sa: 1.5, om: 1.5 });
+Object.assign(CMP_KITCHEN, { li: 80, lu: 70, ae: 80, qa: 80, sa: 80, om: 60 });
+['ae', 'qa', 'sa', 'om'].forEach((k) => CMP_RICE.add(k));
+Object.assign(EXTRA, {
+  li: { cap: 'Vaduz', cur: 'CHF' }, lu: { cap: 'Luksemburg', cur: 'EUR' }, ae: { cap: 'Abu Dhabi', cur: 'AED' },
+  qa: { cap: 'Doha', cur: 'QAR' }, sa: { cap: 'Riyadh', cur: 'SAR' }, om: { cap: 'Muskat', cur: 'OMR' }
+});
+Object.assign(REG, {
+  li: [['Vaduz', 'Ibu kota; pusat keuangan dan pemerintahan, dengan kastel di atas kota.'], ['Schaan', 'Pusat industri dan lapangan kerja, dengan akses kereta ke Swiss dan Austria.'], ['Balzers', 'Desa di selatan dengan alam hijau, dekat perbatasan Swiss.'], ['Triesenberg', 'Desa pegunungan; akses ke resor Malbun.']],
+  lu: [['Luksemburg Kota', 'Ibu kota dan pusat keuangan; sewa sangat mahal.'], ['Esch-sur-Alzette', 'Kota terbesar kedua; sewa lebih terjangkau.'], ['Echternach', 'Kota tua dekat Müllerthal; alam dan jalur hiking.'], ['Clervaux', 'Kota kecil di Ardennes di utara; tenang dan hijau.']],
+  ae: [['Dubai', 'Pusat bisnis dan pariwisata; peluang kerja terbanyak, sewa tinggi.'], ['Abu Dhabi', 'Ibu kota; energi, pemerintahan, dan keuangan.'], ['Sharjah', 'Lebih murah dari Dubai; banyak pekerja tinggal di sini.'], ['Ras Al Khaimah', 'Emirat utara dengan pegunungan Jebel Jais; lebih tenang dan terjangkau.']],
+  qa: [['Doha', 'Ibu kota dan pusat kerja; sebagian besar penduduk tinggal di sekitarnya.'], ['Al Wakrah', 'Kota pesisir selatan dekat Doha; biaya lebih rendah.'], ['Al Khor', 'Kota pesisir utara dekat ladang gas; suasana lebih tenang.'], ['Lusail', 'Kota baru terencana di utara Doha.']],
+  sa: [['Riyadh', 'Ibu kota; pusat proyek raksasa, korporasi, dan pemerintahan.'], ['Jeddah', 'Kota pelabuhan di Laut Merah; perdagangan dan pariwisata.'], ['Dammam dan Al Khobar', 'Provinsi Timur; pusat minyak dan gas.'], ['Abha', 'Kota pegunungan Asir; iklim lebih sejuk dari kota lain.']],
+  om: [['Muskat', 'Ibu kota dan pusat kerja; pantai dan pegunungan dekat kota.'], ['Salalah', 'Kota selatan dengan musim monsun (khareef) yang hijau.'], ['Sohar', 'Kota industri dan pelabuhan di pesisir utara.'], ['Nizwa', 'Kota pedalaman dekat pegunungan dan benteng.']]
+});
+
 const FIN_M = ['Sewa / hunian', 'Makan', 'Transportasi', 'Asuransi kesehatan', 'Listrik, air & internet', 'Lain-lain'];
 const FIN_O = ['Biaya visa / aplikasi', 'Tes bahasa', 'Penerjemahan & legalisasi dokumen', 'Tiket & biaya pindah'];
 const mkAmt = (arr) => arr.map((name) => ({ id: rid(), name, amt: 0 }));
